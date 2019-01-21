@@ -51,3 +51,9 @@ extension UIEdgeInsets {
         return UIEdgeInsets(top: self.top, left: self.left, bottom: value, right: self.right)
     }
 }
+
+extension UIEdgeInsets {
+    func inverted() -> UIEdgeInsets {
+        return UIEdgeInsets(top: -self.top, left: -self.left, bottom: -self.bottom, right: -self.right)
+    }
+}

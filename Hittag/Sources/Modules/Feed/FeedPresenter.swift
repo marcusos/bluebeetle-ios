@@ -18,7 +18,7 @@ final class FeedPresenter: Presenter, FeedPresenterType {
         let posts = [
             Post.init(text: "Encontrei o Sacana!",
                       image: URL(string: "https://instagram.fcgh22-1.fna.fbcdn.net/vp/5df3c6d819804e4ad64eb6a339e41dae/5CC1380C/t51.2885-15/sh0.08/e35/p640x640/49784279_596634510760891_5024978615261294605_n.jpg?_nc_ht=instagram.fcgh22-1.fna.fbcdn.net")!,
-                      hittags: [Hittag(name: "#fuscao")],
+                      hittags: [Hittag(name: "#fuscao"), Hittag(name: "#fuscaazul"), Hittag(name: "#vacation"), Hittag(name: "#acheiosafado")],
                       user: eu),
             Post.init(text: "Encontrei o Sacana!",
                       image: URL(string: "https://imganuncios.mitula.net/volkswagen_fusca_1970_fusca_4830008519744234296.jpg")!,

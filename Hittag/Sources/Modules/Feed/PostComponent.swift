@@ -27,7 +27,7 @@ struct PostHeaderConfiguration {
 }
 
 struct PostFooterConfiguration {
-    
+    let hittagConfigurations: [BadgeConfiguration]
 }
 
 struct PostConfiguration {
@@ -38,7 +38,13 @@ struct PostConfiguration {
     init(post: Post) {
         self.headerConfiguration = PostHeaderConfiguration(post: post)
         self.post = post
-        self.footerConfiguration = PostFooterConfiguration()
+        
+        let hittagConfigurations = post.hittags.map {
+            BadgeConfiguration(text: $0.name.hittag(),
+                               backgroundColor: UIColor(r: 242, g: 242, b: 242),
+                               cornerRadius: 5)
+        }
+        self.footerConfiguration = PostFooterConfiguration(hittagConfigurations: hittagConfigurations)
     }
 }
 
@@ -123,6 +129,41 @@ final class PostHeaderComponent: UIView, Component {
 }
 
 final class PostFooterComponent: UIView, Component {
+    private let wrapperStackView: UIStackView = {
+        let stackview = UIStackView()
+        stackview.alignment = .leading
+        stackview.axis = .vertical
+        stackview.spacing = Grid
+        return stackview
+    }()
+    
+    private let headerStackView: UIStackView = {
+        let stackview = UIStackView()
+        stackview.alignment = .leading
+        stackview.axis = .horizontal
+        stackview.spacing = Grid
+        return stackview
+    }()
+    
+    private let likeButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(named: "heart"), for: .normal)
+        return button
+    }()
+    
+    private let likeCount: UILabel = {
+        let label = UILabel()
+        label.attributedText = "10 curtidas".subtitle()
+        return label
+    }()
+    
+    private let hittagStackView: UIStackView = {
+        let stackview = UIStackView()
+        stackview.alignment = .leading
+        stackview.axis = .horizontal
+        stackview.spacing = Grid
+        return stackview
+    }()
     
     init() {
         super.init(frame: .zero)
@@ -132,7 +173,7 @@ final class PostFooterComponent: UIView, Component {
     required init?(coder aDecoder: NSCoder) { fatalError() }
     
     func render(configuration: PostFooterConfiguration) {
-        
+        self.hittagStackView.render(configurations: configuration.hittagConfigurations, factory: Badge.init)
     }
     
     private func customizeInterface() {
@@ -142,10 +183,21 @@ final class PostFooterComponent: UIView, Component {
     }
     
     private func addSubviews() {
-        
+        self.headerStackView.addArrangedSubview(self.likeButton)
+        self.headerStackView.addArrangedSubview(self.likeCount)
+        self.wrapperStackView.addArrangedSubview(self.headerStackView)
+        self.wrapperStackView.addArrangedSubview(self.hittagStackView.wrapForHorizontalAlignment())
+        self.addSubview(self.wrapperStackView)
     }
     
     private func addConstraints() {
+        self.wrapperStackView.makeEdgesEqualToSuperview()
+        
+        NSLayoutConstraint.activate([
+            self.likeButton.heightAnchor.constraint(equalToConstant: 20),
+            self.likeButton.widthAnchor.constraint(equalToConstant: 20),
+        ])
+        
         NSLayoutConstraint.activate([
             self.heightAnchor.constraint(greaterThanOrEqualToConstant: 44)
         ])
@@ -199,7 +251,7 @@ final class PostComponent: UIView, Component {
     private func addSubviews() {
         self.wrapperStackView.addArrangedSubview(self.header.wrapForPadding(UIEdgeInsets(padding: Grid)))
         self.wrapperStackView.addArrangedSubview(self.imageView)
-        self.wrapperStackView.addArrangedSubview(self.footer.wrapForPadding(UIEdgeInsets(padding: Grid)))
+        self.wrapperStackView.addArrangedSubview(self.footer.wrapForPadding(UIEdgeInsets(padding: Grid * 2)))
         self.addSubview(self.wrapperStackView)
     }
     

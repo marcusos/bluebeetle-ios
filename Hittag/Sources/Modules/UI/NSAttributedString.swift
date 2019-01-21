@@ -22,6 +22,13 @@ extension String {
         ])
     }
     
+    func hittag(_ color: UIColor = .hittag, weight: UIFont.Weight = .bold) -> NSAttributedString {
+        return NSAttributedString(string: self, attributes: [
+            .font: UIFont.hittag(weight: weight),
+            .foregroundColor: color
+        ])
+    }
+    
     func quantityTitle(_ color: UIColor = .quantityTitle, weight: UIFont.Weight = .medium) -> NSAttributedString {
         return NSAttributedString(string: self, attributes: [
             .font: UIFont.quantityTitle(weight: weight),
@@ -50,6 +57,10 @@ extension UIFont {
         return .systemFont(ofSize: 14, weight: weight)
     }
     
+    static func hittag(weight: UIFont.Weight) -> UIFont {
+        return .systemFont(ofSize: 11, weight: weight)
+    }
+    
     static func quantityTitle(weight: UIFont.Weight) -> UIFont {
         return .systemFont(ofSize: 15, weight: weight)
     }
@@ -70,6 +81,10 @@ extension UIColor {
     
     static var subtitle: UIColor {
         return .darkGray
+    }
+    
+    static var hittag: UIColor {
+        return .black
     }
     
     static var quantityTitle: UIColor {

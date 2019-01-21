@@ -11,6 +11,7 @@ final class FeedComponent: UIView, Component {
     
     private let tableView: UITableView = {
         let tableView = UITableView()
+        tableView.allowsSelection = false
         tableView.register(ContainerTableViewCell<PostComponent>.self)
         return tableView
     }()

@@ -36,6 +36,7 @@
 		24B579E121F54317008F948D /* UIEdgeInsets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B579D221F54316008F948D /* UIEdgeInsets.swift */; };
 		24B579E321F5433B008F948D /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B579E221F5433B008F948D /* UIColor.swift */; };
 		24B579E521F543B6008F948D /* PostComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B579E421F543B6008F948D /* PostComponent.swift */; };
+		24B579E921F5D184008F948D /* Badge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B579E821F5D184008F948D /* Badge.swift */; };
 		68BC6E82D951917B2BE87971 /* Pods_Hittag.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D6C6ECACDDC6D627A13F920 /* Pods_Hittag.framework */; };
 /* End PBXBuildFile section */
 
@@ -83,6 +84,7 @@
 		24B579D221F54316008F948D /* UIEdgeInsets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIEdgeInsets.swift; sourceTree = "<group>"; };
 		24B579E221F5433B008F948D /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		24B579E421F543B6008F948D /* PostComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostComponent.swift; sourceTree = "<group>"; };
+		24B579E821F5D184008F948D /* Badge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Badge.swift; sourceTree = "<group>"; };
 		3E7775AEF0D9CAF54E000A6B /* Pods-HittagTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HittagTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HittagTests/Pods-HittagTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5D6C6ECACDDC6D627A13F920 /* Pods_Hittag.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Hittag.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAD1D14BF7B302CFB87F4C72 /* Pods-Hittag.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hittag.release.xcconfig"; path = "Pods/Target Support Files/Pods-Hittag/Pods-Hittag.release.xcconfig"; sourceTree = "<group>"; };
@@ -203,6 +205,7 @@
 		24B579C321F54316008F948D /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				24B579E821F5D184008F948D /* Badge.swift */,
 				24B579C421F54316008F948D /* UIView.swift */,
 				24B579C521F54316008F948D /* UIStackView.swift */,
 				24B579C621F54316008F948D /* CollectionView+Reusable.swift */,
@@ -449,6 +452,7 @@
 				24B579BF21F541F2008F948D /* FeedComponent.swift in Sources */,
 				24B579D821F54317008F948D /* TableView+Reusable.swift in Sources */,
 				24B579BA21F541F2008F948D /* FeedConfiguration.swift in Sources */,
+				24B579E921F5D184008F948D /* Badge.swift in Sources */,
 				24B579DB21F54317008F948D /* ContainerTableViewCell.swift in Sources */,
 				24B579BC21F541F2008F948D /* FeedModule.swift in Sources */,
 				24B579DE21F54317008F948D /* MixedTableViewDataSource.swift in Sources */,
