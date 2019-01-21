@@ -45,6 +45,12 @@
 		24B579F721F6896F008F948D /* CameraComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B579F021F6896F008F948D /* CameraComponent.swift */; };
 		24B579F821F6896F008F948D /* CameraDefinitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B579F121F6896F008F948D /* CameraDefinitions.swift */; };
 		24B579FA21F689AE008F948D /* CameraDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B579F921F689AE008F948D /* CameraDevice.swift */; };
+		24B57A0521F68EE5008F948D /* TabConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B579FE21F68EE5008F948D /* TabConfiguration.swift */; };
+		24B57A0621F68EE5008F948D /* TabCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B579FF21F68EE5008F948D /* TabCoordinator.swift */; };
+		24B57A0721F68EE5008F948D /* TabModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B57A0021F68EE5008F948D /* TabModule.swift */; };
+		24B57A0821F68EE5008F948D /* TabPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B57A0121F68EE5008F948D /* TabPresenter.swift */; };
+		24B57A0921F68EE5008F948D /* TabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B57A0221F68EE5008F948D /* TabViewController.swift */; };
+		24B57A0B21F68EE5008F948D /* TabDefinitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B57A0421F68EE5008F948D /* TabDefinitions.swift */; };
 		68BC6E82D951917B2BE87971 /* Pods_Hittag.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D6C6ECACDDC6D627A13F920 /* Pods_Hittag.framework */; };
 /* End PBXBuildFile section */
 
@@ -101,6 +107,12 @@
 		24B579F021F6896F008F948D /* CameraComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraComponent.swift; sourceTree = "<group>"; };
 		24B579F121F6896F008F948D /* CameraDefinitions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraDefinitions.swift; sourceTree = "<group>"; };
 		24B579F921F689AE008F948D /* CameraDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraDevice.swift; sourceTree = "<group>"; };
+		24B579FE21F68EE5008F948D /* TabConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabConfiguration.swift; sourceTree = "<group>"; };
+		24B579FF21F68EE5008F948D /* TabCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabCoordinator.swift; sourceTree = "<group>"; };
+		24B57A0021F68EE5008F948D /* TabModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabModule.swift; sourceTree = "<group>"; };
+		24B57A0121F68EE5008F948D /* TabPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabPresenter.swift; sourceTree = "<group>"; };
+		24B57A0221F68EE5008F948D /* TabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewController.swift; sourceTree = "<group>"; };
+		24B57A0421F68EE5008F948D /* TabDefinitions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabDefinitions.swift; sourceTree = "<group>"; };
 		3E7775AEF0D9CAF54E000A6B /* Pods-HittagTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HittagTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HittagTests/Pods-HittagTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5D6C6ECACDDC6D627A13F920 /* Pods_Hittag.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Hittag.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAD1D14BF7B302CFB87F4C72 /* Pods-Hittag.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hittag.release.xcconfig"; path = "Pods/Target Support Files/Pods-Hittag/Pods-Hittag.release.xcconfig"; sourceTree = "<group>"; };
@@ -212,6 +224,7 @@
 		24B579C121F54202008F948D /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				24B579FD21F68EB6008F948D /* TabBar */,
 				24B579C321F54316008F948D /* UI */,
 				24B579B221F541DB008F948D /* Feed */,
 				24B579EA21F688ED008F948D /* Camera */,
@@ -271,6 +284,19 @@
 				24B579F121F6896F008F948D /* CameraDefinitions.swift */,
 			);
 			path = Camera;
+			sourceTree = "<group>";
+		};
+		24B579FD21F68EB6008F948D /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				24B579FE21F68EE5008F948D /* TabConfiguration.swift */,
+				24B579FF21F68EE5008F948D /* TabCoordinator.swift */,
+				24B57A0021F68EE5008F948D /* TabModule.swift */,
+				24B57A0121F68EE5008F948D /* TabPresenter.swift */,
+				24B57A0221F68EE5008F948D /* TabViewController.swift */,
+				24B57A0421F68EE5008F948D /* TabDefinitions.swift */,
+			);
+			path = TabBar;
 			sourceTree = "<group>";
 		};
 		4A3AD157B97371E1FC82EF74 /* Pods */ = {
@@ -475,6 +501,7 @@
 			files = (
 				24B579DD21F54317008F948D /* Grid.swift in Sources */,
 				24B579C021F541F2008F948D /* FeedDefinitions.swift in Sources */,
+				24B57A0821F68EE5008F948D /* TabPresenter.swift in Sources */,
 				24B579D621F54317008F948D /* BackgroundColorButton.swift in Sources */,
 				24B579F521F6896F008F948D /* CameraPresenter.swift in Sources */,
 				24B579BD21F541F2008F948D /* FeedPresenter.swift in Sources */,
@@ -483,6 +510,7 @@
 				24B579DA21F54317008F948D /* NSAttributedString.swift in Sources */,
 				24B579E521F543B6008F948D /* PostComponent.swift in Sources */,
 				24B579E121F54317008F948D /* UIEdgeInsets.swift in Sources */,
+				24B57A0621F68EE5008F948D /* TabCoordinator.swift in Sources */,
 				24B579FA21F689AE008F948D /* CameraDevice.swift in Sources */,
 				24B579BF21F541F2008F948D /* FeedComponent.swift in Sources */,
 				24B579D821F54317008F948D /* TableView+Reusable.swift in Sources */,
@@ -493,14 +521,18 @@
 				24B579DB21F54317008F948D /* ContainerTableViewCell.swift in Sources */,
 				24B579F621F6896F008F948D /* CameraViewController.swift in Sources */,
 				24B579BC21F541F2008F948D /* FeedModule.swift in Sources */,
+				24B57A0521F68EE5008F948D /* TabConfiguration.swift in Sources */,
 				24B579DE21F54317008F948D /* MixedTableViewDataSource.swift in Sources */,
+				24B57A0B21F68EE5008F948D /* TabDefinitions.swift in Sources */,
 				24B579E321F5433B008F948D /* UIColor.swift in Sources */,
 				24B579BB21F541F2008F948D /* FeedCoordinator.swift in Sources */,
 				24B579DF21F54317008F948D /* ReusableView.swift in Sources */,
 				24B579D921F54317008F948D /* PurchaseButton.swift in Sources */,
 				24B579BE21F541F2008F948D /* FeedViewController.swift in Sources */,
 				24B579D421F54316008F948D /* UIStackView.swift in Sources */,
+				24B57A0921F68EE5008F948D /* TabViewController.swift in Sources */,
 				24B579D321F54316008F948D /* UIView.swift in Sources */,
+				24B57A0721F68EE5008F948D /* TabModule.swift in Sources */,
 				24B579F421F6896F008F948D /* CameraModule.swift in Sources */,
 				24B579D721F54317008F948D /* TableViewDataSource.swift in Sources */,
 				24B579DC21F54317008F948D /* UIImage.swift in Sources */,

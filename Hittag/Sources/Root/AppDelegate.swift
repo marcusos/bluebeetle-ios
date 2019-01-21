@@ -4,13 +4,13 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    private var rootCoordinator: FeedCoordinatorType?
+    private var rootCoordinator: TabCoordinatorType?
     
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         let window = UIWindow()
-        let rootModule = FeedModule()
+        let rootModule = TabModule(feedModule: FeedModule())
         let rootCoordinator = rootModule.createCoordinator()
         let navigationController = UINavigationController(viewControllerType: rootCoordinator.viewController)
         
