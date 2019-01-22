@@ -11,7 +11,7 @@ protocol TabCoordinatorType: ViewableCoordinatorType {
 
 }
 
-protocol TabPresenterType: PresenterType {
+protocol TabPresenterType: PresenterType, CameraPresenterDelegate {
 
     var delegate: TabPresenterDelegate? { get set }
 }

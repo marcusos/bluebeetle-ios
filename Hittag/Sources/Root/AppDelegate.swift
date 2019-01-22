@@ -10,7 +10,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         let window = UIWindow()
-        let rootModule = TabModule(feedModule: FeedModule())
+        let rootModule = TabModule(feedModule: FeedModule(), cameraModule: CameraModule())
         let rootCoordinator = rootModule.createCoordinator()
         let navigationController = UINavigationController(viewControllerType: rootCoordinator.viewController)
         

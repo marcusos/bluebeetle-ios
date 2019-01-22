@@ -21,11 +21,15 @@ final class CameraComponent: UIView, Component {
         self.customizeInterface()
     }
     
-    override func layoutIfNeeded() {
-        super.layoutIfNeeded()
+    override func layoutSubviews() {
+        super.layoutSubviews()
         self.camera?.set(frame: self.frame)
     }
 
+    func start() {
+        self.camera?.startRunning()
+    }
+    
     required init?(coder aDecoder: NSCoder) { fatalError("Not implemented") }
 }
 

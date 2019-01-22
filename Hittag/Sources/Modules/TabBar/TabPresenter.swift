@@ -18,3 +18,7 @@ final class TabPresenter: Presenter, TabPresenterType {
 extension TabPresenter: TabViewControllerDelegate {
 
 }
+
+extension TabPresenter: CameraPresenterDelegate {
+    
+}
