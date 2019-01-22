@@ -29,7 +29,6 @@
 		24B579DA21F54317008F948D /* NSAttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B579CB21F54316008F948D /* NSAttributedString.swift */; };
 		24B579DB21F54317008F948D /* ContainerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B579CC21F54316008F948D /* ContainerTableViewCell.swift */; };
 		24B579DC21F54317008F948D /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B579CD21F54316008F948D /* UIImage.swift */; };
-		24B579DD21F54317008F948D /* Grid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B579CE21F54316008F948D /* Grid.swift */; };
 		24B579DE21F54317008F948D /* MixedTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B579CF21F54316008F948D /* MixedTableViewDataSource.swift */; };
 		24B579DF21F54317008F948D /* ReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B579D021F54316008F948D /* ReusableView.swift */; };
 		24B579E021F54317008F948D /* SeparatorLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B579D121F54316008F948D /* SeparatorLineView.swift */; };
@@ -52,6 +51,17 @@
 		24B57A0921F68EE5008F948D /* TabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B57A0221F68EE5008F948D /* TabViewController.swift */; };
 		24B57A0B21F68EE5008F948D /* TabDefinitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B57A0421F68EE5008F948D /* TabDefinitions.swift */; };
 		24B57A1121F695AB008F948D /* hittag.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 24B57A1021F695AB008F948D /* hittag.mlmodel */; };
+		24B57A1A21F71D88008F948D /* ProfileConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B57A1321F71D88008F948D /* ProfileConfiguration.swift */; };
+		24B57A1B21F71D88008F948D /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B57A1421F71D88008F948D /* ProfileCoordinator.swift */; };
+		24B57A1C21F71D88008F948D /* ProfileModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B57A1521F71D88008F948D /* ProfileModule.swift */; };
+		24B57A1D21F71D88008F948D /* ProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B57A1621F71D88008F948D /* ProfilePresenter.swift */; };
+		24B57A1E21F71D88008F948D /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B57A1721F71D88008F948D /* ProfileViewController.swift */; };
+		24B57A1F21F71D88008F948D /* ProfileComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B57A1821F71D88008F948D /* ProfileComponent.swift */; };
+		24B57A2021F71D88008F948D /* ProfileDefinitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B57A1921F71D88008F948D /* ProfileDefinitions.swift */; };
+		24B57A2221F71DF7008F948D /* ImageWithTitleAndSubtitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B57A2121F71DF7008F948D /* ImageWithTitleAndSubtitle.swift */; };
+		24B57A2421F71F08008F948D /* DesignSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B57A2321F71F08008F948D /* DesignSystem.swift */; };
+		24B57A2621F72116008F948D /* ContainerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B57A2521F72116008F948D /* ContainerCollectionViewCell.swift */; };
+		24B57A2821F7233D008F948D /* CollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B57A2721F7233D008F948D /* CollectionViewDataSource.swift */; };
 		68BC6E82D951917B2BE87971 /* Pods_Hittag.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D6C6ECACDDC6D627A13F920 /* Pods_Hittag.framework */; };
 /* End PBXBuildFile section */
 
@@ -92,7 +102,6 @@
 		24B579CB21F54316008F948D /* NSAttributedString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSAttributedString.swift; sourceTree = "<group>"; };
 		24B579CC21F54316008F948D /* ContainerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerTableViewCell.swift; sourceTree = "<group>"; };
 		24B579CD21F54316008F948D /* UIImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
-		24B579CE21F54316008F948D /* Grid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Grid.swift; sourceTree = "<group>"; };
 		24B579CF21F54316008F948D /* MixedTableViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MixedTableViewDataSource.swift; sourceTree = "<group>"; };
 		24B579D021F54316008F948D /* ReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReusableView.swift; sourceTree = "<group>"; };
 		24B579D121F54316008F948D /* SeparatorLineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeparatorLineView.swift; sourceTree = "<group>"; };
@@ -115,6 +124,17 @@
 		24B57A0221F68EE5008F948D /* TabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewController.swift; sourceTree = "<group>"; };
 		24B57A0421F68EE5008F948D /* TabDefinitions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabDefinitions.swift; sourceTree = "<group>"; };
 		24B57A1021F695AB008F948D /* hittag.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = hittag.mlmodel; sourceTree = "<group>"; };
+		24B57A1321F71D88008F948D /* ProfileConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileConfiguration.swift; sourceTree = "<group>"; };
+		24B57A1421F71D88008F948D /* ProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinator.swift; sourceTree = "<group>"; };
+		24B57A1521F71D88008F948D /* ProfileModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModule.swift; sourceTree = "<group>"; };
+		24B57A1621F71D88008F948D /* ProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePresenter.swift; sourceTree = "<group>"; };
+		24B57A1721F71D88008F948D /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		24B57A1821F71D88008F948D /* ProfileComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileComponent.swift; sourceTree = "<group>"; };
+		24B57A1921F71D88008F948D /* ProfileDefinitions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDefinitions.swift; sourceTree = "<group>"; };
+		24B57A2121F71DF7008F948D /* ImageWithTitleAndSubtitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageWithTitleAndSubtitle.swift; sourceTree = "<group>"; };
+		24B57A2321F71F08008F948D /* DesignSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignSystem.swift; sourceTree = "<group>"; };
+		24B57A2521F72116008F948D /* ContainerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerCollectionViewCell.swift; sourceTree = "<group>"; };
+		24B57A2721F7233D008F948D /* CollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewDataSource.swift; sourceTree = "<group>"; };
 		3E7775AEF0D9CAF54E000A6B /* Pods-HittagTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HittagTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HittagTests/Pods-HittagTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5D6C6ECACDDC6D627A13F920 /* Pods_Hittag.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Hittag.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAD1D14BF7B302CFB87F4C72 /* Pods-Hittag.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hittag.release.xcconfig"; path = "Pods/Target Support Files/Pods-Hittag/Pods-Hittag.release.xcconfig"; sourceTree = "<group>"; };
@@ -227,6 +247,7 @@
 		24B579C121F54202008F948D /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				24B57A1221F71D69008F948D /* Profile */,
 				24B579FD21F68EB6008F948D /* TabBar */,
 				24B579C321F54316008F948D /* UI */,
 				24B579B221F541DB008F948D /* Feed */,
@@ -238,24 +259,27 @@
 		24B579C321F54316008F948D /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				24B579F921F689AE008F948D /* CameraDevice.swift */,
-				24B579E821F5D184008F948D /* Badge.swift */,
-				24B579C421F54316008F948D /* UIView.swift */,
-				24B579C521F54316008F948D /* UIStackView.swift */,
-				24B579C621F54316008F948D /* CollectionView+Reusable.swift */,
 				24B579C721F54316008F948D /* BackgroundColorButton.swift */,
-				24B579C821F54316008F948D /* TableViewDataSource.swift */,
-				24B579C921F54316008F948D /* TableView+Reusable.swift */,
-				24B579CA21F54316008F948D /* PurchaseButton.swift */,
-				24B579CB21F54316008F948D /* NSAttributedString.swift */,
+				24B579E821F5D184008F948D /* Badge.swift */,
+				24B579F921F689AE008F948D /* CameraDevice.swift */,
+				24B579C621F54316008F948D /* CollectionView+Reusable.swift */,
+				24B57A2721F7233D008F948D /* CollectionViewDataSource.swift */,
+				24B57A2521F72116008F948D /* ContainerCollectionViewCell.swift */,
 				24B579CC21F54316008F948D /* ContainerTableViewCell.swift */,
-				24B579CD21F54316008F948D /* UIImage.swift */,
-				24B579CE21F54316008F948D /* Grid.swift */,
+				24B57A2321F71F08008F948D /* DesignSystem.swift */,
+				24B57A2121F71DF7008F948D /* ImageWithTitleAndSubtitle.swift */,
 				24B579CF21F54316008F948D /* MixedTableViewDataSource.swift */,
+				24B579CB21F54316008F948D /* NSAttributedString.swift */,
+				24B579CA21F54316008F948D /* PurchaseButton.swift */,
 				24B579D021F54316008F948D /* ReusableView.swift */,
 				24B579D121F54316008F948D /* SeparatorLineView.swift */,
-				24B579D221F54316008F948D /* UIEdgeInsets.swift */,
+				24B579C921F54316008F948D /* TableView+Reusable.swift */,
+				24B579C821F54316008F948D /* TableViewDataSource.swift */,
 				24B579E221F5433B008F948D /* UIColor.swift */,
+				24B579D221F54316008F948D /* UIEdgeInsets.swift */,
+				24B579CD21F54316008F948D /* UIImage.swift */,
+				24B579C521F54316008F948D /* UIStackView.swift */,
+				24B579C421F54316008F948D /* UIView.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -332,6 +356,20 @@
 				24B57A1021F695AB008F948D /* hittag.mlmodel */,
 			);
 			path = CoreML;
+			sourceTree = "<group>";
+		};
+		24B57A1221F71D69008F948D /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				24B57A1321F71D88008F948D /* ProfileConfiguration.swift */,
+				24B57A1421F71D88008F948D /* ProfileCoordinator.swift */,
+				24B57A1521F71D88008F948D /* ProfileModule.swift */,
+				24B57A1621F71D88008F948D /* ProfilePresenter.swift */,
+				24B57A1721F71D88008F948D /* ProfileViewController.swift */,
+				24B57A1821F71D88008F948D /* ProfileComponent.swift */,
+				24B57A1921F71D88008F948D /* ProfileDefinitions.swift */,
+			);
+			path = Profile;
 			sourceTree = "<group>";
 		};
 		4A3AD157B97371E1FC82EF74 /* Pods */ = {
@@ -534,7 +572,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				24B579DD21F54317008F948D /* Grid.swift in Sources */,
+				24B57A1A21F71D88008F948D /* ProfileConfiguration.swift in Sources */,
 				24B579C021F541F2008F948D /* FeedDefinitions.swift in Sources */,
 				24B57A0821F68EE5008F948D /* TabPresenter.swift in Sources */,
 				24B57A1121F695AB008F948D /* hittag.mlmodel in Sources */,
@@ -542,26 +580,33 @@
 				24B579F521F6896F008F948D /* CameraPresenter.swift in Sources */,
 				24B579BD21F541F2008F948D /* FeedPresenter.swift in Sources */,
 				24B579F821F6896F008F948D /* CameraDefinitions.swift in Sources */,
+				24B57A1C21F71D88008F948D /* ProfileModule.swift in Sources */,
 				24B579E021F54317008F948D /* SeparatorLineView.swift in Sources */,
 				24B579DA21F54317008F948D /* NSAttributedString.swift in Sources */,
 				24B579E521F543B6008F948D /* PostComponent.swift in Sources */,
+				24B57A2421F71F08008F948D /* DesignSystem.swift in Sources */,
 				24B579E121F54317008F948D /* UIEdgeInsets.swift in Sources */,
 				24B57A0621F68EE5008F948D /* TabCoordinator.swift in Sources */,
 				24B579FA21F689AE008F948D /* CameraDevice.swift in Sources */,
 				24B579BF21F541F2008F948D /* FeedComponent.swift in Sources */,
 				24B579D821F54317008F948D /* TableView+Reusable.swift in Sources */,
+				24B57A1F21F71D88008F948D /* ProfileComponent.swift in Sources */,
 				24B579BA21F541F2008F948D /* FeedConfiguration.swift in Sources */,
 				24B579F721F6896F008F948D /* CameraComponent.swift in Sources */,
 				24B579F321F6896F008F948D /* CameraCoordinator.swift in Sources */,
 				24B579E921F5D184008F948D /* Badge.swift in Sources */,
 				24B579DB21F54317008F948D /* ContainerTableViewCell.swift in Sources */,
+				24B57A1D21F71D88008F948D /* ProfilePresenter.swift in Sources */,
 				24B579F621F6896F008F948D /* CameraViewController.swift in Sources */,
+				24B57A2621F72116008F948D /* ContainerCollectionViewCell.swift in Sources */,
 				24B579BC21F541F2008F948D /* FeedModule.swift in Sources */,
 				24B57A0521F68EE5008F948D /* TabConfiguration.swift in Sources */,
 				24B579DE21F54317008F948D /* MixedTableViewDataSource.swift in Sources */,
+				24B57A2221F71DF7008F948D /* ImageWithTitleAndSubtitle.swift in Sources */,
 				24B57A0B21F68EE5008F948D /* TabDefinitions.swift in Sources */,
 				24B579E321F5433B008F948D /* UIColor.swift in Sources */,
 				24B579BB21F541F2008F948D /* FeedCoordinator.swift in Sources */,
+				24B57A2021F71D88008F948D /* ProfileDefinitions.swift in Sources */,
 				24B579DF21F54317008F948D /* ReusableView.swift in Sources */,
 				24B579D921F54317008F948D /* PurchaseButton.swift in Sources */,
 				24B579BE21F541F2008F948D /* FeedViewController.swift in Sources */,
@@ -569,9 +614,12 @@
 				24B57A0921F68EE5008F948D /* TabViewController.swift in Sources */,
 				24B579D321F54316008F948D /* UIView.swift in Sources */,
 				24B57A0721F68EE5008F948D /* TabModule.swift in Sources */,
+				24B57A1E21F71D88008F948D /* ProfileViewController.swift in Sources */,
+				24B57A2821F7233D008F948D /* CollectionViewDataSource.swift in Sources */,
 				24B579F421F6896F008F948D /* CameraModule.swift in Sources */,
 				24B579D721F54317008F948D /* TableViewDataSource.swift in Sources */,
 				24B579DC21F54317008F948D /* UIImage.swift in Sources */,
+				24B57A1B21F71D88008F948D /* ProfileCoordinator.swift in Sources */,
 				24B579AD21F5400A008F948D /* AppDelegate.swift in Sources */,
 				24B579F221F6896F008F948D /* CameraConfiguration.swift in Sources */,
 				24B579D521F54316008F948D /* CollectionView+Reusable.swift in Sources */,
@@ -730,7 +778,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 7BZ96RT4SC;
+				DEVELOPMENT_TEAM = AZ39JPH6V9;
 				INFOPLIST_FILE = "$(SRCROOT)/Hittag/Resources/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -750,7 +798,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 7BZ96RT4SC;
+				DEVELOPMENT_TEAM = AZ39JPH6V9;
 				INFOPLIST_FILE = "$(SRCROOT)/Hittag/Resources/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (

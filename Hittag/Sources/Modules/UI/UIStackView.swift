@@ -10,6 +10,18 @@ extension UIView {
         return stackView
     }
     
+    func wrapForPaddingWithContainer(_ padding: UIEdgeInsets) -> UIView {
+        let stackView = UIStackView()
+        stackView.isLayoutMarginsRelativeArrangement = true
+        stackView.layoutMargins = padding
+        stackView.addArrangedSubview(self)
+        let container = UIView()
+        container.translatesAutoresizingMaskIntoConstraints = false
+        container.addSubview(stackView)
+        stackView.makeEdgesEqualToSuperview()
+        return container
+    }
+    
     func wrapForHorizontalAlignment(_ alignment: UIStackView.Alignment = .center) -> UIStackView {
         let stackView = UIStackView()
         stackView.axis = .vertical

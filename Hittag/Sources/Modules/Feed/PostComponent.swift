@@ -5,25 +5,24 @@ import Kingfisher
 struct User: Codable {
     let name: String
     let image: URL
+    let hittags: [Hittag]
 }
 
 struct Post: Codable {
     let text: String
     let image: URL
-    let hittags: [Hittag]
+    let hashtags: [Hashtag]
     let user: User
 }
 
 struct Hittag: Codable {
     let name: String
+    let image: URL
+    let icon: URL
 }
 
-struct PostHeaderConfiguration {
-    let post: Post
-    
-    var userName: NSAttributedString {
-        return self.post.user.name.subtitle()
-    }
+struct Hashtag: Codable {
+    let name: String
 }
 
 struct PostFooterConfiguration {
@@ -31,100 +30,20 @@ struct PostFooterConfiguration {
 }
 
 struct PostConfiguration {
-    let headerConfiguration: PostHeaderConfiguration
+    let headerConfiguration: ImageWithTitleAndSubtitleConfiguration
     let post: Post
     let footerConfiguration: PostFooterConfiguration
     
     init(post: Post) {
-        self.headerConfiguration = PostHeaderConfiguration(post: post)
+        self.headerConfiguration = ImageWithTitleAndSubtitleConfiguration(user: post.user)
         self.post = post
         
-        let hittagConfigurations = post.hittags.map {
-            BadgeConfiguration(text: $0.name.hittag(),
+        let hittagConfigurations = post.hashtags.map {
+            BadgeConfiguration(text: $0.name.hashtag(),
                                backgroundColor: UIColor(r: 242, g: 242, b: 242),
                                cornerRadius: 5)
         }
         self.footerConfiguration = PostFooterConfiguration(hittagConfigurations: hittagConfigurations)
-    }
-}
-
-final class PostHeaderComponent: UIView, Component {
-    private let wrapperStackView: UIStackView = {
-        let stackview = UIStackView()
-        stackview.alignment = .center
-        stackview.axis = .vertical
-        stackview.spacing = Grid * 0.8
-        return stackview
-    }()
-    
-    private let contentStackView: UIStackView = {
-        let stackview = UIStackView()
-        stackview.alignment = .center
-        stackview.axis = .vertical
-        stackview.spacing = Grid * 0.5
-        return stackview
-    }()
-    
-    private let imageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.setContentHuggingPriority(.required, for: .vertical)
-        imageView.setContentHuggingPriority(.required, for: .horizontal)
-        imageView.contentMode = .scaleAspectFit
-        return imageView
-    }()
-    
-    private let titleLabel: UILabel = {
-        let label = UILabel()
-        label.setContentHuggingPriority(.required, for: .vertical)
-        label.setContentCompressionResistancePriority(.required, for: .vertical)
-        label.textAlignment = .center
-        return label
-    }()
-    
-    private let detailLabel: UILabel = {
-        let label = UILabel()
-        label.setContentHuggingPriority(.required, for: .vertical)
-        label.setContentCompressionResistancePriority(.required, for: .vertical)
-        label.textAlignment = .center
-        return label
-    }()
-    
-    init() {
-        super.init(frame: .zero)
-        self.customizeInterface()
-    }
-    
-    required init?(coder aDecoder: NSCoder) { fatalError() }
-    
-    func render(configuration: PostHeaderConfiguration) {
-        self.imageView.kf.setImage(with: configuration.post.user.image)
-        self.titleLabel.attributedText = configuration.userName
-        self.detailLabel.isHidden = true
-        self.wrapperStackView.axis = .horizontal
-        self.contentStackView.alignment = .leading
-    }
-    
-    private func customizeInterface() {
-        self.backgroundColor = .clear
-        self.addSubviews()
-        self.addConstraints()
-    }
-    
-    private func addSubviews() {
-        self.wrapperStackView.addArrangedSubview(self.imageView)
-        self.wrapperStackView.addArrangedSubview(self.contentStackView)
-        self.contentStackView.addArrangedSubview(self.titleLabel)
-        self.contentStackView.addArrangedSubview(self.detailLabel)
-        self.addSubview(self.wrapperStackView)
-    }
-    
-    private func addConstraints() {
-        self.wrapperStackView.makeEdgesEqualToSuperview()
-        
-        NSLayoutConstraint.activate([
-            self.imageView.heightAnchor.constraint(equalToConstant: 50),
-            self.imageView.widthAnchor.constraint(equalToConstant: 50)
-        ])
     }
 }
 
@@ -212,8 +131,8 @@ final class PostComponent: UIView, Component {
         return stackview
     }()
     
-    private let header: PostHeaderComponent = {
-        let header = PostHeaderComponent()
+    private let header: ImageWithTitleAndSubtitle = {
+        let header = ImageWithTitleAndSubtitle(imageView: RoundedImageView(borderColor: .main, size: .postProfilePicture))
         return header
     }()
     

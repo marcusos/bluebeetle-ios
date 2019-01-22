@@ -36,3 +36,33 @@ extension UIView {
         self.layer.masksToBounds = true
     }
 }
+
+extension UIView {
+    var leftSafeAnchor: NSLayoutXAxisAnchor {
+        if #available(iOS 11.0, *) {
+            return self.safeAreaLayoutGuide.leftAnchor
+        }
+        return self.leftAnchor
+    }
+    
+    var topSafeAnchor: NSLayoutYAxisAnchor {
+        if #available(iOS 11.0, *) {
+            return self.safeAreaLayoutGuide.topAnchor
+        }
+        return self.topAnchor
+    }
+    
+    var rightSafeAnchor: NSLayoutXAxisAnchor {
+        if #available(iOS 11.0, *) {
+            return self.safeAreaLayoutGuide.rightAnchor
+        }
+        return self.rightAnchor
+    }
+    
+    var bottomSafeAnchor: NSLayoutYAxisAnchor {
+        if #available(iOS 11.0, *) {
+            return self.safeAreaLayoutGuide.bottomAnchor
+        }
+        return self.bottomAnchor
+    }
+}

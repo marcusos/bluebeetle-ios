@@ -22,9 +22,9 @@ extension String {
         ])
     }
     
-    func hittag(_ color: UIColor = .hittag, weight: UIFont.Weight = .bold) -> NSAttributedString {
+    func hashtag(_ color: UIColor = .hashtag, weight: UIFont.Weight = .bold) -> NSAttributedString {
         return NSAttributedString(string: self, attributes: [
-            .font: UIFont.hittag(weight: weight),
+            .font: UIFont.hashtag(weight: weight),
             .foregroundColor: color
         ])
     }
@@ -57,7 +57,7 @@ extension UIFont {
         return .systemFont(ofSize: 14, weight: weight)
     }
     
-    static func hittag(weight: UIFont.Weight) -> UIFont {
+    static func hashtag(weight: UIFont.Weight) -> UIFont {
         return .systemFont(ofSize: 11, weight: weight)
     }
     
@@ -83,7 +83,7 @@ extension UIColor {
         return .darkGray
     }
     
-    static var hittag: UIColor {
+    static var hashtag: UIColor {
         return .black
     }
     
