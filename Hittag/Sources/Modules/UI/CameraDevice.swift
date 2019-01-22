@@ -35,7 +35,6 @@ final class CameraDevice {
         self.captureSession = captureSession
         self.captureDataOutput = captureDataOutput
         self.videoPreviewLayer = videoPreviewLayer
-        self.captureDataOutput.setSampleBufferDelegate(self.delegate, queue: self.queue)
     }
     
     func set(frame: CGRect) {

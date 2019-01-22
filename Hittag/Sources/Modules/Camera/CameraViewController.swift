@@ -1,14 +1,20 @@
 import UIKit
 import ModuleArchitecture
+import Vision
 
 protocol CameraViewControllerDelegate: AnyObject {
-
+    func didOutputPixelBuffer(pixelBuffer: CVPixelBuffer)
 }
 
 final class CameraViewController: UIViewController, CameraViewControllerType {
 
     weak var delegate: CameraViewControllerDelegate?
-    private lazy var component = CameraComponent()
+    
+    private lazy var component: CameraComponent = {
+        let component = CameraComponent()
+        component.delegate = self
+        return component
+    }()
 
     override func loadView() {
 
@@ -29,5 +35,11 @@ extension CameraViewController: CameraPresenterView {
     func render(configuration: CameraConfiguration) {
 
         self.component.render(configuration: configuration)
+    }
+}
+
+extension CameraViewController: CameraComponentDelegate {
+    func didOutputPixelBuffer(pixelBuffer: CVPixelBuffer) {
+        self.delegate?.didOutputPixelBuffer(pixelBuffer: pixelBuffer)
     }
 }
