@@ -18,6 +18,8 @@ final class ProfileViewController: UIViewController, ProfileViewControllerType {
     override func viewDidLoad() {
 
         super.viewDidLoad()
+        self.title = "Perfil"
+        self.navigationItem.title = "Perfil"
     }
 }
 

@@ -48,7 +48,7 @@ final class HittagImageComponent: UIView, Component {
         NSLayoutConstraint.activate([
             self.hittagImageView.heightAnchor.constraint(equalToConstant: Grid * 3),
             self.hittagImageView.widthAnchor.constraint(equalToConstant: Grid * 3),
-            self.hittagImageView.bottomSafeAnchor.constraint(equalTo: self.bottomSafeAnchor, constant: 0),
+            self.hittagImageView.bottomSafeAnchor.constraint(equalTo: self.bottomSafeAnchor, constant: -Grid * 0.5),
             self.hittagImageView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -Grid * 0.5),
         ])
     }
@@ -63,7 +63,7 @@ final class ProfileComponent: UIView, Component {
     }()
     
     private let header: ImageWithTitleAndSubtitle = {
-        let header = ImageWithTitleAndSubtitle(imageView: RoundedImageView(borderColor: .main, size: .profilePicture))
+        let header = ImageWithTitleAndSubtitle(imageView: RoundedImageView(borderWidth: 3, borderColor: .main, size: .profilePicture))
         header.setContentCompressionResistancePriority(.required, for: .vertical)
         return header
     }()

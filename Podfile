@@ -9,6 +9,8 @@ target 'Hittag' do
   pod 'SwiftResolver'
   pod 'ModuleArchitecture'
   pod 'Kingfisher'
+  pod 'Parse'
+  pod 'TPKeyboardAvoiding'
 
   target 'HittagTests' do
     inherit! :search_paths

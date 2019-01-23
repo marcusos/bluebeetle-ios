@@ -62,6 +62,20 @@
 		24B57A2421F71F08008F948D /* DesignSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B57A2321F71F08008F948D /* DesignSystem.swift */; };
 		24B57A2621F72116008F948D /* ContainerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B57A2521F72116008F948D /* ContainerCollectionViewCell.swift */; };
 		24B57A2821F7233D008F948D /* CollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B57A2721F7233D008F948D /* CollectionViewDataSource.swift */; };
+		24B57A3321F7EEFB008F948D /* LoginConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B57A2C21F7EEFB008F948D /* LoginConfiguration.swift */; };
+		24B57A3421F7EEFB008F948D /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B57A2D21F7EEFB008F948D /* LoginCoordinator.swift */; };
+		24B57A3521F7EEFB008F948D /* LoginModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B57A2E21F7EEFB008F948D /* LoginModule.swift */; };
+		24B57A3621F7EEFB008F948D /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B57A2F21F7EEFB008F948D /* LoginPresenter.swift */; };
+		24B57A3721F7EEFB008F948D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B57A3021F7EEFB008F948D /* LoginViewController.swift */; };
+		24B57A3821F7EEFB008F948D /* LoginComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B57A3121F7EEFB008F948D /* LoginComponent.swift */; };
+		24B57A3921F7EEFB008F948D /* LoginDefinitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B57A3221F7EEFB008F948D /* LoginDefinitions.swift */; };
+		24B57A3F21F7EF38008F948D /* ApplicationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B57A3B21F7EF38008F948D /* ApplicationCoordinator.swift */; };
+		24B57A4021F7EF38008F948D /* ApplicationModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B57A3C21F7EF38008F948D /* ApplicationModule.swift */; };
+		24B57A4121F7EF38008F948D /* ApplicationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B57A3D21F7EF38008F948D /* ApplicationPresenter.swift */; };
+		24B57A4221F7EF38008F948D /* ApplicationDefinitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B57A3E21F7EF38008F948D /* ApplicationDefinitions.swift */; };
+		24B57A4521F7EF52008F948D /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B57A4421F7EF52008F948D /* UserRepository.swift */; };
+		24B57A4721F7F5FB008F948D /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B57A4621F7F5FB008F948D /* UIViewController.swift */; };
+		24B57A4921F7FBA0008F948D /* View.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24B57A4821F7FBA0008F948D /* View.xib */; };
 		68BC6E82D951917B2BE87971 /* Pods_Hittag.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D6C6ECACDDC6D627A13F920 /* Pods_Hittag.framework */; };
 /* End PBXBuildFile section */
 
@@ -135,6 +149,20 @@
 		24B57A2321F71F08008F948D /* DesignSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignSystem.swift; sourceTree = "<group>"; };
 		24B57A2521F72116008F948D /* ContainerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerCollectionViewCell.swift; sourceTree = "<group>"; };
 		24B57A2721F7233D008F948D /* CollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewDataSource.swift; sourceTree = "<group>"; };
+		24B57A2C21F7EEFB008F948D /* LoginConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginConfiguration.swift; sourceTree = "<group>"; };
+		24B57A2D21F7EEFB008F948D /* LoginCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCoordinator.swift; sourceTree = "<group>"; };
+		24B57A2E21F7EEFB008F948D /* LoginModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModule.swift; sourceTree = "<group>"; };
+		24B57A2F21F7EEFB008F948D /* LoginPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPresenter.swift; sourceTree = "<group>"; };
+		24B57A3021F7EEFB008F948D /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		24B57A3121F7EEFB008F948D /* LoginComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginComponent.swift; sourceTree = "<group>"; };
+		24B57A3221F7EEFB008F948D /* LoginDefinitions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginDefinitions.swift; sourceTree = "<group>"; };
+		24B57A3B21F7EF38008F948D /* ApplicationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationCoordinator.swift; sourceTree = "<group>"; };
+		24B57A3C21F7EF38008F948D /* ApplicationModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationModule.swift; sourceTree = "<group>"; };
+		24B57A3D21F7EF38008F948D /* ApplicationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationPresenter.swift; sourceTree = "<group>"; };
+		24B57A3E21F7EF38008F948D /* ApplicationDefinitions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationDefinitions.swift; sourceTree = "<group>"; };
+		24B57A4421F7EF52008F948D /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
+		24B57A4621F7F5FB008F948D /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
+		24B57A4821F7FBA0008F948D /* View.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = View.xib; sourceTree = "<group>"; };
 		3E7775AEF0D9CAF54E000A6B /* Pods-HittagTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HittagTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HittagTests/Pods-HittagTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5D6C6ECACDDC6D627A13F920 /* Pods_Hittag.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Hittag.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAD1D14BF7B302CFB87F4C72 /* Pods-Hittag.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hittag.release.xcconfig"; path = "Pods/Target Support Files/Pods-Hittag/Pods-Hittag.release.xcconfig"; sourceTree = "<group>"; };
@@ -247,6 +275,8 @@
 		24B579C121F54202008F948D /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				24B57A3A21F7EF1A008F948D /* Application */,
+				24B57A2B21F7EEEE008F948D /* Login */,
 				24B57A1221F71D69008F948D /* Profile */,
 				24B579FD21F68EB6008F948D /* TabBar */,
 				24B579C321F54316008F948D /* UI */,
@@ -280,6 +310,7 @@
 				24B579CD21F54316008F948D /* UIImage.swift */,
 				24B579C521F54316008F948D /* UIStackView.swift */,
 				24B579C421F54316008F948D /* UIView.swift */,
+				24B57A4621F7F5FB008F948D /* UIViewController.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -288,6 +319,7 @@
 			isa = PBXGroup;
 			children = (
 				24B579E721F549F2008F948D /* Models */,
+				24B57A4321F7EF41008F948D /* Repository */,
 			);
 			path = DataManager;
 			sourceTree = "<group>";
@@ -370,6 +402,40 @@
 				24B57A1921F71D88008F948D /* ProfileDefinitions.swift */,
 			);
 			path = Profile;
+			sourceTree = "<group>";
+		};
+		24B57A2B21F7EEEE008F948D /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				24B57A2C21F7EEFB008F948D /* LoginConfiguration.swift */,
+				24B57A2D21F7EEFB008F948D /* LoginCoordinator.swift */,
+				24B57A2E21F7EEFB008F948D /* LoginModule.swift */,
+				24B57A2F21F7EEFB008F948D /* LoginPresenter.swift */,
+				24B57A3021F7EEFB008F948D /* LoginViewController.swift */,
+				24B57A3121F7EEFB008F948D /* LoginComponent.swift */,
+				24B57A3221F7EEFB008F948D /* LoginDefinitions.swift */,
+				24B57A4821F7FBA0008F948D /* View.xib */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		24B57A3A21F7EF1A008F948D /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				24B57A3B21F7EF38008F948D /* ApplicationCoordinator.swift */,
+				24B57A3C21F7EF38008F948D /* ApplicationModule.swift */,
+				24B57A3D21F7EF38008F948D /* ApplicationPresenter.swift */,
+				24B57A3E21F7EF38008F948D /* ApplicationDefinitions.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		24B57A4321F7EF41008F948D /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				24B57A4421F7EF52008F948D /* UserRepository.swift */,
+			);
+			path = Repository;
 			sourceTree = "<group>";
 		};
 		4A3AD157B97371E1FC82EF74 /* Pods */ = {
@@ -477,6 +543,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				24B579AE21F5400A008F948D /* Assets.xcassets in Resources */,
+				24B57A4921F7FBA0008F948D /* View.xib in Resources */,
 				24B579AF21F5400A008F948D /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -522,21 +589,27 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Hittag/Pods-Hittag-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/ModuleArchitecture/ModuleArchitecture.framework",
+				"${BUILT_PRODUCTS_DIR}/Parse/Parse.framework",
 				"${BUILT_PRODUCTS_DIR}/RxAtomic/RxAtomic.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftResolver/SwiftResolver.framework",
+				"${BUILT_PRODUCTS_DIR}/TPKeyboardAvoiding/TPKeyboardAvoiding.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ModuleArchitecture.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Parse.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxAtomic.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftResolver.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TPKeyboardAvoiding.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -576,6 +649,8 @@
 				24B579C021F541F2008F948D /* FeedDefinitions.swift in Sources */,
 				24B57A0821F68EE5008F948D /* TabPresenter.swift in Sources */,
 				24B57A1121F695AB008F948D /* hittag.mlmodel in Sources */,
+				24B57A3621F7EEFB008F948D /* LoginPresenter.swift in Sources */,
+				24B57A4221F7EF38008F948D /* ApplicationDefinitions.swift in Sources */,
 				24B579D621F54317008F948D /* BackgroundColorButton.swift in Sources */,
 				24B579F521F6896F008F948D /* CameraPresenter.swift in Sources */,
 				24B579BD21F541F2008F948D /* FeedPresenter.swift in Sources */,
@@ -584,6 +659,7 @@
 				24B579E021F54317008F948D /* SeparatorLineView.swift in Sources */,
 				24B579DA21F54317008F948D /* NSAttributedString.swift in Sources */,
 				24B579E521F543B6008F948D /* PostComponent.swift in Sources */,
+				24B57A4721F7F5FB008F948D /* UIViewController.swift in Sources */,
 				24B57A2421F71F08008F948D /* DesignSystem.swift in Sources */,
 				24B579E121F54317008F948D /* UIEdgeInsets.swift in Sources */,
 				24B57A0621F68EE5008F948D /* TabCoordinator.swift in Sources */,
@@ -596,24 +672,34 @@
 				24B579F321F6896F008F948D /* CameraCoordinator.swift in Sources */,
 				24B579E921F5D184008F948D /* Badge.swift in Sources */,
 				24B579DB21F54317008F948D /* ContainerTableViewCell.swift in Sources */,
+				24B57A3321F7EEFB008F948D /* LoginConfiguration.swift in Sources */,
 				24B57A1D21F71D88008F948D /* ProfilePresenter.swift in Sources */,
 				24B579F621F6896F008F948D /* CameraViewController.swift in Sources */,
+				24B57A3721F7EEFB008F948D /* LoginViewController.swift in Sources */,
 				24B57A2621F72116008F948D /* ContainerCollectionViewCell.swift in Sources */,
 				24B579BC21F541F2008F948D /* FeedModule.swift in Sources */,
+				24B57A3521F7EEFB008F948D /* LoginModule.swift in Sources */,
 				24B57A0521F68EE5008F948D /* TabConfiguration.swift in Sources */,
 				24B579DE21F54317008F948D /* MixedTableViewDataSource.swift in Sources */,
 				24B57A2221F71DF7008F948D /* ImageWithTitleAndSubtitle.swift in Sources */,
 				24B57A0B21F68EE5008F948D /* TabDefinitions.swift in Sources */,
+				24B57A3421F7EEFB008F948D /* LoginCoordinator.swift in Sources */,
+				24B57A4521F7EF52008F948D /* UserRepository.swift in Sources */,
 				24B579E321F5433B008F948D /* UIColor.swift in Sources */,
 				24B579BB21F541F2008F948D /* FeedCoordinator.swift in Sources */,
+				24B57A3F21F7EF38008F948D /* ApplicationCoordinator.swift in Sources */,
+				24B57A4021F7EF38008F948D /* ApplicationModule.swift in Sources */,
 				24B57A2021F71D88008F948D /* ProfileDefinitions.swift in Sources */,
+				24B57A4121F7EF38008F948D /* ApplicationPresenter.swift in Sources */,
 				24B579DF21F54317008F948D /* ReusableView.swift in Sources */,
 				24B579D921F54317008F948D /* PurchaseButton.swift in Sources */,
+				24B57A3921F7EEFB008F948D /* LoginDefinitions.swift in Sources */,
 				24B579BE21F541F2008F948D /* FeedViewController.swift in Sources */,
 				24B579D421F54316008F948D /* UIStackView.swift in Sources */,
 				24B57A0921F68EE5008F948D /* TabViewController.swift in Sources */,
 				24B579D321F54316008F948D /* UIView.swift in Sources */,
 				24B57A0721F68EE5008F948D /* TabModule.swift in Sources */,
+				24B57A3821F7EEFB008F948D /* LoginComponent.swift in Sources */,
 				24B57A1E21F71D88008F948D /* ProfileViewController.swift in Sources */,
 				24B57A2821F7233D008F948D /* CollectionViewDataSource.swift in Sources */,
 				24B579F421F6896F008F948D /* CameraModule.swift in Sources */,

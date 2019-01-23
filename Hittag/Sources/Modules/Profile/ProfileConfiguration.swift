@@ -18,8 +18,8 @@ struct ProfileConfiguration {
 }
 
 extension ProfileConfiguration {
-    init(user: User) {
+    init(user: User, hittags: [Hittag]) {
         self.headerConfiguration = ImageWithTitleAndSubtitleConfiguration(user: user)
-        self.hittagConfigurations = user.hittags.map(HittagImageConfiguration.init)
+        self.hittagConfigurations = hittags.map(HittagImageConfiguration.init)
     }
 }

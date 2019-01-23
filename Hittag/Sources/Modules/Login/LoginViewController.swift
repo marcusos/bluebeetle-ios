@@ -1,15 +1,15 @@
 import UIKit
 import ModuleArchitecture
 
-protocol FeedViewControllerDelegate: AnyObject {
+protocol LoginViewControllerDelegate: AnyObject {
 
 }
 
-final class FeedViewController: UIViewController, FeedViewControllerType {
+final class LoginViewController: UIViewController, LoginViewControllerType {
 
-    weak var delegate: FeedViewControllerDelegate?
-    private lazy var component = FeedComponent()
-    
+    weak var delegate: LoginViewControllerDelegate?
+    private lazy var component = LoginComponent()
+
     override func loadView() {
 
         self.view = self.component
@@ -18,16 +18,14 @@ final class FeedViewController: UIViewController, FeedViewControllerType {
     override func viewDidLoad() {
 
         super.viewDidLoad()
-        self.title = "Hittag"
-        self.navigationItem.title = "Hittag"
     }
 }
 
-extension FeedViewController: FeedPresenterView {
+extension LoginViewController: LoginPresenterView {
 
     // This is the communication point from presenter to view controller.
     // You can change the name for something more contextual if needed.
-    func render(configuration: FeedConfiguration) {
+    func render(configuration: LoginConfiguration) {
 
         self.component.render(configuration: configuration)
     }

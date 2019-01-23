@@ -35,14 +35,10 @@ class BackgroundColorButton: UIButton {
         super.init(frame: frame)
         self.configure()
         self.updateBackgroundImages()
+        self.clipsToBounds = true
     }
     
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        
-        self.configure()
-        self.updateBackgroundImages()
-    }
+    required init?(coder aDecoder: NSCoder) { fatalError() }
     
     override func tintColorDidChange() {
         super.tintColorDidChange()

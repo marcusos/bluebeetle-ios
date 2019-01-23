@@ -2,10 +2,9 @@ import ModuleArchitecture
 import UIKit
 import Kingfisher
 
-struct User: Codable {
-    let name: String
-    let image: URL
-    let hittags: [Hittag]
+public struct User: Codable {
+    public let name: String
+    public let image: URL?
 }
 
 struct Post: Codable {
@@ -40,7 +39,7 @@ struct PostConfiguration {
         
         let hittagConfigurations = post.hashtags.map {
             BadgeConfiguration(text: $0.name.hashtag(),
-                               backgroundColor: UIColor(r: 242, g: 242, b: 242),
+                               backgroundColor: .hashtag,
                                cornerRadius: 5)
         }
         self.footerConfiguration = PostFooterConfiguration(hittagConfigurations: hittagConfigurations)

@@ -22,23 +22,16 @@ extension String {
         ])
     }
     
+    func hint(_ color: UIColor = .hint, weight: UIFont.Weight = .bold) -> NSAttributedString {
+        return NSAttributedString(string: self, attributes: [
+            .font: UIFont.hint(weight: weight),
+            .foregroundColor: color
+        ])
+    }
+    
     func hashtag(_ color: UIColor = .hashtag, weight: UIFont.Weight = .bold) -> NSAttributedString {
         return NSAttributedString(string: self, attributes: [
             .font: UIFont.hashtag(weight: weight),
-            .foregroundColor: color
-        ])
-    }
-    
-    func quantityTitle(_ color: UIColor = .quantityTitle, weight: UIFont.Weight = .medium) -> NSAttributedString {
-        return NSAttributedString(string: self, attributes: [
-            .font: UIFont.quantityTitle(weight: weight),
-            .foregroundColor: color
-        ])
-    }
-    
-    func quantity(_ color: UIColor = .quantity, weight: UIFont.Weight = .medium) -> NSAttributedString {
-        return NSAttributedString(string: self, attributes: [
-            .font: UIFont.quantity(weight: weight),
             .foregroundColor: color
         ])
     }
@@ -57,16 +50,12 @@ extension UIFont {
         return .systemFont(ofSize: 14, weight: weight)
     }
     
+    static func hint(weight: UIFont.Weight) -> UIFont {
+        return .systemFont(ofSize: 12, weight: weight)
+    }
+    
     static func hashtag(weight: UIFont.Weight) -> UIFont {
         return .systemFont(ofSize: 11, weight: weight)
-    }
-    
-    static func quantityTitle(weight: UIFont.Weight) -> UIFont {
-        return .systemFont(ofSize: 15, weight: weight)
-    }
-    
-    static func quantity(weight: UIFont.Weight) -> UIFont {
-        return .systemFont(ofSize: 12, weight: weight)
     }
 }
 
@@ -83,16 +72,12 @@ extension UIColor {
         return .darkGray
     }
     
-    static var hashtag: UIColor {
-        return .black
-    }
-    
-    static var quantityTitle: UIColor {
+    static var hint: UIColor {
         return .darkGray
     }
     
-    static var quantity: UIColor {
-        return UIColor(r: 84, g: 161, b: 0)
+    static var hashtag: UIColor {
+        return .black
     }
 }
 
@@ -103,6 +88,10 @@ extension NSAttributedString {
     
     var unerlyned: NSAttributedString {
         return self.adding(attributes: [.underlineStyle : 1])
+    }
+    
+    func with(color: UIColor) -> NSAttributedString {
+        return self.adding(attributes: [.foregroundColor : color])
     }
     
     func adding(attributes: [NSAttributedString.Key : Any]) -> NSAttributedString {

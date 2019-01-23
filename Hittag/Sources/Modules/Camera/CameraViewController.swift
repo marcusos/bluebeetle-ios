@@ -24,6 +24,8 @@ final class CameraViewController: UIViewController, CameraViewControllerType {
     override func viewDidLoad() {
 
         super.viewDidLoad()
+        self.title = "Camera"
+        self.navigationItem.title = "Camera"
         self.component.start()
     }
 }

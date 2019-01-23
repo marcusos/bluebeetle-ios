@@ -2,7 +2,7 @@ import UIKit
 import ModuleArchitecture
 
 struct ImageWithTitleAndSubtitleConfiguration {
-    let image: URL
+    let image: URL?
     let title: NSAttributedString
     let subtitle: NSAttributedString?
 }
@@ -85,11 +85,6 @@ final class ImageWithTitleAndSubtitle: UIView, Component {
     
     private func addConstraints() {
         self.wrapperStackView.makeEdgesEqualToSuperview()
-        
-        NSLayoutConstraint.activate([
-            self.imageView.heightAnchor.constraint(equalToConstant: 50),
-            self.imageView.widthAnchor.constraint(equalToConstant: 50)
-        ])
     }
 }
 
