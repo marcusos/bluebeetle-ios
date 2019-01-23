@@ -25,7 +25,7 @@ final class UserRepository: UserRepositoryType {
     }
     
     func signUp(credentials: UserCredentials) -> Single<User> {
-        return Single.create(subscribe: { emitter in
+        return Single<User>.create(subscribe: { emitter in
             let user = PFUser()
             user.email = credentials.email
             user.username = credentials.email
@@ -41,6 +41,7 @@ final class UserRepository: UserRepositoryType {
             }
             return Disposables.create {}
         })
+        .flatMap { _ in self.signIn(credentials: credentials) }
     }
     
     func signIn(credentials: UserCredentials) -> Single<User> {

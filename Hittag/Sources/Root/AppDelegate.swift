@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                    profileModule: ProfileModule())
         
         let rootModule = ApplicationModule(homeModule: homeModule,
-                                           loginModule: LoginModule(),
+                                           loginModule: LoginModule(userRepository: UserRepository()),
                                            userRepository: UserRepository())
         
         let rootCoordinator = rootModule.createCoordinator(window: window)

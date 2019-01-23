@@ -2,8 +2,20 @@ import UIKit
 import ModuleArchitecture
 import TPKeyboardAvoiding
 
-final class LoginComponent: UIView, Component {
+struct LoginCredentials {
+    let email: String?
+    let password: String?
+}
 
+protocol LoginComponentDelegate: class {
+    func forgotPasswordButtonTapped(credentials: LoginCredentials)
+    func signInButtonTapped(credentials: LoginCredentials)
+    func signUpButtonTapped(credentials: LoginCredentials)
+}
+
+final class LoginComponent: UIView, Component {
+    weak var delegate: LoginComponentDelegate?
+    
     private let scrollView: UIScrollView = {
         let view = TPKeyboardAvoidingScrollView()
         view.showsVerticalScrollIndicator = false
@@ -37,6 +49,9 @@ final class LoginComponent: UIView, Component {
         let textField = UITextField()
         textField.borderStyle = .roundedRect
         textField.backgroundColor = .badge
+        textField.keyboardType = .emailAddress
+        textField.autocapitalizationType = .none
+        textField.autocorrectionType = .no
         return textField
     }()
     
@@ -44,13 +59,16 @@ final class LoginComponent: UIView, Component {
         let textField = UITextField()
         textField.borderStyle = .roundedRect
         textField.backgroundColor = .badge
+        textField.isSecureTextEntry = true
+        textField.autocapitalizationType = .none
+        textField.autocorrectionType = .no
         return textField
     }()
     
     private let forgotPasswordButton: BackgroundColorButton = {
         let button = BackgroundColorButton()
         button.setAttributedTitle("Esqueceu a senha?".hint(.main), for: .normal)
-        button.highlightedColor = UIColor.hint.withAlphaComponent(0.2)
+        button.addTarget(self, action: #selector(forgotPasswordButtonTapped), for: .touchUpInside)
         return button
     }()
     
@@ -59,6 +77,7 @@ final class LoginComponent: UIView, Component {
         button.color = .main
         button.highlightedColor = UIColor.main.withAlphaComponent(0.6)
         button.setAttributedTitle("Entrar".title(.white, weight: .regular), for: .normal)
+        button.addTarget(self, action: #selector(signInButtonTapped), for: .touchUpInside)
         return button
     }()
     
@@ -66,6 +85,7 @@ final class LoginComponent: UIView, Component {
         let button = BackgroundColorButton()
         button.setAttributedTitle("Criar conta".hint(.main), for: .normal)
         button.highlightedColor = UIColor.hint.withAlphaComponent(0.2)
+        button.addTarget(self, action: #selector(signUpButtonTapped), for: .touchUpInside)
         return button
     }()
     
@@ -76,6 +96,21 @@ final class LoginComponent: UIView, Component {
     }
 
     required init?(coder aDecoder: NSCoder) { fatalError("Not implemented") }
+    
+    @objc private func forgotPasswordButtonTapped() {
+        let credentials = LoginCredentials(email: self.usernameTextField.text, password: self.passwordTextField.text)
+        self.delegate?.forgotPasswordButtonTapped(credentials: credentials)
+    }
+    
+    @objc private func signInButtonTapped() {
+        let credentials = LoginCredentials(email: self.usernameTextField.text, password: self.passwordTextField.text)
+        self.delegate?.signInButtonTapped(credentials: credentials)
+    }
+    
+    @objc private func signUpButtonTapped() {
+        let credentials = LoginCredentials(email: self.usernameTextField.text, password: self.passwordTextField.text)
+        self.delegate?.signUpButtonTapped(credentials: credentials)
+    }
 }
 
 extension LoginComponent {

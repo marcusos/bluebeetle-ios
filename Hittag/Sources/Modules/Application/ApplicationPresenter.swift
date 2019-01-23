@@ -37,5 +37,7 @@ final class ApplicationPresenter: Presenter, ApplicationPresenterType {
 }
 
 extension ApplicationPresenter: LoginPresenterDelegate {
-    
+    func didSignUpSuccessfuly(user: User) {
+        self.coordinator?.attachHomeModule()
+    }
 }

@@ -39,7 +39,7 @@ struct PostConfiguration {
         
         let hittagConfigurations = post.hashtags.map {
             BadgeConfiguration(text: $0.name.hashtag(),
-                               backgroundColor: .hashtag,
+                               backgroundColor: .badge,
                                cornerRadius: 5)
         }
         self.footerConfiguration = PostFooterConfiguration(hittagConfigurations: hittagConfigurations)

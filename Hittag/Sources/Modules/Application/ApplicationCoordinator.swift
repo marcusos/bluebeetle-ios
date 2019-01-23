@@ -28,6 +28,7 @@ extension ApplicationCoordinator: ApplicationPresenterDelegate {
         self.window?.makeKeyAndVisible()
         self.homeCoordinator = coordinator
         coordinator.start()
+        self.attach(coordinator)
     }
     
     func attachLoginModule() {
@@ -36,6 +37,7 @@ extension ApplicationCoordinator: ApplicationPresenterDelegate {
         self.window?.makeKeyAndVisible()
         self.loginCoordinator = coordinator
         coordinator.start()
+        self.attach(coordinator)
     }
 }
 
