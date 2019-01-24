@@ -75,7 +75,6 @@
 		24B57A4221F7EF38008F948D /* ApplicationDefinitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B57A3E21F7EF38008F948D /* ApplicationDefinitions.swift */; };
 		24B57A4521F7EF52008F948D /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B57A4421F7EF52008F948D /* UserRepository.swift */; };
 		24B57A4721F7F5FB008F948D /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B57A4621F7F5FB008F948D /* UIViewController.swift */; };
-		24B57A4921F7FBA0008F948D /* View.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24B57A4821F7FBA0008F948D /* View.xib */; };
 		68BC6E82D951917B2BE87971 /* Pods_Hittag.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D6C6ECACDDC6D627A13F920 /* Pods_Hittag.framework */; };
 /* End PBXBuildFile section */
 
@@ -162,7 +161,6 @@
 		24B57A3E21F7EF38008F948D /* ApplicationDefinitions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationDefinitions.swift; sourceTree = "<group>"; };
 		24B57A4421F7EF52008F948D /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
 		24B57A4621F7F5FB008F948D /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
-		24B57A4821F7FBA0008F948D /* View.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = View.xib; sourceTree = "<group>"; };
 		3E7775AEF0D9CAF54E000A6B /* Pods-HittagTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HittagTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HittagTests/Pods-HittagTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5D6C6ECACDDC6D627A13F920 /* Pods_Hittag.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Hittag.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAD1D14BF7B302CFB87F4C72 /* Pods-Hittag.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hittag.release.xcconfig"; path = "Pods/Target Support Files/Pods-Hittag/Pods-Hittag.release.xcconfig"; sourceTree = "<group>"; };
@@ -414,7 +412,6 @@
 				24B57A3021F7EEFB008F948D /* LoginViewController.swift */,
 				24B57A3121F7EEFB008F948D /* LoginComponent.swift */,
 				24B57A3221F7EEFB008F948D /* LoginDefinitions.swift */,
-				24B57A4821F7FBA0008F948D /* View.xib */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -543,7 +540,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				24B579AE21F5400A008F948D /* Assets.xcassets in Resources */,
-				24B57A4921F7FBA0008F948D /* View.xib in Resources */,
 				24B579AF21F5400A008F948D /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
