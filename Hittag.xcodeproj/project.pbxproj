@@ -872,6 +872,30 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					"\"Bolts\"",
+					"-framework",
+					"\"FBSDKCoreKit\"",
+					"-framework",
+					"\"FBSDKLoginKit\"",
+					"-framework",
+					"\"Kingfisher\"",
+					"-framework",
+					"\"ModuleArchitecture\"",
+					"-framework",
+					"\"Parse\"",
+					"-framework",
+					"\"RxAtomic\"",
+					"-framework",
+					"\"RxSwift\"",
+					"-framework",
+					"\"SwiftResolver\"",
+					"-framework",
+					"\"TPKeyboardAvoiding\"",
+					"-ObjC",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = br.com.hittag.Hittag;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -893,6 +917,30 @@
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					"\"Bolts\"",
+					"-framework",
+					"\"FBSDKCoreKit\"",
+					"-framework",
+					"\"FBSDKLoginKit\"",
+					"-framework",
+					"\"Kingfisher\"",
+					"-framework",
+					"\"ModuleArchitecture\"",
+					"-framework",
+					"\"Parse\"",
+					"-framework",
+					"\"RxAtomic\"",
+					"-framework",
+					"\"RxSwift\"",
+					"-framework",
+					"\"SwiftResolver\"",
+					"-framework",
+					"\"TPKeyboardAvoiding\"",
+					"-ObjC",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = br.com.hittag.Hittag;
 				PRODUCT_NAME = "$(TARGET_NAME)";

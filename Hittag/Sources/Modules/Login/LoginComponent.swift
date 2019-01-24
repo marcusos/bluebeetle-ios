@@ -2,15 +2,8 @@ import UIKit
 import ModuleArchitecture
 import TPKeyboardAvoiding
 
-struct LoginCredentials {
-    let email: String?
-    let password: String?
-}
-
 protocol LoginComponentDelegate: class {
-    func forgotPasswordButtonTapped(credentials: LoginCredentials)
-    func signInButtonTapped(credentials: LoginCredentials)
-    func signUpButtonTapped(credentials: LoginCredentials)
+    func facebookButtonTapped()
 }
 
 final class LoginComponent: UIView, Component {
@@ -45,47 +38,13 @@ final class LoginComponent: UIView, Component {
         return stackView
     }()
     
-    private let usernameTextField: UITextField = {
-        let textField = UITextField()
-        textField.borderStyle = .roundedRect
-        textField.backgroundColor = .badge
-        textField.keyboardType = .emailAddress
-        textField.autocapitalizationType = .none
-        textField.autocorrectionType = .no
-        return textField
-    }()
-    
-    private let passwordTextField: UITextField = {
-        let textField = UITextField()
-        textField.borderStyle = .roundedRect
-        textField.backgroundColor = .badge
-        textField.isSecureTextEntry = true
-        textField.autocapitalizationType = .none
-        textField.autocorrectionType = .no
-        return textField
-    }()
-    
-    private let forgotPasswordButton: BackgroundColorButton = {
+    private let facebookButton: BackgroundColorButton = {
         let button = BackgroundColorButton()
-        button.setAttributedTitle("Esqueceu a senha?".hint(.main), for: .normal)
-        button.addTarget(self, action: #selector(forgotPasswordButtonTapped), for: .touchUpInside)
-        return button
-    }()
-    
-    private let signInButton: BackgroundColorButton = {
-        let button = BackgroundColorButton()
-        button.color = .main
-        button.highlightedColor = UIColor.main.withAlphaComponent(0.6)
-        button.setAttributedTitle("Entrar".title(.white, weight: .regular), for: .normal)
-        button.addTarget(self, action: #selector(signInButtonTapped), for: .touchUpInside)
-        return button
-    }()
-    
-    private let signUpButton: BackgroundColorButton = {
-        let button = BackgroundColorButton()
-        button.setAttributedTitle("Criar conta".hint(.main), for: .normal)
-        button.highlightedColor = UIColor.hint.withAlphaComponent(0.2)
-        button.addTarget(self, action: #selector(signUpButtonTapped), for: .touchUpInside)
+        button.color = UIColor(r: 66, g: 72, b: 178)
+        button.highlightedColor = UIColor(r: 66, g: 72, b: 178).withAlphaComponent(0.6)
+        button.setImage(UIImage(named: "icon_facebook"), for: .normal)
+        button.setAttributedTitle("   Entrar com Facebook".title(.white), for: .normal)
+        button.addTarget(self, action: #selector(facebookButtonTapped), for: .touchUpInside)
         return button
     }()
     
@@ -97,19 +56,10 @@ final class LoginComponent: UIView, Component {
 
     required init?(coder aDecoder: NSCoder) { fatalError("Not implemented") }
     
-    @objc private func forgotPasswordButtonTapped() {
-        let credentials = LoginCredentials(email: self.usernameTextField.text, password: self.passwordTextField.text)
-        self.delegate?.forgotPasswordButtonTapped(credentials: credentials)
-    }
     
-    @objc private func signInButtonTapped() {
-        let credentials = LoginCredentials(email: self.usernameTextField.text, password: self.passwordTextField.text)
-        self.delegate?.signInButtonTapped(credentials: credentials)
-    }
     
-    @objc private func signUpButtonTapped() {
-        let credentials = LoginCredentials(email: self.usernameTextField.text, password: self.passwordTextField.text)
-        self.delegate?.signUpButtonTapped(credentials: credentials)
+    @objc private func facebookButtonTapped() {
+        self.delegate?.facebookButtonTapped()
     }
 }
 
@@ -132,11 +82,7 @@ extension LoginComponent {
     private func defineSubviews() {
         self.wrapperStackView.addArrangedSubview(self.inputStackView.wrapForVerticalAlignment())
         self.inputStackView.addArrangedSubview(self.imageView.wrapForPadding(UIEdgeInsets(leftRight: Grid * 10)))
-        self.inputStackView.addArrangedSubview(self.usernameTextField)
-        self.inputStackView.addArrangedSubview(self.passwordTextField)
-        self.inputStackView.addArrangedSubview(self.forgotPasswordButton.wrapForHorizontalAlignment(.trailing))
-        self.inputStackView.addArrangedSubview(self.signInButton)
-        self.inputStackView.addArrangedSubview(self.signUpButton)
+        self.inputStackView.addArrangedSubview(self.facebookButton)
         self.scrollView.addSubview(self.wrapperStackView)
         self.addSubview(self.scrollView)
     }
@@ -146,15 +92,11 @@ extension LoginComponent {
         self.wrapperStackView.makeEdgesEqualToSuperview()
         
         NSLayoutConstraint.activate([
-            self.usernameTextField.heightAnchor.constraint(equalToConstant: 44)
+            self.imageView.heightAnchor.constraint(equalToConstant: 120)
         ])
         
         NSLayoutConstraint.activate([
-            self.passwordTextField.heightAnchor.constraint(equalToConstant: 44)
-        ])
-        
-        NSLayoutConstraint.activate([
-            self.signInButton.heightAnchor.constraint(equalToConstant: 44)
+            self.facebookButton.heightAnchor.constraint(equalToConstant: 44)
         ])
         
         NSLayoutConstraint.activate([
@@ -162,6 +104,6 @@ extension LoginComponent {
             self.wrapperStackView.heightAnchor.constraint(equalTo: self.scrollView.heightAnchor),
         ])
         
-        self.signInButton.layer.cornerRadius = Grid * 0.5
+        self.facebookButton.layer.cornerRadius = Grid * 0.5
     }
 }

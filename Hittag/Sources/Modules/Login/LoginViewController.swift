@@ -2,9 +2,7 @@ import UIKit
 import ModuleArchitecture
 
 protocol LoginViewControllerDelegate: AnyObject {
-    func forgotPasswordButtonTapped(credentials: LoginCredentials)
-    func signInButtonTapped(credentials: LoginCredentials)
-    func signUpButtonTapped(credentials: LoginCredentials)
+    func facebookButtonTapped()
 }
 
 final class LoginViewController: UIViewController, LoginViewControllerType {
@@ -38,15 +36,7 @@ extension LoginViewController: LoginPresenterView {
 }
 
 extension LoginViewController: LoginComponentDelegate {
-    func forgotPasswordButtonTapped(credentials: LoginCredentials) {
-        self.delegate?.forgotPasswordButtonTapped(credentials: credentials)
-    }
-    
-    func signInButtonTapped(credentials: LoginCredentials) {
-        self.delegate?.signInButtonTapped(credentials: credentials)
-    }
-    
-    func signUpButtonTapped(credentials: LoginCredentials) {
-        self.delegate?.signUpButtonTapped(credentials: credentials)
+    func facebookButtonTapped() {
+        self.delegate?.facebookButtonTapped()
     }
 }

@@ -24,20 +24,8 @@ final class LoginPresenter: Presenter, LoginPresenterType {
 }
 
 extension LoginPresenter: LoginViewControllerDelegate {
-    func forgotPasswordButtonTapped(credentials: LoginCredentials) {
-        
-    }
-    
-    func signInButtonTapped(credentials: LoginCredentials) {
-        
-    }
-    
-    func signUpButtonTapped(credentials: LoginCredentials) {
-        guard let userCredentials = UserCredentials(loginCredentials: credentials) else {
-            return
-        }
-        
-        self.userRepository.signUp(credentials: userCredentials)
+    func facebookButtonTapped() {
+        self.userRepository.signIn()
             .observeOn(MainScheduler.instance)
             .subscribe { [weak self] event in
                 self?.handleSignUpEvent(event)
@@ -52,12 +40,5 @@ extension LoginPresenter: LoginViewControllerDelegate {
         case .error(let error):
             print(error)
         }
-    }
-}
-
-extension UserCredentials {
-    init?(loginCredentials: LoginCredentials) {
-        guard let email = loginCredentials.email, let password = loginCredentials.password else { return nil }
-        self.init(email: email, password: password)
     }
 }
