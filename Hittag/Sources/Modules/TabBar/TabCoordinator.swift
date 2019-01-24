@@ -27,9 +27,9 @@ final class TabCoordinator: Coordinator<TabPresenterType>, TabCoordinatorType {
         let cameraCoordinator = self.cameraModule.createCoordinator(listener: self.presenter)
         let profileCoordinator = self.profileModule.createCoordinator()
         
-        let feedController = feedCoordinator.viewController.asViewController()
+        let feedController = UINavigationController(viewControllerType: feedCoordinator.viewController)
         let cameraController = cameraCoordinator.viewController.asViewController()
-        let profileController = profileCoordinator.viewController.asViewController()
+        let profileController = UINavigationController(viewControllerType: profileCoordinator.viewController)
         
         let viewControllers = [feedController, cameraController, profileController]
         
