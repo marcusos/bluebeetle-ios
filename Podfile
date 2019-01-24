@@ -10,6 +10,7 @@ target 'Hittag' do
   pod 'ModuleArchitecture'
   pod 'Kingfisher'
   pod 'Parse'
+  pod 'Parse/FacebookUtils'
   pod 'TPKeyboardAvoiding'
 
   target 'HittagTests' do

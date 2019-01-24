@@ -1,11 +1,24 @@
 PODS:
+  - Bolts (1.9.0):
+    - Bolts/AppLinks (= 1.9.0)
+    - Bolts/Tasks (= 1.9.0)
+  - Bolts/AppLinks (1.9.0):
+    - Bolts/Tasks
   - Bolts/Tasks (1.9.0)
+  - FBSDKCoreKit (4.39.1):
+    - Bolts (~> 1.9)
+  - FBSDKLoginKit (4.39.1):
+    - FBSDKCoreKit
   - Kingfisher (5.1.0)
   - ModuleArchitecture (0.14.2)
   - Parse (1.17.2):
     - Parse/Core (= 1.17.2)
   - Parse/Core (1.17.2):
     - Bolts/Tasks (~> 1.9)
+  - Parse/FacebookUtils (1.17.2):
+    - Bolts (~> 1.9)
+    - FBSDKLoginKit (~> 4.33)
+    - Parse/Core
   - RxAtomic (4.4.0)
   - RxSwift (4.4.0):
     - RxAtomic (~> 4.4)
@@ -16,6 +29,7 @@ DEPENDENCIES:
   - Kingfisher
   - ModuleArchitecture
   - Parse
+  - Parse/FacebookUtils
   - RxSwift
   - SwiftResolver
   - TPKeyboardAvoiding
@@ -23,6 +37,8 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Bolts
+    - FBSDKCoreKit
+    - FBSDKLoginKit
     - Kingfisher
     - ModuleArchitecture
     - Parse
@@ -33,6 +49,8 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
+  FBSDKCoreKit: f442aa96179cc9b382bb4abeb7e340a47cca8f91
+  FBSDKLoginKit: c3079d9a4db27c492287b1eed7a4272b28cf8a59
   Kingfisher: fcec238063d17404fca89bf0a850583211c4cbf6
   ModuleArchitecture: eec0e6ddd7a49efa104d63273974de56ac0e227e
   Parse: 3b31a3dd1777b07ee7f0caee32fafbff544483a5
@@ -41,6 +59,6 @@ SPEC CHECKSUMS:
   SwiftResolver: e841bb474f01726ed8ffc76927a19a5b4234291a
   TPKeyboardAvoiding: cb69d5ddbe90ce0170e4bc2db1e5e41d4a3ad9a4
 
-PODFILE CHECKSUM: 0f354cd9599a25194fdfa1753cfc7cac931b3c14
+PODFILE CHECKSUM: ccf08bf6f124064c3660c42f1c8db08466aa6760
 
 COCOAPODS: 1.5.3
