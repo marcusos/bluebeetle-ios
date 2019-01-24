@@ -18,7 +18,6 @@ final class FeedViewController: UIViewController, FeedViewControllerType {
     override func viewDidLoad() {
 
         super.viewDidLoad()
-        self.title = "Hittag"
         self.navigationItem.title = "Hittag"
     }
 }

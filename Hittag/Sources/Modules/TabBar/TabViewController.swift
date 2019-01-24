@@ -2,15 +2,15 @@ import UIKit
 import ModuleArchitecture
 
 protocol TabViewControllerDelegate: AnyObject {
-
+    
 }
 
 final class TabViewController: UITabBarController, TabViewControllerType {
 
     weak var listener: TabViewControllerDelegate?
-
+    
     override func viewDidLoad() {
-        
+
         super.viewDidLoad()
     }
 }
