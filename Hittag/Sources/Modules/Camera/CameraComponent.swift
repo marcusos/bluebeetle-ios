@@ -8,11 +8,20 @@ enum CameraDeviceInitializationError: Swift.Error {
 }
 
 protocol CameraComponentDelegate: class {
+    func closeButtonTapped()
     func didOutputPixelBuffer(pixelBuffer: CVPixelBuffer)
 }
 
 final class CameraComponent: UIView, Component {
     weak var delegate: CameraComponentDelegate?
+    
+    private let closeButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.tintColor = .white
+        button.setImage(UIImage(named: "close"), for: .normal)
+        button.addTarget(self, action: #selector(closeButtonTapped), for: .touchUpInside)
+        return button
+    }()
     
     private lazy var camera: CameraDevice? = {
         let captureSession = AVCaptureSession()
@@ -45,6 +54,10 @@ final class CameraComponent: UIView, Component {
     }
     
     required init?(coder aDecoder: NSCoder) { fatalError("Not implemented") }
+    
+    @objc private func closeButtonTapped() {
+        self.delegate?.closeButtonTapped()
+    }
 }
 
 extension CameraComponent {
@@ -68,10 +81,19 @@ extension CameraComponent {
         }
         
         self.addSubview(self.label)
+        self.addSubview(self.closeButton)
     }
 
     private func defineSubviewsConstraints() {
         self.label.translatesAutoresizingMaskIntoConstraints = false
+        self.closeButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            self.closeButton.topSafeAnchor.constraint(equalTo: self.topSafeAnchor, constant: Grid * 2),
+            self.closeButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -Grid * 2),
+            self.closeButton.heightAnchor.constraint(equalToConstant: CGSize.closeButton.height),
+            self.closeButton.widthAnchor.constraint(equalToConstant: CGSize.closeButton.width),
+        ])
         
         NSLayoutConstraint.activate([
             self.label.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -100),

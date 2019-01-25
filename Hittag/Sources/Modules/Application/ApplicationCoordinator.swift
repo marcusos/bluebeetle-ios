@@ -42,9 +42,9 @@ extension ApplicationCoordinator: ApplicationPresenterDelegate {
 }
 
 extension ViewableCoordinatorType {
-    private func detachModuleIfNeeded(_ coordinator: ViewableCoordinatorType?,
-                                      animated: Bool,
-                                      completion: @escaping () -> Void) {
+    func detachModuleIfNeeded(_ coordinator: ViewableCoordinatorType?,
+                              animated: Bool,
+                              completion: @escaping () -> Void = {}) {
         
         if let coordinator = coordinator {
             coordinator.viewController.asViewController().dismissPresentedControllerIfNeeded(animated: animated) {

@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		0B513681AD5EA319C9B3DE97 /* Pods_HittagTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0281203E508A8292C8719996 /* Pods_HittagTests.framework */; };
+		2450640421F9C75D00009F9E /* CameraTabConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245063FD21F9C75D00009F9E /* CameraTabConfiguration.swift */; };
+		2450640521F9C75D00009F9E /* CameraTabCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245063FE21F9C75D00009F9E /* CameraTabCoordinator.swift */; };
+		2450640621F9C75D00009F9E /* CameraTabModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245063FF21F9C75D00009F9E /* CameraTabModule.swift */; };
+		2450640721F9C75D00009F9E /* CameraTabPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2450640021F9C75D00009F9E /* CameraTabPresenter.swift */; };
+		2450640821F9C75D00009F9E /* CameraTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2450640121F9C75D00009F9E /* CameraTabViewController.swift */; };
+		2450640A21F9C75D00009F9E /* CameraTabDefinitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2450640321F9C75D00009F9E /* CameraTabDefinitions.swift */; };
 		24B5799A21F53FA1008F948D /* HittagTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B5799921F53FA1008F948D /* HittagTests.swift */; };
 		24B579AD21F5400A008F948D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B579A621F5400A008F948D /* AppDelegate.swift */; };
 		24B579AE21F5400A008F948D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24B579A821F5400A008F948D /* Assets.xcassets */; };
@@ -90,6 +96,12 @@
 
 /* Begin PBXFileReference section */
 		0281203E508A8292C8719996 /* Pods_HittagTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HittagTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		245063FD21F9C75D00009F9E /* CameraTabConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraTabConfiguration.swift; sourceTree = "<group>"; };
+		245063FE21F9C75D00009F9E /* CameraTabCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraTabCoordinator.swift; sourceTree = "<group>"; };
+		245063FF21F9C75D00009F9E /* CameraTabModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraTabModule.swift; sourceTree = "<group>"; };
+		2450640021F9C75D00009F9E /* CameraTabPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraTabPresenter.swift; sourceTree = "<group>"; };
+		2450640121F9C75D00009F9E /* CameraTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraTabViewController.swift; sourceTree = "<group>"; };
+		2450640321F9C75D00009F9E /* CameraTabDefinitions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraTabDefinitions.swift; sourceTree = "<group>"; };
 		24B5798121F53FA0008F948D /* Hittag.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hittag.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		24B5799521F53FA1008F948D /* HittagTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HittagTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		24B5799921F53FA1008F948D /* HittagTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HittagTests.swift; sourceTree = "<group>"; };
@@ -188,6 +200,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		245063F421F9C73B00009F9E /* CameraTab */ = {
+			isa = PBXGroup;
+			children = (
+				245063FD21F9C75D00009F9E /* CameraTabConfiguration.swift */,
+				245063FE21F9C75D00009F9E /* CameraTabCoordinator.swift */,
+				245063FF21F9C75D00009F9E /* CameraTabModule.swift */,
+				2450640021F9C75D00009F9E /* CameraTabPresenter.swift */,
+				2450640121F9C75D00009F9E /* CameraTabViewController.swift */,
+				2450640321F9C75D00009F9E /* CameraTabDefinitions.swift */,
+			);
+			path = CameraTab;
+			sourceTree = "<group>";
+		};
 		24B5797821F53FA0008F948D = {
 			isa = PBXGroup;
 			children = (
@@ -274,12 +299,13 @@
 			isa = PBXGroup;
 			children = (
 				24B57A3A21F7EF1A008F948D /* Application */,
+				24B579EA21F688ED008F948D /* Camera */,
+				245063F421F9C73B00009F9E /* CameraTab */,
+				24B579B221F541DB008F948D /* Feed */,
 				24B57A2B21F7EEEE008F948D /* Login */,
 				24B57A1221F71D69008F948D /* Profile */,
 				24B579FD21F68EB6008F948D /* TabBar */,
 				24B579C321F54316008F948D /* UI */,
-				24B579B221F541DB008F948D /* Feed */,
-				24B579EA21F688ED008F948D /* Camera */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -648,6 +674,7 @@
 				24B57A1A21F71D88008F948D /* ProfileConfiguration.swift in Sources */,
 				24B579C021F541F2008F948D /* FeedDefinitions.swift in Sources */,
 				24B57A0821F68EE5008F948D /* TabPresenter.swift in Sources */,
+				2450640721F9C75D00009F9E /* CameraTabPresenter.swift in Sources */,
 				24B57A1121F695AB008F948D /* hittag.mlmodel in Sources */,
 				24B57A3621F7EEFB008F948D /* LoginPresenter.swift in Sources */,
 				24B57A4221F7EF38008F948D /* ApplicationDefinitions.swift in Sources */,
@@ -665,6 +692,7 @@
 				24B57A0621F68EE5008F948D /* TabCoordinator.swift in Sources */,
 				24B579FA21F689AE008F948D /* CameraDevice.swift in Sources */,
 				24B579BF21F541F2008F948D /* FeedComponent.swift in Sources */,
+				2450640821F9C75D00009F9E /* CameraTabViewController.swift in Sources */,
 				24B579D821F54317008F948D /* TableView+Reusable.swift in Sources */,
 				24B57A1F21F71D88008F948D /* ProfileComponent.swift in Sources */,
 				24B579BA21F541F2008F948D /* FeedConfiguration.swift in Sources */,
@@ -695,8 +723,11 @@
 				24B579D921F54317008F948D /* PurchaseButton.swift in Sources */,
 				24B57A3921F7EEFB008F948D /* LoginDefinitions.swift in Sources */,
 				24B579BE21F541F2008F948D /* FeedViewController.swift in Sources */,
+				2450640621F9C75D00009F9E /* CameraTabModule.swift in Sources */,
 				24B579D421F54316008F948D /* UIStackView.swift in Sources */,
+				2450640521F9C75D00009F9E /* CameraTabCoordinator.swift in Sources */,
 				24B57A0921F68EE5008F948D /* TabViewController.swift in Sources */,
+				2450640A21F9C75D00009F9E /* CameraTabDefinitions.swift in Sources */,
 				24B579D321F54316008F948D /* UIView.swift in Sources */,
 				24B57A0721F68EE5008F948D /* TabModule.swift in Sources */,
 				24B57A3821F7EEFB008F948D /* LoginComponent.swift in Sources */,
@@ -705,6 +736,7 @@
 				24B579F421F6896F008F948D /* CameraModule.swift in Sources */,
 				24B579D721F54317008F948D /* TableViewDataSource.swift in Sources */,
 				24B579DC21F54317008F948D /* UIImage.swift in Sources */,
+				2450640421F9C75D00009F9E /* CameraTabConfiguration.swift in Sources */,
 				24B57A1B21F71D88008F948D /* ProfileCoordinator.swift in Sources */,
 				24B579AD21F5400A008F948D /* AppDelegate.swift in Sources */,
 				24B579F221F6896F008F948D /* CameraConfiguration.swift in Sources */,

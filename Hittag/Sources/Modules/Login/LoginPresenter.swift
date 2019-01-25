@@ -13,6 +13,11 @@ final class LoginPresenter: Presenter, LoginPresenterType {
     
     private let userRepository: UserRepositoryType
     private let disposeBag = DisposeBag()
+    private var configuration = LoginConfiguration.empty {
+        didSet {
+            self.viewController?.render(configuration: self.configuration)
+        }
+    }
     
     init(userRepository: UserRepositoryType) {
         self.userRepository = userRepository
@@ -25,6 +30,7 @@ final class LoginPresenter: Presenter, LoginPresenterType {
 
 extension LoginPresenter: LoginViewControllerDelegate {
     func facebookButtonTapped() {
+        self.configuration = self.configuration.with(loginButtonEnabled: false)
         self.userRepository.signIn()
             .observeOn(MainScheduler.instance)
             .subscribe { [weak self] event in
@@ -40,5 +46,6 @@ extension LoginPresenter: LoginViewControllerDelegate {
         case .error(let error):
             print(error)
         }
+        self.configuration = self.configuration.with(loginButtonEnabled: true)
     }
 }

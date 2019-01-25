@@ -9,9 +9,11 @@ protocol TabModuleType: ModuleType {
 
 protocol TabCoordinatorType: ViewableCoordinatorType {
 
+    func attachCameraModule()
+    func detachCameraModule()
 }
 
-protocol TabPresenterType: PresenterType, CameraPresenterDelegate {
+protocol TabPresenterType: PresenterType, CameraPresenterDelegate, CameraTabPresenterDelegate {
 
     var delegate: TabPresenterDelegate? { get set }
 }

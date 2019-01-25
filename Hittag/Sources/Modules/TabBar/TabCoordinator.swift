@@ -5,16 +5,25 @@ final class TabCoordinator: Coordinator<TabPresenterType>, TabCoordinatorType {
     let viewController: ViewControllerType
     private let feedModule: FeedModuleType
     private let cameraModule: CameraModuleType
+    private let cameraTabModule: CameraTabModuleType
     private let profileModule: ProfileModuleType
+    
+    private var tabBarController: UITabBarController? {
+        return self.viewController.asViewController() as? UITabBarController
+    }
+    
+    private weak var cameraCoordinator: CameraCoordinatorType?
 
     init(feedModule: FeedModuleType,
          cameraModule: CameraModuleType,
+         cameraTabModule: CameraTabModuleType,
          profileModule: ProfileModuleType,
          presenter: TabPresenterType,
          viewController: TabViewControllerType) {
 
         self.feedModule = feedModule
         self.cameraModule = cameraModule
+        self.cameraTabModule = cameraTabModule
         self.profileModule = profileModule
         self.viewController = viewController
         super.init(presenter: presenter)
@@ -24,31 +33,45 @@ final class TabCoordinator: Coordinator<TabPresenterType>, TabCoordinatorType {
         super.start()
         
         let feedCoordinator = self.feedModule.createCoordinator()
-        let cameraCoordinator = self.cameraModule.createCoordinator(listener: self.presenter)
+        let cameraTabCoordinator = self.cameraTabModule.createCoordinator(listener: self.presenter)
         let profileCoordinator = self.profileModule.createCoordinator()
         
         let feedController = UINavigationController(viewControllerType: feedCoordinator.viewController)
-        let cameraController = cameraCoordinator.viewController.asViewController()
+        let cameraTabController = cameraTabCoordinator.viewController.asViewController()
         let profileController = UINavigationController(viewControllerType: profileCoordinator.viewController)
         
-        let viewControllers = [feedController, cameraController, profileController]
+        let viewControllers = [feedController, cameraTabController, profileController]
         
         feedController.tabBarItem = UITabBarItem.feed
-        cameraController.tabBarItem = UITabBarItem.camera
+        cameraTabController.tabBarItem = UITabBarItem.camera
         profileController.tabBarItem = UITabBarItem.profile
         
-        let tabController = (self.viewController.asViewController() as? UITabBarController)
+        let tabController = self.tabBarController
         tabController?.setViewControllers(viewControllers, animated: false)
         tabController?.tabBar.barStyle = .default
         tabController?.tabBar.isTranslucent = false
         tabController?.tabBar.tintColor = .black
         
         feedCoordinator.start()
-        cameraCoordinator.start()
+        cameraTabCoordinator.start()
         profileCoordinator.start()
         self.attach(feedCoordinator)
-        self.attach(cameraCoordinator)
+        self.attach(cameraTabCoordinator)
         self.attach(profileCoordinator)
+    }
+    
+    func attachCameraModule() {
+        let coordinator = self.cameraModule.createCoordinator(listener: self.presenter)
+        self.viewController.asViewController().present(coordinator.viewController) {
+            coordinator.start()
+        }
+        self.cameraCoordinator = coordinator
+        self.attach(coordinator)
+    }
+    
+    func detachCameraModule() {
+        self.tabBarController?.selectedIndex = 0
+        self.detachModuleIfNeeded(self.cameraCoordinator, animated: true)
     }
 }
 

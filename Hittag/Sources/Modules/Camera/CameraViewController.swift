@@ -3,6 +3,7 @@ import ModuleArchitecture
 import Vision
 
 protocol CameraViewControllerDelegate: AnyObject {
+    func closeButtonTapped()
     func didOutputPixelBuffer(pixelBuffer: CVPixelBuffer)
 }
 
@@ -28,6 +29,10 @@ final class CameraViewController: UIViewController, CameraViewControllerType {
         self.navigationItem.title = "Camera"
         self.component.start()
     }
+    
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
 }
 
 extension CameraViewController: CameraPresenterView {
@@ -43,5 +48,9 @@ extension CameraViewController: CameraPresenterView {
 extension CameraViewController: CameraComponentDelegate {
     func didOutputPixelBuffer(pixelBuffer: CVPixelBuffer) {
         self.delegate?.didOutputPixelBuffer(pixelBuffer: pixelBuffer)
+    }
+    
+    func closeButtonTapped() {
+        self.delegate?.closeButtonTapped()
     }
 }

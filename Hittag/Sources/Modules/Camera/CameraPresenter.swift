@@ -2,7 +2,7 @@ import ModuleArchitecture
 import Vision
 
 protocol CameraPresenterDelegate: AnyObject {
-
+    func cameraWantsToDismiss()
 }
 
 final class CameraPresenter: Presenter, CameraPresenterType {
@@ -43,5 +43,9 @@ extension CameraPresenter: CameraViewControllerDelegate {
         }
         
         try? VNImageRequestHandler(cvPixelBuffer: pixelBuffer, options: [:]).perform([request])
+    }
+    
+    func closeButtonTapped() {
+        self.delegate?.cameraWantsToDismiss()
     }
 }

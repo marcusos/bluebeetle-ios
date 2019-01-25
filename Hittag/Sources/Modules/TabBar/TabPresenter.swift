@@ -20,5 +20,13 @@ extension TabPresenter: TabViewControllerDelegate {
 }
 
 extension TabPresenter: CameraPresenterDelegate {
-    
+    func cameraWantsToDismiss() {
+        self.coordinator?.detachCameraModule()
+    }
+}
+
+extension TabPresenter: CameraTabPresenterDelegate {
+    func onCameraTabTapped() {
+        self.coordinator?.attachCameraModule()
+    }
 }

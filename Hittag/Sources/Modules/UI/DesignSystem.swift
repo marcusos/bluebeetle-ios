@@ -7,6 +7,7 @@ extension UIColor {
 }
 
 extension CGSize {
+    static let closeButton = CGSize(width: 38, height: 38)
     static let profilePicture = CGSize(width: 80, height: 80)
     static let postProfilePicture = CGSize(width: 40, height: 40)
 }

@@ -40,10 +40,11 @@ final class LoginComponent: UIView, Component {
     
     private let facebookButton: BackgroundColorButton = {
         let button = BackgroundColorButton()
-        button.color = UIColor(r: 66, g: 72, b: 178)
-        button.highlightedColor = UIColor(r: 66, g: 72, b: 178).withAlphaComponent(0.6)
+        button.color = UIColor(r: 59, g: 89, b: 152)
+        button.highlightedColor = UIColor(r: 59, g: 89, b: 152).withAlphaComponent(0.6)
+        button.disabledColor = UIColor(r: 223, g: 227, b: 238)
         button.setImage(UIImage(named: "icon_facebook"), for: .normal)
-        button.setAttributedTitle("   Entrar com Facebook".title(.white), for: .normal)
+        button.setAttributedTitle("   Entrar com Facebook".title(.white, weight: .regular), for: .normal)
         button.addTarget(self, action: #selector(facebookButtonTapped), for: .touchUpInside)
         return button
     }()
@@ -56,8 +57,6 @@ final class LoginComponent: UIView, Component {
 
     required init?(coder aDecoder: NSCoder) { fatalError("Not implemented") }
     
-    
-    
     @objc private func facebookButtonTapped() {
         self.delegate?.facebookButtonTapped()
     }
@@ -66,7 +65,7 @@ final class LoginComponent: UIView, Component {
 extension LoginComponent {
 
     func render(configuration: LoginConfiguration) {
-        
+        self.facebookButton.isEnabled = configuration.loginButtonEnabled
     }
 }
 
