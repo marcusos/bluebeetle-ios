@@ -5,6 +5,7 @@ import Vision
 protocol CameraViewControllerDelegate: AnyObject {
     func closeButtonTapped()
     func didOutputPixelBuffer(pixelBuffer: CVPixelBuffer)
+    func didSelectChallengeConfiguration(_ configuration: ChallengeItemConfiguration)
 }
 
 final class CameraViewController: UIViewController, CameraViewControllerType {
@@ -52,5 +53,9 @@ extension CameraViewController: CameraComponentDelegate {
     
     func closeButtonTapped() {
         self.delegate?.closeButtonTapped()
+    }
+    
+    func didSelectChallengeConfiguration(_ configuration: ChallengeItemConfiguration) {
+        self.delegate?.didSelectChallengeConfiguration(configuration)
     }
 }

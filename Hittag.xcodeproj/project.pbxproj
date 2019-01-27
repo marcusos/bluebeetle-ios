@@ -14,6 +14,9 @@
 		2450640721F9C75D00009F9E /* CameraTabPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2450640021F9C75D00009F9E /* CameraTabPresenter.swift */; };
 		2450640821F9C75D00009F9E /* CameraTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2450640121F9C75D00009F9E /* CameraTabViewController.swift */; };
 		2450640A21F9C75D00009F9E /* CameraTabDefinitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2450640321F9C75D00009F9E /* CameraTabDefinitions.swift */; };
+		246CC8FD21FDBE9000AB8188 /* ChallengeItemComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246CC8FC21FDBE9000AB8188 /* ChallengeItemComponent.swift */; };
+		246CC8FF21FDC15D00AB8188 /* ChallengeComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246CC8FE21FDC15D00AB8188 /* ChallengeComponent.swift */; };
+		246CC90121FDC6FF00AB8188 /* View.xib in Resources */ = {isa = PBXBuildFile; fileRef = 246CC90021FDC6FF00AB8188 /* View.xib */; };
 		24B5799A21F53FA1008F948D /* HittagTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B5799921F53FA1008F948D /* HittagTests.swift */; };
 		24B579AD21F5400A008F948D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B579A621F5400A008F948D /* AppDelegate.swift */; };
 		24B579AE21F5400A008F948D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24B579A821F5400A008F948D /* Assets.xcassets */; };
@@ -102,6 +105,9 @@
 		2450640021F9C75D00009F9E /* CameraTabPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraTabPresenter.swift; sourceTree = "<group>"; };
 		2450640121F9C75D00009F9E /* CameraTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraTabViewController.swift; sourceTree = "<group>"; };
 		2450640321F9C75D00009F9E /* CameraTabDefinitions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraTabDefinitions.swift; sourceTree = "<group>"; };
+		246CC8FC21FDBE9000AB8188 /* ChallengeItemComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeItemComponent.swift; sourceTree = "<group>"; };
+		246CC8FE21FDC15D00AB8188 /* ChallengeComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeComponent.swift; sourceTree = "<group>"; };
+		246CC90021FDC6FF00AB8188 /* View.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = View.xib; sourceTree = "<group>"; };
 		24B5798121F53FA0008F948D /* Hittag.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hittag.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		24B5799521F53FA1008F948D /* HittagTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HittagTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		24B5799921F53FA1008F948D /* HittagTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HittagTests.swift; sourceTree = "<group>"; };
@@ -358,13 +364,16 @@
 		24B579EA21F688ED008F948D /* Camera */ = {
 			isa = PBXGroup;
 			children = (
+				24B579F021F6896F008F948D /* CameraComponent.swift */,
 				24B579EB21F6896F008F948D /* CameraConfiguration.swift */,
 				24B579EC21F6896F008F948D /* CameraCoordinator.swift */,
+				24B579F121F6896F008F948D /* CameraDefinitions.swift */,
 				24B579ED21F6896F008F948D /* CameraModule.swift */,
 				24B579EE21F6896F008F948D /* CameraPresenter.swift */,
 				24B579EF21F6896F008F948D /* CameraViewController.swift */,
-				24B579F021F6896F008F948D /* CameraComponent.swift */,
-				24B579F121F6896F008F948D /* CameraDefinitions.swift */,
+				246CC8FE21FDC15D00AB8188 /* ChallengeComponent.swift */,
+				246CC8FC21FDBE9000AB8188 /* ChallengeItemComponent.swift */,
+				246CC90021FDC6FF00AB8188 /* View.xib */,
 			);
 			path = Camera;
 			sourceTree = "<group>";
@@ -566,6 +575,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				24B579AE21F5400A008F948D /* Assets.xcassets in Resources */,
+				246CC90121FDC6FF00AB8188 /* View.xib in Resources */,
 				24B579AF21F5400A008F948D /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -702,6 +712,7 @@
 				24B579DB21F54317008F948D /* ContainerTableViewCell.swift in Sources */,
 				24B57A3321F7EEFB008F948D /* LoginConfiguration.swift in Sources */,
 				24B57A1D21F71D88008F948D /* ProfilePresenter.swift in Sources */,
+				246CC8FD21FDBE9000AB8188 /* ChallengeItemComponent.swift in Sources */,
 				24B579F621F6896F008F948D /* CameraViewController.swift in Sources */,
 				24B57A3721F7EEFB008F948D /* LoginViewController.swift in Sources */,
 				24B57A2621F72116008F948D /* ContainerCollectionViewCell.swift in Sources */,
@@ -727,6 +738,7 @@
 				24B579D421F54316008F948D /* UIStackView.swift in Sources */,
 				2450640521F9C75D00009F9E /* CameraTabCoordinator.swift in Sources */,
 				24B57A0921F68EE5008F948D /* TabViewController.swift in Sources */,
+				246CC8FF21FDC15D00AB8188 /* ChallengeComponent.swift in Sources */,
 				2450640A21F9C75D00009F9E /* CameraTabDefinitions.swift in Sources */,
 				24B579D321F54316008F948D /* UIView.swift in Sources */,
 				24B57A0721F68EE5008F948D /* TabModule.swift in Sources */,

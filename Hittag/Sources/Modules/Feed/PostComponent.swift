@@ -2,6 +2,12 @@ import ModuleArchitecture
 import UIKit
 import Kingfisher
 
+public struct Challenge: Codable, Hashable {
+    let id: String
+    let name: String
+    let image: URL
+}
+
 public struct User: Codable {
     public let name: String
     public let image: URL?

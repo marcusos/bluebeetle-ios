@@ -9,6 +9,7 @@ enum CameraDeviceInitializationError: Swift.Error {
 
 protocol CameraComponentDelegate: class {
     func closeButtonTapped()
+    func didSelectChallengeConfiguration(_ configuration: ChallengeItemConfiguration)
     func didOutputPixelBuffer(pixelBuffer: CVPixelBuffer)
 }
 
@@ -33,10 +34,31 @@ final class CameraComponent: UIView, Component {
         return camera
     }()
     
-    private let label: UILabel = {
-        let label = UILabel()
-        label.textColor = .white
-        return label
+    private let controlsStackView: UIStackView = {
+        let stackview = UIStackView()
+        stackview.axis = .vertical
+        stackview.spacing = Grid * 1.2
+        stackview.backgroundColor = .clear
+        return stackview
+    }()
+    
+    private lazy var challengeSelectorComponent: ChallengeComponent = {
+        let component = ChallengeComponent()
+        component.delegate = self
+        return component
+    }()
+    
+    private let pictureButtonContainer: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor.main.withAlphaComponent(0.5)
+        return view
+    }()
+    
+    private let pictureButton: BackgroundColorButton = {
+        let button = BackgroundColorButton()
+        button.color = .white
+        button.highlightedColor = UIColor.lightGray.withAlphaComponent(0.8)
+        return button
     }()
     
     init() {
@@ -63,7 +85,7 @@ final class CameraComponent: UIView, Component {
 extension CameraComponent {
 
     func render(configuration: CameraConfiguration) {
-        self.label.attributedText = configuration.text
+        self.challengeSelectorComponent.render(configuration: configuration.challengeSelectorConfiguration)
     }
 }
 
@@ -80,12 +102,16 @@ extension CameraComponent {
             self.layer.insertSublayer(camera.layer, at: 0)
         }
         
-        self.addSubview(self.label)
+        self.controlsStackView.addArrangedSubview(self.challengeSelectorComponent)
+        self.controlsStackView.addArrangedSubview(self.pictureButtonContainer.wrapForHorizontalAlignment())
+        self.pictureButtonContainer.addSubview(self.pictureButton)
+        self.addSubview(self.controlsStackView)
         self.addSubview(self.closeButton)
     }
 
     private func defineSubviewsConstraints() {
-        self.label.translatesAutoresizingMaskIntoConstraints = false
+        self.controlsStackView.translatesAutoresizingMaskIntoConstraints = false
+        self.pictureButton.translatesAutoresizingMaskIntoConstraints = false
         self.closeButton.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
@@ -96,9 +122,25 @@ extension CameraComponent {
         ])
         
         NSLayoutConstraint.activate([
-            self.label.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -100),
-            self.label.centerXAnchor.constraint(equalTo: self.centerXAnchor)
+            self.controlsStackView.bottomSafeAnchor.constraint(equalTo: self.bottomSafeAnchor, constant: -Grid * 2),
+            self.controlsStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            self.controlsStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
         ])
+        
+        NSLayoutConstraint.activate([
+            self.pictureButtonContainer.heightAnchor.constraint(equalToConstant: 90),
+            self.pictureButtonContainer.widthAnchor.constraint(equalToConstant: 90),
+        ])
+        
+        NSLayoutConstraint.activate([
+            self.pictureButton.centerYAnchor.constraint(equalTo: self.pictureButtonContainer.centerYAnchor),
+            self.pictureButton.centerXAnchor.constraint(equalTo: self.pictureButtonContainer.centerXAnchor),
+            self.pictureButton.heightAnchor.constraint(equalToConstant: 70),
+            self.pictureButton.widthAnchor.constraint(equalToConstant: 70),
+        ])
+        
+        self.pictureButtonContainer.layer.cornerRadius = 45
+        self.pictureButton.layer.cornerRadius = 35
     }
 }
 
@@ -110,5 +152,11 @@ extension CameraComponent: AVCaptureVideoDataOutputSampleBufferDelegate {
         if let pixelBuffer: CVPixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) {
             self.delegate?.didOutputPixelBuffer(pixelBuffer: pixelBuffer)
         }
+    }
+}
+
+extension CameraComponent: ChallengeComponentDelegate {
+    func didSelectConfiguration(_ configuration: ChallengeItemConfiguration) {
+        self.delegate?.didSelectChallengeConfiguration(configuration)
     }
 }
