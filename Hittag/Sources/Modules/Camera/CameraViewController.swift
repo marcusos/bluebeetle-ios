@@ -3,6 +3,7 @@ import ModuleArchitecture
 import Vision
 
 protocol CameraViewControllerDelegate: AnyObject {
+    func pictureButtonTapped()
     func helpButtonTapped()
     func closeButtonTapped()
     func didOutputPixelBuffer(pixelBuffer: CVPixelBuffer)
@@ -62,5 +63,9 @@ extension CameraViewController: CameraComponentDelegate {
     
     func helpButtonTapped() {
         self.delegate?.helpButtonTapped()
+    }
+    
+    func pictureButtonTapped() {
+        self.delegate?.pictureButtonTapped()
     }
 }

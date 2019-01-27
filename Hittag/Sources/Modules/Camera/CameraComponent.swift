@@ -8,6 +8,7 @@ enum CameraDeviceInitializationError: Swift.Error {
 }
 
 protocol CameraComponentDelegate: class {
+    func pictureButtonTapped()
     func closeButtonTapped()
     func helpButtonTapped()
     func didSelectChallengeConfiguration(_ configuration: ChallengeItemConfiguration)
@@ -77,6 +78,7 @@ final class CameraComponent: UIView, Component {
         button.highlightedColor = UIColor.lightGray.withAlphaComponent(0.8)
         button.disabledColor = UIColor.lightGray.withAlphaComponent(0.8)
         button.isEnabled = false
+        button.addTarget(self, action: #selector(pictureButtonTapped), for: .touchUpInside)
         return button
     }()
     
@@ -108,6 +110,10 @@ final class CameraComponent: UIView, Component {
     
     @objc private func helpButtonTapped() {
         self.delegate?.helpButtonTapped()
+    }
+    
+    @objc private func pictureButtonTapped() {
+        self.delegate?.pictureButtonTapped()
     }
 }
 

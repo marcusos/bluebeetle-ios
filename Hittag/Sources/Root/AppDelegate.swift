@@ -19,7 +19,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let homeModule = TabModule(feedModule: FeedModule(),
                                    cameraModule: CameraModule(),
                                    cameraTabModule: CameraTabModule(),
-                                   profileModule: ProfileModule(userRepository: UserRepository()))
+                                   profileModule: ProfileModule(userRepository: UserRepository()),
+                                   postRepository: PostRepository())
         let rootModule = ApplicationModule(homeModule: homeModule,
                                            loginModule: LoginModule(userRepository: UserRepository()),
                                            userRepository: UserRepository())

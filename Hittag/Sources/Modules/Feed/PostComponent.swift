@@ -19,6 +19,11 @@ struct Post: Codable {
     let user: User
 }
 
+struct PostParameters: Codable {
+    let image: Data
+    let challenge: Challenge
+}
+
 struct Hittag: Codable {
     let name: String
     let image: URL

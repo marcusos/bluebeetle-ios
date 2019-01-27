@@ -3,6 +3,7 @@ import Vision
 
 protocol CameraPresenterDelegate: AnyObject {
     func cameraWantsToDismiss()
+    func cameraWantsToPost(parameters: PostParameters)
 }
 
 final class CameraPresenter: Presenter, CameraPresenterType {
@@ -10,7 +11,10 @@ final class CameraPresenter: Presenter, CameraPresenterType {
     weak var coordinator: CameraCoordinatorType?
     weak var viewController: CameraPresenterView?
     weak var delegate: CameraPresenterDelegate?
+    
     private let feedbackGenerator = UISelectionFeedbackGenerator()
+    private let model = try? VNCoreMLModel(for: hittag().model)
+    private var pixelBuffer: CVPixelBuffer?
     
     private var configuration: CameraConfiguration = .empty {
         didSet {
@@ -23,8 +27,6 @@ final class CameraPresenter: Presenter, CameraPresenterType {
             }
         }
     }
-
-    private let model = try? VNCoreMLModel(for: hittag().model)
     
     override func start() {
         
@@ -34,8 +36,9 @@ final class CameraPresenter: Presenter, CameraPresenterType {
 
 extension CameraPresenter: CameraViewControllerDelegate {
     func didOutputPixelBuffer(pixelBuffer: CVPixelBuffer) {
-        guard let model = self.model else { return }
-        
+        self.pixelBuffer = pixelBuffer
+//        guard let model = self.model else { return }
+//
 //        // run an inference with CoreML
 //        let request = VNCoreMLRequest(model: model) { (finishedRequest, error) in
 //            
@@ -63,5 +66,17 @@ extension CameraPresenter: CameraViewControllerDelegate {
     
     func helpButtonTapped() {
         self.coordinator?.showChallengeHelp()
+    }
+    
+    func pictureButtonTapped() {
+        guard let pixelBuffer = self.pixelBuffer else { return }
+        let ciImage = CIImage(cvImageBuffer: pixelBuffer)
+        let context = CIContext(options: nil)
+        guard let tempImage = context.createCGImage(ciImage, from: ciImage.extent) else { return }
+        let image = UIImage(cgImage: tempImage, scale: UIScreen.main.scale, orientation: .leftMirrored)
+        guard let imageData = image.pngData() else { return }
+        guard let challenge = self.configuration.challengeConfiguration.selectedConfiguration?.challenge else { return }
+        let parameters = PostParameters(image: imageData, challenge: challenge)
+        self.delegate?.cameraWantsToPost(parameters: parameters)
     }
 }
