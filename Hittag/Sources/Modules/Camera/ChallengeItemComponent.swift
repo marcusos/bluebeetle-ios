@@ -15,12 +15,16 @@ struct ChallengeItemConfiguration: Hashable {
         return self.challenge.image
     }
     
+    var borderColor: CGColor {
+        return self.isSelected ? UIColor.main.cgColor : UIColor.clear.cgColor
+    }
+    
     var imageColor: UIColor {
         return self.isSelected ? .main : .white
     }
     
     var backgroundColor: UIColor {
-        return self.isSelected ? .white : UIColor.black.withAlphaComponent(0.8)
+        return self.isSelected ? .white : UIColor.black.withAlphaComponent(0.7)
     }
     
     init(challenge: Challenge, index: Int) {
@@ -57,6 +61,7 @@ final class ChallengeItemComponent: UIView, Component {
         self.imageButton.kf.setImage(with: configuration.image, for: .normal)
         self.imageButton.tintColor = configuration.imageColor
         self.backgroundColor = configuration.backgroundColor
+        self.layer.borderColor = configuration.borderColor
     }
     
     override func layoutSubviews() {
@@ -67,12 +72,13 @@ final class ChallengeItemComponent: UIView, Component {
 
 extension ChallengeItemComponent {
     private func customizeInterface() {
+        self.layer.borderWidth = 1
         self.defineSubviews()
         self.defineSubviewsConstraints()
     }
     
     private func defineSubviews() {
-        self.addSubview(self.imageButton.wrapForPadding(UIEdgeInsets(padding: Grid)))
+        self.addSubview(self.imageButton.wrapForPadding(UIEdgeInsets(padding: Grid * 1.2)))
     }
     
     private func defineSubviewsConstraints() {

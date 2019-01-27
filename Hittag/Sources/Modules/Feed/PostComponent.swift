@@ -3,7 +3,6 @@ import UIKit
 import Kingfisher
 
 public struct Challenge: Codable, Hashable {
-    let id: String
     let name: String
     let image: URL
 }

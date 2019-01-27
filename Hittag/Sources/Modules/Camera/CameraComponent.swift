@@ -37,9 +37,15 @@ final class CameraComponent: UIView, Component {
     private let controlsStackView: UIStackView = {
         let stackview = UIStackView()
         stackview.axis = .vertical
-        stackview.spacing = Grid * 1.2
+        stackview.spacing = Grid * 2.5
         stackview.backgroundColor = .clear
         return stackview
+    }()
+    
+    private let infoLabel: UILabel = {
+        let label = UILabel()
+        label.alpha = 0
+        return label
     }()
     
     private lazy var challengeSelectorComponent: ChallengeComponent = {
@@ -85,7 +91,22 @@ final class CameraComponent: UIView, Component {
 extension CameraComponent {
 
     func render(configuration: CameraConfiguration) {
-        self.challengeSelectorComponent.render(configuration: configuration.challengeSelectorConfiguration)
+        self.challengeSelectorComponent.render(configuration: configuration.challengeConfiguration)
+        self.showInfoLabelAndHideIfNeeded(text: configuration.infoLabelText)
+    }
+    
+    private func showInfoLabelAndHideIfNeeded(text: NSAttributedString?) {
+        guard let text = text else {
+            self.infoLabel.alpha = 0; return
+        }
+        
+        self.infoLabel.alpha = 1
+        self.infoLabel.attributedText = text
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            UIView.animate(withDuration: 0.3, animations: {
+                self.infoLabel.alpha = 0
+            })
+        }
     }
 }
 
@@ -105,11 +126,13 @@ extension CameraComponent {
         self.controlsStackView.addArrangedSubview(self.challengeSelectorComponent)
         self.controlsStackView.addArrangedSubview(self.pictureButtonContainer.wrapForHorizontalAlignment())
         self.pictureButtonContainer.addSubview(self.pictureButton)
+        self.addSubview(self.infoLabel)
         self.addSubview(self.controlsStackView)
         self.addSubview(self.closeButton)
     }
 
     private func defineSubviewsConstraints() {
+        self.infoLabel.translatesAutoresizingMaskIntoConstraints = false
         self.controlsStackView.translatesAutoresizingMaskIntoConstraints = false
         self.pictureButton.translatesAutoresizingMaskIntoConstraints = false
         self.closeButton.translatesAutoresizingMaskIntoConstraints = false
@@ -137,6 +160,11 @@ extension CameraComponent {
             self.pictureButton.centerXAnchor.constraint(equalTo: self.pictureButtonContainer.centerXAnchor),
             self.pictureButton.heightAnchor.constraint(equalToConstant: 70),
             self.pictureButton.widthAnchor.constraint(equalToConstant: 70),
+        ])
+        
+        NSLayoutConstraint.activate([
+            self.infoLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+            self.infoLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
         ])
         
         self.pictureButtonContainer.layer.cornerRadius = 45

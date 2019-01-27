@@ -94,6 +94,10 @@ extension NSAttributedString {
         return self.adding(attributes: [.foregroundColor : color])
     }
     
+    func outlined(color: UIColor, width: CGFloat) -> NSAttributedString {
+        return self.adding(attributes: [.strokeColor : color, .strokeWidth: -width])
+    }
+    
     func adding(attributes: [NSAttributedString.Key : Any]) -> NSAttributedString {
         let mutable = NSMutableAttributedString(attributedString: self)
         mutable.addAttributes(attributes, range: NSRange(location: 0, length: self.length))

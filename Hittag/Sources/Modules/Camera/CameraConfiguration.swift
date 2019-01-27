@@ -1,34 +1,34 @@
 import ModuleArchitecture
 
 struct CameraConfiguration: Equatable {
-    private(set) var challengeSelectorConfiguration: ChallengeConfiguration
+    private(set) var challengeConfiguration: ChallengeConfiguration
+    private(set) var infoLabelText: NSAttributedString?
     
     static var empty: CameraConfiguration = {
         let challenges = [
-            Challenge(id: "A@asd",
-                      name: "dog",
+            Challenge(name: "Dog Challenge!",
                       image: URL(string: "https://img.icons8.com/ios/2x/year-of-dog.png")!),
-            Challenge(id: "B@asd",
-                      name: "dog",
-                      image: URL(string: "https://img.icons8.com/ios/2x/year-of-dog.png")!),
-            Challenge(id: "C@asd",
-                      name: "dog",
-                      image: URL(string: "https://img.icons8.com/ios/2x/year-of-dog.png")!),
-            Challenge(id: "D@asd",
-                      name: "dog",
-                      image: URL(string: "https://img.icons8.com/ios/2x/year-of-dog.png")!),
+            Challenge(name: "Waterfall Challenge!",
+                      image: URL(string: "https://img.icons8.com/ios/2x/waterfall.png")!),
+            Challenge(name: "Pizza Challenge!",
+                      image: URL(string: "https://img.icons8.com/ios/2x/pizza.png")!),
         ]
 
-        let configurations = challenges.enumerated().map { ChallengeItemConfiguration(challenge: $0.element, index: $0.offset) }
+        let configurations = challenges.enumerated().map {
+            ChallengeItemConfiguration(challenge: $0.element, index: $0.offset)
+        }
         
         let selector = ChallengeConfiguration(configurations: Set(configurations))
-        return CameraConfiguration(challengeSelectorConfiguration: selector)
+        return CameraConfiguration(challengeConfiguration: selector, infoLabelText: nil)
     }()
     
-    func with(selectedChallengeItemConfiguration: ChallengeItemConfiguration) -> CameraConfiguration {
+    func with(selectedItem: ChallengeItemConfiguration) -> CameraConfiguration {
         var this = self
-        this.challengeSelectorConfiguration = this.challengeSelectorConfiguration
-            .with(selectedChallengeItemConfiguration: selectedChallengeItemConfiguration)
+        this.challengeConfiguration = this.challengeConfiguration
+            .with(selectedItem: selectedItem)
+        this.infoLabelText = selectedItem
+            .challenge.name.header(.white, weight: .bold)
+            .outlined(color: UIColor.darkGray, width: 2)
         return this
     }
 }

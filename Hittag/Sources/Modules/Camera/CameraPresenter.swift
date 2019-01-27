@@ -16,9 +16,9 @@ final class CameraPresenter: Presenter, CameraPresenterType {
         didSet {
             if oldValue != self.configuration {
                 self.viewController?.render(configuration: self.configuration)
-                if oldValue.challengeSelectorConfiguration.selectedConfiguration !=
-                    self.configuration.challengeSelectorConfiguration.selectedConfiguration {
-                    self.feedbackGenerator.selectionChanged()
+                if oldValue.challengeConfiguration.selectedConfiguration !=
+                    self.configuration.challengeConfiguration.selectedConfiguration {
+                        self.feedbackGenerator.selectionChanged()
                 }
             }
         }
@@ -58,6 +58,6 @@ extension CameraPresenter: CameraViewControllerDelegate {
     }
     
     func didSelectChallengeConfiguration(_ configuration: ChallengeItemConfiguration) {
-        self.configuration = self.configuration.with(selectedChallengeItemConfiguration: configuration)
+        self.configuration = self.configuration.with(selectedItem: configuration)
     }
 }

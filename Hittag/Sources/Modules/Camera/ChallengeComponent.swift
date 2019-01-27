@@ -12,9 +12,9 @@ struct ChallengeConfiguration: Equatable {
         return Array(self.configurations).sorted(by: { $0.index > $1.index })
     }
     
-    func with(selectedChallengeItemConfiguration: ChallengeItemConfiguration) -> ChallengeConfiguration {
+    func with(selectedItem: ChallengeItemConfiguration) -> ChallengeConfiguration {
         var this = self
-        let selectedConfiguration = selectedChallengeItemConfiguration.with(isSelected: true)
+        let selectedConfiguration = selectedItem.with(isSelected: true)
         
         if selectedConfiguration == this.selectedConfiguration {
             return this
@@ -25,7 +25,7 @@ struct ChallengeConfiguration: Equatable {
             this.configurations.insert(currentlySelected.with(isSelected: false))
         }
         
-        this.configurations.remove(selectedChallengeItemConfiguration)
+        this.configurations.remove(selectedItem)
         this.configurations.insert(selectedConfiguration)
         this.selectedConfiguration = selectedConfiguration
         return this
@@ -51,7 +51,7 @@ final class ChallengeComponent: UIView, Component {
         let layout = UICollectionViewFlowLayout()
         layout.minimumLineSpacing = Grid * 2
         layout.minimumInteritemSpacing = Grid * 2
-        layout.itemSize = CGSize(width: 40, height: 40)
+        layout.itemSize = CGSize(width: 44, height: 44)
         layout.scrollDirection = .horizontal
         return layout
     }()
