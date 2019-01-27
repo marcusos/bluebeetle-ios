@@ -3,14 +3,15 @@ import ModuleArchitecture
 struct CameraConfiguration: Equatable {
     private(set) var challengeConfiguration: ChallengeConfiguration
     private(set) var infoLabelText: NSAttributedString?
+    private(set) var pictureButtonEnabled: Bool
     
     static var empty: CameraConfiguration = {
         let challenges = [
-            Challenge(name: "Dog Challenge!",
+            Challenge(name: "Dog Challenge",
                       image: URL(string: "https://img.icons8.com/ios/2x/year-of-dog.png")!),
-            Challenge(name: "Waterfall Challenge!",
+            Challenge(name: "Waterfall Challenge",
                       image: URL(string: "https://img.icons8.com/ios/2x/waterfall.png")!),
-            Challenge(name: "Pizza Challenge!",
+            Challenge(name: "Pizza Challenge",
                       image: URL(string: "https://img.icons8.com/ios/2x/pizza.png")!),
         ]
 
@@ -19,8 +20,18 @@ struct CameraConfiguration: Equatable {
         }
         
         let selector = ChallengeConfiguration(configurations: Set(configurations))
-        return CameraConfiguration(challengeConfiguration: selector, infoLabelText: nil)
+        return CameraConfiguration(challengeConfiguration: selector,
+                                   infoLabelText: nil,
+                                   pictureButtonEnabled: false)
     }()
+    
+    var pictureButtonContainerBackgroundColor: UIColor {
+        return self.pictureButtonEnabled ? UIColor.main.withAlphaComponent(0.5) : UIColor.lightGray.withAlphaComponent(0.5)
+    }
+    
+    var selectedChallengeText: NSAttributedString? {
+        return self.challengeConfiguration.selectedConfiguration?.challenge.name.subtitle(.white, weight: .bold)
+    }
     
     func with(selectedItem: ChallengeItemConfiguration) -> CameraConfiguration {
         var this = self
@@ -29,6 +40,7 @@ struct CameraConfiguration: Equatable {
         this.infoLabelText = selectedItem
             .challenge.name.header(.white, weight: .bold)
             .outlined(color: UIColor.darkGray, width: 2)
+        this.pictureButtonEnabled = true
         return this
     }
 }

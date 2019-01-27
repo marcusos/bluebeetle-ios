@@ -56,7 +56,6 @@ final class CameraComponent: UIView, Component {
     
     private let pictureButtonContainer: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor.main.withAlphaComponent(0.5)
         return view
     }()
     
@@ -64,7 +63,15 @@ final class CameraComponent: UIView, Component {
         let button = BackgroundColorButton()
         button.color = .white
         button.highlightedColor = UIColor.lightGray.withAlphaComponent(0.8)
+        button.disabledColor = UIColor.lightGray.withAlphaComponent(0.8)
+        button.isEnabled = false
         return button
+    }()
+    
+    private let selectedChallengeLabel: UILabel = {
+        let label = UILabel()
+        label.attributedText = "".subtitle()
+        return label
     }()
     
     init() {
@@ -93,6 +100,9 @@ extension CameraComponent {
     func render(configuration: CameraConfiguration) {
         self.challengeSelectorComponent.render(configuration: configuration.challengeConfiguration)
         self.showInfoLabelAndHideIfNeeded(text: configuration.infoLabelText)
+        self.pictureButtonContainer.backgroundColor = configuration.pictureButtonContainerBackgroundColor
+        self.pictureButton.isEnabled = configuration.pictureButtonEnabled
+        self.selectedChallengeLabel.attributedText = configuration.selectedChallengeText
     }
     
     private func showInfoLabelAndHideIfNeeded(text: NSAttributedString?) {
@@ -125,6 +135,7 @@ extension CameraComponent {
         
         self.controlsStackView.addArrangedSubview(self.challengeSelectorComponent)
         self.controlsStackView.addArrangedSubview(self.pictureButtonContainer.wrapForHorizontalAlignment())
+        self.controlsStackView.addArrangedSubview(self.selectedChallengeLabel.wrapForHorizontalAlignment())
         self.pictureButtonContainer.addSubview(self.pictureButton)
         self.addSubview(self.infoLabel)
         self.addSubview(self.controlsStackView)
