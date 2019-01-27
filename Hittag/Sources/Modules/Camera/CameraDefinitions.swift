@@ -9,6 +9,7 @@ protocol CameraModuleType: ModuleType {
 
 protocol CameraCoordinatorType: ViewableCoordinatorType {
 
+    func showChallengeHelp()
 }
 
 protocol CameraPresenterType: PresenterType {

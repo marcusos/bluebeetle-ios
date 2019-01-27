@@ -8,4 +8,13 @@ extension UIViewController {
             completion()
         }
     }
+    
+    func addViewController(_ viewController: UIViewController, container: UIView? = nil) {
+        let container = container ?? self.view
+        viewController.view.translatesAutoresizingMaskIntoConstraints = false
+        viewController.willMove(toParent: self)
+        self.addChild(viewController)
+        container?.addSubview(viewController.view)
+        viewController.view.makeEdgesEqualToSuperview()
+    }
 }

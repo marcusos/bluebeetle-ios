@@ -12,6 +12,7 @@ target 'Hittag' do
   pod 'Parse'
   pod 'Parse/FacebookUtils'
   pod 'TPKeyboardAvoiding'
+  pod 'MZFormSheetPresentationController'
 
   target 'HittagTests' do
     inherit! :search_paths

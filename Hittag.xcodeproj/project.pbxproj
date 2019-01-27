@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		0B513681AD5EA319C9B3DE97 /* Pods_HittagTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0281203E508A8292C8719996 /* Pods_HittagTests.framework */; };
+		245045DD21FE07AC005E1CF1 /* PopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245045DC21FE07AC005E1CF1 /* PopupViewController.swift */; };
+		245045DF21FE07E8005E1CF1 /* CameraHelpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245045DE21FE07E8005E1CF1 /* CameraHelpController.swift */; };
+		245045E121FE4C17005E1CF1 /* RoundedActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245045E021FE4C17005E1CF1 /* RoundedActionButton.swift */; };
 		2450640421F9C75D00009F9E /* CameraTabConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245063FD21F9C75D00009F9E /* CameraTabConfiguration.swift */; };
 		2450640521F9C75D00009F9E /* CameraTabCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245063FE21F9C75D00009F9E /* CameraTabCoordinator.swift */; };
 		2450640621F9C75D00009F9E /* CameraTabModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245063FF21F9C75D00009F9E /* CameraTabModule.swift */; };
@@ -99,6 +102,9 @@
 
 /* Begin PBXFileReference section */
 		0281203E508A8292C8719996 /* Pods_HittagTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HittagTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		245045DC21FE07AC005E1CF1 /* PopupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopupViewController.swift; sourceTree = "<group>"; };
+		245045DE21FE07E8005E1CF1 /* CameraHelpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraHelpController.swift; sourceTree = "<group>"; };
+		245045E021FE4C17005E1CF1 /* RoundedActionButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedActionButton.swift; sourceTree = "<group>"; };
 		245063FD21F9C75D00009F9E /* CameraTabConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraTabConfiguration.swift; sourceTree = "<group>"; };
 		245063FE21F9C75D00009F9E /* CameraTabCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraTabCoordinator.swift; sourceTree = "<group>"; };
 		245063FF21F9C75D00009F9E /* CameraTabModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraTabModule.swift; sourceTree = "<group>"; };
@@ -319,6 +325,8 @@
 		24B579C321F54316008F948D /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				245045E021FE4C17005E1CF1 /* RoundedActionButton.swift */,
+				245045DC21FE07AC005E1CF1 /* PopupViewController.swift */,
 				24B579C721F54316008F948D /* BackgroundColorButton.swift */,
 				24B579E821F5D184008F948D /* Badge.swift */,
 				24B579F921F689AE008F948D /* CameraDevice.swift */,
@@ -368,6 +376,7 @@
 				24B579EB21F6896F008F948D /* CameraConfiguration.swift */,
 				24B579EC21F6896F008F948D /* CameraCoordinator.swift */,
 				24B579F121F6896F008F948D /* CameraDefinitions.swift */,
+				245045DE21FE07E8005E1CF1 /* CameraHelpController.swift */,
 				24B579ED21F6896F008F948D /* CameraModule.swift */,
 				24B579EE21F6896F008F948D /* CameraPresenter.swift */,
 				24B579EF21F6896F008F948D /* CameraViewController.swift */,
@@ -625,6 +634,8 @@
 				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/MZAppearance/MZAppearance.framework",
+				"${BUILT_PRODUCTS_DIR}/MZFormSheetPresentationController/MZFormSheetPresentationController.framework",
 				"${BUILT_PRODUCTS_DIR}/ModuleArchitecture/ModuleArchitecture.framework",
 				"${BUILT_PRODUCTS_DIR}/Parse/Parse.framework",
 				"${BUILT_PRODUCTS_DIR}/RxAtomic/RxAtomic.framework",
@@ -640,6 +651,8 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MZAppearance.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MZFormSheetPresentationController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ModuleArchitecture.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Parse.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxAtomic.framework",
@@ -714,6 +727,7 @@
 				24B57A1D21F71D88008F948D /* ProfilePresenter.swift in Sources */,
 				246CC8FD21FDBE9000AB8188 /* ChallengeItemComponent.swift in Sources */,
 				24B579F621F6896F008F948D /* CameraViewController.swift in Sources */,
+				245045E121FE4C17005E1CF1 /* RoundedActionButton.swift in Sources */,
 				24B57A3721F7EEFB008F948D /* LoginViewController.swift in Sources */,
 				24B57A2621F72116008F948D /* ContainerCollectionViewCell.swift in Sources */,
 				24B579BC21F541F2008F948D /* FeedModule.swift in Sources */,
@@ -728,7 +742,9 @@
 				24B579BB21F541F2008F948D /* FeedCoordinator.swift in Sources */,
 				24B57A3F21F7EF38008F948D /* ApplicationCoordinator.swift in Sources */,
 				24B57A4021F7EF38008F948D /* ApplicationModule.swift in Sources */,
+				245045DF21FE07E8005E1CF1 /* CameraHelpController.swift in Sources */,
 				24B57A2021F71D88008F948D /* ProfileDefinitions.swift in Sources */,
+				245045DD21FE07AC005E1CF1 /* PopupViewController.swift in Sources */,
 				24B57A4121F7EF38008F948D /* ApplicationPresenter.swift in Sources */,
 				24B579DF21F54317008F948D /* ReusableView.swift in Sources */,
 				24B579D921F54317008F948D /* PurchaseButton.swift in Sources */,

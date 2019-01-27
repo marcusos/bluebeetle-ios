@@ -36,21 +36,21 @@ extension CameraPresenter: CameraViewControllerDelegate {
     func didOutputPixelBuffer(pixelBuffer: CVPixelBuffer) {
         guard let model = self.model else { return }
         
-        // run an inference with CoreML
-        let request = VNCoreMLRequest(model: model) { (finishedRequest, error) in
-            
-            // grab the inference results
-            guard let results = finishedRequest.results as? [VNClassificationObservation] else { return }
-            
-            // grab the highest confidence result
-            guard let Observation = results.first else { return }
-            
-            // create the label text components
-            let predclass = Observation.identifier
-            let predconfidence = Observation.confidence
-        }
+//        // run an inference with CoreML
+//        let request = VNCoreMLRequest(model: model) { (finishedRequest, error) in
+//            
+//            // grab the inference results
+//            guard let results = finishedRequest.results as? [VNClassificationObservation] else { return }
+//            
+//            // grab the highest confidence result
+//            guard let Observation = results.first else { return }
+//            
+//            // create the label text components
+//            let predclass = Observation.identifier
+//            let predconfidence = Observation.confidence
+//        }
         
-        try? VNImageRequestHandler(cvPixelBuffer: pixelBuffer, options: [:]).perform([request])
+//        try? VNImageRequestHandler(cvPixelBuffer: pixelBuffer, options: [:]).perform([request])
     }
     
     func closeButtonTapped() {
@@ -59,5 +59,9 @@ extension CameraPresenter: CameraViewControllerDelegate {
     
     func didSelectChallengeConfiguration(_ configuration: ChallengeItemConfiguration) {
         self.configuration = self.configuration.with(selectedItem: configuration)
+    }
+    
+    func helpButtonTapped() {
+        self.coordinator?.showChallengeHelp()
     }
 }

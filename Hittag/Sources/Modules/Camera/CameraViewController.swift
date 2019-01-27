@@ -3,6 +3,7 @@ import ModuleArchitecture
 import Vision
 
 protocol CameraViewControllerDelegate: AnyObject {
+    func helpButtonTapped()
     func closeButtonTapped()
     func didOutputPixelBuffer(pixelBuffer: CVPixelBuffer)
     func didSelectChallengeConfiguration(_ configuration: ChallengeItemConfiguration)
@@ -57,5 +58,9 @@ extension CameraViewController: CameraComponentDelegate {
     
     func didSelectChallengeConfiguration(_ configuration: ChallengeItemConfiguration) {
         self.delegate?.didSelectChallengeConfiguration(configuration)
+    }
+    
+    func helpButtonTapped() {
+        self.delegate?.helpButtonTapped()
     }
 }

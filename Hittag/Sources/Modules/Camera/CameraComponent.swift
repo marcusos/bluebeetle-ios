@@ -9,6 +9,7 @@ enum CameraDeviceInitializationError: Swift.Error {
 
 protocol CameraComponentDelegate: class {
     func closeButtonTapped()
+    func helpButtonTapped()
     func didSelectChallengeConfiguration(_ configuration: ChallengeItemConfiguration)
     func didOutputPixelBuffer(pixelBuffer: CVPixelBuffer)
 }
@@ -59,6 +60,17 @@ final class CameraComponent: UIView, Component {
         return view
     }()
     
+    private let helpButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setImage(UIImage(named: "help"), for: .normal)
+        button.tintColor = .white
+        button.layer.borderWidth = 1
+        button.layer.borderColor = UIColor.darkGray.cgColor
+        button.backgroundColor = .darkGray
+        button.addTarget(self, action: #selector(helpButtonTapped), for: .touchUpInside)
+        return button
+    }()
+    
     private let pictureButton: BackgroundColorButton = {
         let button = BackgroundColorButton()
         button.color = .white
@@ -70,7 +82,7 @@ final class CameraComponent: UIView, Component {
     
     private let selectedChallengeLabel: UILabel = {
         let label = UILabel()
-        label.attributedText = "".subtitle()
+        label.attributedText = "...".subtitle(.white, weight: .bold)
         return label
     }()
     
@@ -92,6 +104,10 @@ final class CameraComponent: UIView, Component {
     
     @objc private func closeButtonTapped() {
         self.delegate?.closeButtonTapped()
+    }
+    
+    @objc private func helpButtonTapped() {
+        self.delegate?.helpButtonTapped()
     }
 }
 
@@ -140,6 +156,7 @@ extension CameraComponent {
         self.addSubview(self.infoLabel)
         self.addSubview(self.controlsStackView)
         self.addSubview(self.closeButton)
+        self.addSubview(self.helpButton)
     }
 
     private func defineSubviewsConstraints() {
@@ -147,6 +164,7 @@ extension CameraComponent {
         self.controlsStackView.translatesAutoresizingMaskIntoConstraints = false
         self.pictureButton.translatesAutoresizingMaskIntoConstraints = false
         self.closeButton.translatesAutoresizingMaskIntoConstraints = false
+        self.helpButton.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             self.closeButton.topSafeAnchor.constraint(equalTo: self.topSafeAnchor, constant: Grid * 2),
@@ -178,8 +196,16 @@ extension CameraComponent {
             self.infoLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
         ])
         
+        NSLayoutConstraint.activate([
+            self.helpButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Grid * 2),
+            self.helpButton.bottomSafeAnchor.constraint(equalTo: self.bottomSafeAnchor, constant: -Grid * 2),
+            self.helpButton.heightAnchor.constraint(equalToConstant: 32),
+            self.helpButton.widthAnchor.constraint(equalToConstant: 32),
+        ])
+        
         self.pictureButtonContainer.layer.cornerRadius = 45
         self.pictureButton.layer.cornerRadius = 35
+        self.helpButton.layer.cornerRadius = 16
     }
 }
 

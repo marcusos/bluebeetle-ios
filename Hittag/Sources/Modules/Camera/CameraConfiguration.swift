@@ -29,8 +29,10 @@ struct CameraConfiguration: Equatable {
         return self.pictureButtonEnabled ? UIColor.main.withAlphaComponent(0.5) : UIColor.lightGray.withAlphaComponent(0.5)
     }
     
-    var selectedChallengeText: NSAttributedString? {
-        return self.challengeConfiguration.selectedConfiguration?.challenge.name.subtitle(.white, weight: .bold)
+    var selectedChallengeText: NSAttributedString {
+        let fallback = "Nenhum desafio selecionado"
+        let name = self.challengeConfiguration.selectedConfiguration?.challenge.name ?? fallback
+        return name.subtitle(.white, weight: .bold)
     }
     
     func with(selectedItem: ChallengeItemConfiguration) -> CameraConfiguration {
