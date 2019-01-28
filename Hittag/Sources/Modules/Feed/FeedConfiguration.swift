@@ -1,5 +1,11 @@
 import ModuleArchitecture
 
 struct FeedConfiguration {
-    let postConfigurations: [PostConfiguration]
+    private(set) var postConfigurations: [PostConfiguration]
+    
+    func with(postConfigurations: [PostConfiguration]) -> FeedConfiguration {
+        var this = self
+        this.postConfigurations = postConfigurations
+        return this
+    }
 }

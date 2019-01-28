@@ -11,7 +11,8 @@
 		245045DD21FE07AC005E1CF1 /* PopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245045DC21FE07AC005E1CF1 /* PopupViewController.swift */; };
 		245045DF21FE07E8005E1CF1 /* CameraHelpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245045DE21FE07E8005E1CF1 /* CameraHelpController.swift */; };
 		245045E121FE4C17005E1CF1 /* RoundedActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245045E021FE4C17005E1CF1 /* RoundedActionButton.swift */; };
-		245045E321FE5181005E1CF1 /* PostRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245045E221FE5181005E1CF1 /* PostRepository.swift */; };
+		245045E521FE74E7005E1CF1 /* FeedRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245045E421FE74E7005E1CF1 /* FeedRepository.swift */; };
+		245045E721FE757F005E1CF1 /* Parse+Reactive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245045E621FE757F005E1CF1 /* Parse+Reactive.swift */; };
 		2450640421F9C75D00009F9E /* CameraTabConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245063FD21F9C75D00009F9E /* CameraTabConfiguration.swift */; };
 		2450640521F9C75D00009F9E /* CameraTabCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245063FE21F9C75D00009F9E /* CameraTabCoordinator.swift */; };
 		2450640621F9C75D00009F9E /* CameraTabModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245063FF21F9C75D00009F9E /* CameraTabModule.swift */; };
@@ -106,7 +107,8 @@
 		245045DC21FE07AC005E1CF1 /* PopupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopupViewController.swift; sourceTree = "<group>"; };
 		245045DE21FE07E8005E1CF1 /* CameraHelpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraHelpController.swift; sourceTree = "<group>"; };
 		245045E021FE4C17005E1CF1 /* RoundedActionButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedActionButton.swift; sourceTree = "<group>"; };
-		245045E221FE5181005E1CF1 /* PostRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRepository.swift; sourceTree = "<group>"; };
+		245045E421FE74E7005E1CF1 /* FeedRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedRepository.swift; sourceTree = "<group>"; };
+		245045E621FE757F005E1CF1 /* Parse+Reactive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Parse+Reactive.swift"; sourceTree = "<group>"; };
 		245063FD21F9C75D00009F9E /* CameraTabConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraTabConfiguration.swift; sourceTree = "<group>"; };
 		245063FE21F9C75D00009F9E /* CameraTabCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraTabCoordinator.swift; sourceTree = "<group>"; };
 		245063FF21F9C75D00009F9E /* CameraTabModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraTabModule.swift; sourceTree = "<group>"; };
@@ -477,7 +479,8 @@
 			isa = PBXGroup;
 			children = (
 				24B57A4421F7EF52008F948D /* UserRepository.swift */,
-				245045E221FE5181005E1CF1 /* PostRepository.swift */,
+				245045E421FE74E7005E1CF1 /* FeedRepository.swift */,
+				245045E621FE757F005E1CF1 /* Parse+Reactive.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -714,7 +717,6 @@
 				24B579E521F543B6008F948D /* PostComponent.swift in Sources */,
 				24B57A4721F7F5FB008F948D /* UIViewController.swift in Sources */,
 				24B57A2421F71F08008F948D /* DesignSystem.swift in Sources */,
-				245045E321FE5181005E1CF1 /* PostRepository.swift in Sources */,
 				24B579E121F54317008F948D /* UIEdgeInsets.swift in Sources */,
 				24B57A0621F68EE5008F948D /* TabCoordinator.swift in Sources */,
 				24B579FA21F689AE008F948D /* CameraDevice.swift in Sources */,
@@ -730,6 +732,7 @@
 				24B57A3321F7EEFB008F948D /* LoginConfiguration.swift in Sources */,
 				24B57A1D21F71D88008F948D /* ProfilePresenter.swift in Sources */,
 				246CC8FD21FDBE9000AB8188 /* ChallengeItemComponent.swift in Sources */,
+				245045E521FE74E7005E1CF1 /* FeedRepository.swift in Sources */,
 				24B579F621F6896F008F948D /* CameraViewController.swift in Sources */,
 				245045E121FE4C17005E1CF1 /* RoundedActionButton.swift in Sources */,
 				24B57A3721F7EEFB008F948D /* LoginViewController.swift in Sources */,
@@ -740,6 +743,7 @@
 				24B579DE21F54317008F948D /* MixedTableViewDataSource.swift in Sources */,
 				24B57A2221F71DF7008F948D /* ImageWithTitleAndSubtitle.swift in Sources */,
 				24B57A0B21F68EE5008F948D /* TabDefinitions.swift in Sources */,
+				245045E721FE757F005E1CF1 /* Parse+Reactive.swift in Sources */,
 				24B57A3421F7EEFB008F948D /* LoginCoordinator.swift in Sources */,
 				24B57A4521F7EF52008F948D /* UserRepository.swift in Sources */,
 				24B579E321F5433B008F948D /* UIColor.swift in Sources */,

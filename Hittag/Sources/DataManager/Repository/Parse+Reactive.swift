@@ -1,28 +1,6 @@
 import RxSwift
 import Parse
 
-protocol PostRepositoryType {
-    func post(parameters: PostParameters) -> Completable
-}
-
-final class PostRepository: PostRepositoryType {
-    
-    func post(parameters: PostParameters) -> Completable {
-        guard let imageObject = PFFileObject(name: "post.png", data: parameters.image) else {
-            return Completable.error(RxError.unknown)
-        }
-        
-        guard let currentUser = PFUser.current() else {
-            return Completable.error(RxError.unknown)
-        }
-        
-        let postObject = PFObject(className: "Post")
-        postObject["image"] = imageObject
-        postObject["parent"] = currentUser
-        return postObject.rx.saveInBackground()
-    }
-}
-
 extension Reactive where Base == PFObject {
     func saveInBackground() -> Completable {
         return Completable.create(subscribe: { emitter -> Disposable in
@@ -59,3 +37,18 @@ extension Reactive where Base == PFFileObject {
         })
     }
 }
+
+//protocol PFQueryEquivalent {
+//    associatedtype GenericType: PFObject
+//    func asPFQuery() -> PFQuery<GenericType>
+//}
+//
+//extension PFQuery: PFQueryEquivalent {
+//    func asPFQuery() -> PFQuery<PFGenericObject> {
+//        return self
+//    }
+//}
+//
+//extension Reactive where Base == PFQuery {
+//    
+//}

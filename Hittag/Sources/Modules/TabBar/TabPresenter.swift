@@ -11,11 +11,11 @@ final class TabPresenter: Presenter, TabPresenterType {
     weak var viewController: TabPresenterView?
     weak var delegate: TabPresenterDelegate?
     
-    private let postRepository: PostRepositoryType
+    private let feedRepository: FeedRepositoryType
     private let disposeBag = DisposeBag()
     
-    init(postRepository: PostRepositoryType) {
-        self.postRepository = postRepository
+    init(feedRepository: FeedRepositoryType) {
+        self.feedRepository = feedRepository
     }
 
     override func start() {
@@ -34,7 +34,7 @@ extension TabPresenter: CameraPresenterDelegate {
     
     func cameraWantsToPost(parameters: PostParameters) {
         self.coordinator?.detachCameraModule()
-        self.postRepository.post(parameters: parameters)
+        self.feedRepository.post(parameters: parameters)
             .subscribeOn(MainScheduler.instance)
             .subscribe { [weak self] event in
                 self?.handlePostEvent(event)

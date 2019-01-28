@@ -16,11 +16,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.setupFacebook(application, launchOptions: launchOptions)
         
         let window = UIWindow()
-        let homeModule = TabModule(feedModule: FeedModule(),
+        let feedRepository = FeedRepository()
+        let homeModule = TabModule(feedModule: FeedModule(feedRepository: feedRepository),
                                    cameraModule: CameraModule(),
                                    cameraTabModule: CameraTabModule(),
                                    profileModule: ProfileModule(userRepository: UserRepository()),
-                                   postRepository: PostRepository())
+                                   feedRepository: feedRepository)
         let rootModule = ApplicationModule(homeModule: homeModule,
                                            loginModule: LoginModule(userRepository: UserRepository()),
                                            userRepository: UserRepository())
@@ -52,6 +53,7 @@ extension AppDelegate {
             $0.applicationId = "eQZ2e8nVvCpTs43X1110yIpcFr6DDX6DyhKCl5vx"
             $0.clientKey = "5NZWSIpbStAdcziIeJQdZ7JQZ0LuCxcBDVBgbQQ8"
             $0.server = "https://parseapi.back4app.com/"
+            $0.isLocalDatastoreEnabled = true
         })
     }
     

@@ -6,24 +6,24 @@ final class TabModule: Module, TabModuleType {
     private let cameraModule: CameraModuleType
     private let cameraTabModule: CameraTabModuleType
     private let profileModule: ProfileModuleType
-    private let postRepository: PostRepositoryType
+    private let feedRepository: FeedRepositoryType
     
     init(feedModule: FeedModuleType,
          cameraModule: CameraModuleType,
          cameraTabModule: CameraTabModuleType,
          profileModule: ProfileModuleType,
-         postRepository: PostRepositoryType) {
+         feedRepository: FeedRepositoryType) {
         
         self.feedModule = feedModule
         self.cameraModule = cameraModule
         self.cameraTabModule = cameraTabModule
         self.profileModule = profileModule
-        self.postRepository = postRepository
+        self.feedRepository = feedRepository
     }
     
     func createCoordinator() -> TabCoordinatorType {
 
-        let presenter = TabPresenter(postRepository: self.postRepository)
+        let presenter = TabPresenter(feedRepository: self.feedRepository)
         let viewController = TabViewController()
         let coordinator = TabCoordinator(feedModule: self.feedModule,
                                          cameraModule: self.cameraModule,

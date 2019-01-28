@@ -6,6 +6,7 @@ final class FeedComponent: UIView, Component {
     private var dataSource = TableViewDataSource<ContainerTableViewCell<PostComponent>>() {
         didSet {
             self.tableView.dataSource = self.dataSource
+            self.tableView.reloadData()
         }
     }
     
