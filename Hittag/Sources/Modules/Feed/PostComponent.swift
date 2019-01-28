@@ -12,11 +12,11 @@ public struct User: Codable {
     public let image: URL?
 }
 
-struct Post: Codable {
-    let text: String
-    let image: URL
-    let hashtags: [Hashtag]
-    let user: User
+public struct Post: Codable {
+    public let text: String
+    public let image: URL
+    public let hashtags: [Hashtag]
+    public let user: User
 }
 
 struct PostParameters: Codable {
@@ -30,8 +30,8 @@ struct Hittag: Codable {
     let icon: URL
 }
 
-struct Hashtag: Codable {
-    let name: String
+public struct Hashtag: Codable {
+    public let name: String
 }
 
 struct PostFooterConfiguration {

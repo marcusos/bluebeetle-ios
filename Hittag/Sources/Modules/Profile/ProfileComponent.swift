@@ -25,7 +25,6 @@ final class HittagImageComponent: UIView, Component {
     
     func render(configuration: HittagImageConfiguration) {
         self.imageView.kf.setImage(with: configuration.image)
-        self.hittagImageView.kf.setImage(with: configuration.icon)
     }
     
     private func customizeInterface() {

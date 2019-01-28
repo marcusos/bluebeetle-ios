@@ -11,7 +11,7 @@ final class LoginPresenter: Presenter, LoginPresenterType {
     weak var viewController: LoginPresenterView?
     weak var delegate: LoginPresenterDelegate?
     
-    private let userRepository: UserRepositoryType
+    private let authRepository: AuthRepositoryType
     private let disposeBag = DisposeBag()
     private var configuration = LoginConfiguration.empty {
         didSet {
@@ -19,8 +19,8 @@ final class LoginPresenter: Presenter, LoginPresenterType {
         }
     }
     
-    init(userRepository: UserRepositoryType) {
-        self.userRepository = userRepository
+    init(authRepository: AuthRepositoryType) {
+        self.authRepository = authRepository
     }
 
     override func start() {
@@ -31,7 +31,7 @@ final class LoginPresenter: Presenter, LoginPresenterType {
 extension LoginPresenter: LoginViewControllerDelegate {
     func facebookButtonTapped() {
         self.configuration = self.configuration.with(loginButtonEnabled: false)
-        self.userRepository.signIn()
+        self.authRepository.signIn()
             .observeOn(MainScheduler.instance)
             .subscribe { [weak self] event in
                 self?.handleSignUpEvent(event)

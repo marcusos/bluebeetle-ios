@@ -2,13 +2,11 @@ import ModuleArchitecture
 
 struct HittagImageConfiguration {
     let image: URL
-    let icon: URL
 }
 
 extension HittagImageConfiguration {
-    init(hittag: Hittag) {
+    init(hittag: Post) {
         self.image = hittag.image
-        self.icon = hittag.icon
     }
 }
 
@@ -18,8 +16,8 @@ struct ProfileConfiguration {
 }
 
 extension ProfileConfiguration {
-    init(user: User, hittags: [Hittag]) {
+    init(user: User, posts: [Post]) {
         self.headerConfiguration = ImageWithTitleAndSubtitleConfiguration(user: user)
-        self.hittagConfigurations = hittags.map(HittagImageConfiguration.init)
+        self.hittagConfigurations = posts.map(HittagImageConfiguration.init)
     }
 }

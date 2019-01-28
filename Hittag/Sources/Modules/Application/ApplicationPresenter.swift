@@ -10,15 +10,15 @@ final class ApplicationPresenter: Presenter, ApplicationPresenterType {
     weak var delegate: ApplicationPresenterDelegate?
     weak var coordinator: ApplicationCoordinatorType?
 
-    private let userRepository: UserRepositoryType
+    private let authRepository: AuthRepositoryType
     private let disposeBag = DisposeBag()
     
-    init(userRepository: UserRepositoryType) {
-        self.userRepository = userRepository
+    init(authRepository: AuthRepositoryType) {
+        self.authRepository = authRepository
     }
     
     override func start() {
-        self.userRepository.current()
+        self.authRepository.current()
             .observeOn(MainScheduler.instance)
             .subscribe { [weak self] event in
                 self?.handleUserEvent(event)

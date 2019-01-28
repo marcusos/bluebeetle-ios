@@ -2,15 +2,15 @@ import ModuleArchitecture
 
 final class LoginModule: Module, LoginModuleType {
 
-    private let userRepository: UserRepositoryType
+    private let authRepository: AuthRepositoryType
     
-    init(userRepository: UserRepositoryType) {
-        self.userRepository = userRepository
+    init(authRepository: AuthRepositoryType) {
+        self.authRepository = authRepository
     }
     
     func createCoordinator(listener: LoginPresenterDelegate) -> LoginCoordinatorType {
 
-        let presenter = LoginPresenter(userRepository: self.userRepository)
+        let presenter = LoginPresenter(authRepository: self.authRepository)
         let viewController = LoginViewController()
         let coordinator = LoginCoordinator(presenter: presenter, viewController: viewController)
         viewController.delegate = presenter

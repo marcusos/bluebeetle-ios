@@ -23,8 +23,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                    profileModule: ProfileModule(userRepository: UserRepository()),
                                    feedRepository: feedRepository)
         let rootModule = ApplicationModule(homeModule: homeModule,
-                                           loginModule: LoginModule(userRepository: UserRepository()),
-                                           userRepository: UserRepository())
+                                           loginModule: LoginModule(authRepository: AuthRepository()),
+                                           authRepository: AuthRepository())
         let rootCoordinator = rootModule.createCoordinator(window: window)
         rootCoordinator.start()
         self.window = window
