@@ -6,21 +6,7 @@ struct CameraConfiguration: Equatable {
     private(set) var pictureButtonEnabled: Bool
     
     static var empty: CameraConfiguration = {
-        let challenges = [
-            Challenge(name: "Dog Challenge",
-                      image: URL(string: "https://img.icons8.com/ios/2x/year-of-dog.png")!),
-            Challenge(name: "Waterfall Challenge",
-                      image: URL(string: "https://img.icons8.com/ios/2x/waterfall.png")!),
-            Challenge(name: "Pizza Challenge",
-                      image: URL(string: "https://img.icons8.com/ios/2x/pizza.png")!),
-        ]
-
-        let configurations = challenges.enumerated().map {
-            ChallengeItemConfiguration(challenge: $0.element, index: $0.offset)
-        }
-        
-        let selector = ChallengeConfiguration(configurations: Set(configurations))
-        return CameraConfiguration(challengeConfiguration: selector,
+        return CameraConfiguration(challengeConfiguration: ChallengeConfiguration(configurations: Set()),
                                    infoLabelText: nil,
                                    pictureButtonEnabled: false)
     }()
@@ -33,6 +19,12 @@ struct CameraConfiguration: Equatable {
         let fallback = "Nenhum desafio selecionado"
         let name = self.challengeConfiguration.selectedConfiguration?.challenge.name ?? fallback
         return name.subtitle(.white, weight: .bold)
+    }
+    
+    func with(challenges: [Challenge]) -> CameraConfiguration {
+        var this = self
+        this.challengeConfiguration = this.challengeConfiguration.with(challenges: challenges)
+        return this
     }
     
     func with(selectedItem: ChallengeItemConfiguration) -> CameraConfiguration {

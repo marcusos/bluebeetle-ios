@@ -12,6 +12,15 @@ struct ChallengeConfiguration: Equatable {
         return Array(self.configurations).sorted(by: { $0.index > $1.index })
     }
     
+    func with(challenges: [Challenge]) -> ChallengeConfiguration {
+        var this = self
+        let configurations = challenges.enumerated().map {
+            ChallengeItemConfiguration(challenge: $0.element, index: $0.offset)
+        }
+        this.configurations = Set(configurations)
+        return this
+    }
+    
     func with(selectedItem: ChallengeItemConfiguration) -> ChallengeConfiguration {
         var this = self
         let selectedConfiguration = selectedItem.with(isSelected: true)

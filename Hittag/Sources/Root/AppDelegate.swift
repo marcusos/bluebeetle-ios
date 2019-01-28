@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let window = UIWindow()
         let feedRepository = FeedRepository()
         let homeModule = TabModule(feedModule: FeedModule(feedRepository: feedRepository),
-                                   cameraModule: CameraModule(),
+                                   cameraModule: CameraModule(challengeRepository: ChallengeRepository()),
                                    cameraTabModule: CameraTabModule(),
                                    profileModule: ProfileModule(userRepository: UserRepository()),
                                    feedRepository: feedRepository)

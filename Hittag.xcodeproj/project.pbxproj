@@ -14,6 +14,7 @@
 		245045E521FE74E7005E1CF1 /* FeedRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245045E421FE74E7005E1CF1 /* FeedRepository.swift */; };
 		245045E721FE757F005E1CF1 /* Parse+Reactive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245045E621FE757F005E1CF1 /* Parse+Reactive.swift */; };
 		245045E921FE8444005E1CF1 /* AuthRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245045E821FE8444005E1CF1 /* AuthRepository.swift */; };
+		245045EC21FE9034005E1CF1 /* ChallengeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245045EB21FE9034005E1CF1 /* ChallengeRepository.swift */; };
 		2450640421F9C75D00009F9E /* CameraTabConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245063FD21F9C75D00009F9E /* CameraTabConfiguration.swift */; };
 		2450640521F9C75D00009F9E /* CameraTabCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245063FE21F9C75D00009F9E /* CameraTabCoordinator.swift */; };
 		2450640621F9C75D00009F9E /* CameraTabModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245063FF21F9C75D00009F9E /* CameraTabModule.swift */; };
@@ -111,6 +112,7 @@
 		245045E421FE74E7005E1CF1 /* FeedRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedRepository.swift; sourceTree = "<group>"; };
 		245045E621FE757F005E1CF1 /* Parse+Reactive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Parse+Reactive.swift"; sourceTree = "<group>"; };
 		245045E821FE8444005E1CF1 /* AuthRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRepository.swift; sourceTree = "<group>"; };
+		245045EB21FE9034005E1CF1 /* ChallengeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeRepository.swift; sourceTree = "<group>"; };
 		245063FD21F9C75D00009F9E /* CameraTabConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraTabConfiguration.swift; sourceTree = "<group>"; };
 		245063FE21F9C75D00009F9E /* CameraTabCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraTabCoordinator.swift; sourceTree = "<group>"; };
 		245063FF21F9C75D00009F9E /* CameraTabModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraTabModule.swift; sourceTree = "<group>"; };
@@ -492,6 +494,7 @@
 				245045E821FE8444005E1CF1 /* AuthRepository.swift */,
 				245045E421FE74E7005E1CF1 /* FeedRepository.swift */,
 				24B57A4421F7EF52008F948D /* UserRepository.swift */,
+				245045EB21FE9034005E1CF1 /* ChallengeRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -749,6 +752,7 @@
 				24B57A3721F7EEFB008F948D /* LoginViewController.swift in Sources */,
 				24B57A2621F72116008F948D /* ContainerCollectionViewCell.swift in Sources */,
 				24B579BC21F541F2008F948D /* FeedModule.swift in Sources */,
+				245045EC21FE9034005E1CF1 /* ChallengeRepository.swift in Sources */,
 				24B57A3521F7EEFB008F948D /* LoginModule.swift in Sources */,
 				24B57A0521F68EE5008F948D /* TabConfiguration.swift in Sources */,
 				24B579DE21F54317008F948D /* MixedTableViewDataSource.swift in Sources */,

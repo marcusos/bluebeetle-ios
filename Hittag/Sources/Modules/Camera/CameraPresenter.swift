@@ -1,5 +1,6 @@
 import ModuleArchitecture
 import Vision
+import RxSwift
 
 protocol CameraPresenterDelegate: AnyObject {
     func cameraWantsToDismiss()
@@ -12,6 +13,8 @@ final class CameraPresenter: Presenter, CameraPresenterType {
     weak var viewController: CameraPresenterView?
     weak var delegate: CameraPresenterDelegate?
     
+    private let challengeRepository: ChallengeRepositoryType
+    private let disposeBag = DisposeBag()
     private let feedbackGenerator = UISelectionFeedbackGenerator()
     private let model = try? VNCoreMLModel(for: hittag().model)
     private var pixelBuffer: CVPixelBuffer?
@@ -28,32 +31,32 @@ final class CameraPresenter: Presenter, CameraPresenterType {
         }
     }
     
+    init(challengeRepository: ChallengeRepositoryType) {
+        self.challengeRepository = challengeRepository
+    }
+    
     override func start() {
-        
-        self.viewController?.render(configuration: self.configuration)
+        self.challengeRepository.challenges()
+            .subscribeOn(MainScheduler.instance)
+            .subscribe { [weak self] event in
+                self?.handleChallengesEvent(event)
+            }
+            .disposed(by: self.disposeBag)
+    }
+    
+    private func handleChallengesEvent(_ event: Event<[Challenge]>) {
+        switch event {
+        case .next(let challenges):
+            self.configuration = self.configuration.with(challenges: challenges)
+        case .error, .completed:
+            print("error")
+        }
     }
 }
 
 extension CameraPresenter: CameraViewControllerDelegate {
     func didOutputPixelBuffer(pixelBuffer: CVPixelBuffer) {
         self.pixelBuffer = pixelBuffer
-//        guard let model = self.model else { return }
-//
-//        // run an inference with CoreML
-//        let request = VNCoreMLRequest(model: model) { (finishedRequest, error) in
-//            
-//            // grab the inference results
-//            guard let results = finishedRequest.results as? [VNClassificationObservation] else { return }
-//            
-//            // grab the highest confidence result
-//            guard let Observation = results.first else { return }
-//            
-//            // create the label text components
-//            let predclass = Observation.identifier
-//            let predconfidence = Observation.confidence
-//        }
-        
-//        try? VNImageRequestHandler(cvPixelBuffer: pixelBuffer, options: [:]).perform([request])
     }
     
     func closeButtonTapped() {
