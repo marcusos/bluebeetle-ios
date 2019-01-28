@@ -1,7 +1,9 @@
 import UIKit
 import ModuleArchitecture
 
-final class TableViewDataSource<Cell: Component>: NSObject, UITableViewDataSource where Cell: UITableViewCell {
+final class TableViewDataSource<Cell: Component>: NSObject, UITableViewDataSource
+where Cell: UITableViewCell {
+    
     let configurations: [String: [Cell.Configuration]]
     
     init(configurations: [Cell.Configuration] = []) {

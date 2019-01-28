@@ -15,6 +15,7 @@
 		245045E721FE757F005E1CF1 /* Parse+Reactive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245045E621FE757F005E1CF1 /* Parse+Reactive.swift */; };
 		245045E921FE8444005E1CF1 /* AuthRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245045E821FE8444005E1CF1 /* AuthRepository.swift */; };
 		245045EC21FE9034005E1CF1 /* ChallengeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245045EB21FE9034005E1CF1 /* ChallengeRepository.swift */; };
+		245045EE21FE94FF005E1CF1 /* PostFooterComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245045ED21FE94FF005E1CF1 /* PostFooterComponent.swift */; };
 		2450640421F9C75D00009F9E /* CameraTabConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245063FD21F9C75D00009F9E /* CameraTabConfiguration.swift */; };
 		2450640521F9C75D00009F9E /* CameraTabCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245063FE21F9C75D00009F9E /* CameraTabCoordinator.swift */; };
 		2450640621F9C75D00009F9E /* CameraTabModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245063FF21F9C75D00009F9E /* CameraTabModule.swift */; };
@@ -113,6 +114,7 @@
 		245045E621FE757F005E1CF1 /* Parse+Reactive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Parse+Reactive.swift"; sourceTree = "<group>"; };
 		245045E821FE8444005E1CF1 /* AuthRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRepository.swift; sourceTree = "<group>"; };
 		245045EB21FE9034005E1CF1 /* ChallengeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeRepository.swift; sourceTree = "<group>"; };
+		245045ED21FE94FF005E1CF1 /* PostFooterComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostFooterComponent.swift; sourceTree = "<group>"; };
 		245063FD21F9C75D00009F9E /* CameraTabConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraTabConfiguration.swift; sourceTree = "<group>"; };
 		245063FE21F9C75D00009F9E /* CameraTabCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraTabCoordinator.swift; sourceTree = "<group>"; };
 		245063FF21F9C75D00009F9E /* CameraTabModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraTabModule.swift; sourceTree = "<group>"; };
@@ -319,6 +321,7 @@
 				24B579B821F541F2008F948D /* FeedComponent.swift */,
 				24B579B921F541F2008F948D /* FeedDefinitions.swift */,
 				24B579E421F543B6008F948D /* PostComponent.swift */,
+				245045ED21FE94FF005E1CF1 /* PostFooterComponent.swift */,
 			);
 			path = Feed;
 			sourceTree = "<group>";
@@ -726,6 +729,7 @@
 				24B579BD21F541F2008F948D /* FeedPresenter.swift in Sources */,
 				24B579F821F6896F008F948D /* CameraDefinitions.swift in Sources */,
 				24B57A1C21F71D88008F948D /* ProfileModule.swift in Sources */,
+				245045EE21FE94FF005E1CF1 /* PostFooterComponent.swift in Sources */,
 				24B579E021F54317008F948D /* SeparatorLineView.swift in Sources */,
 				24B579DA21F54317008F948D /* NSAttributedString.swift in Sources */,
 				24B579E521F543B6008F948D /* PostComponent.swift in Sources */,

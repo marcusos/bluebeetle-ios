@@ -17,6 +17,7 @@ public struct Post: Codable {
     public let image: URL
     public let hashtags: [Hashtag]
     public let user: User
+    public let numberOfLikes: Int
 }
 
 struct PostParameters: Codable {
@@ -34,8 +35,8 @@ public struct Hashtag: Codable {
     public let name: String
 }
 
-struct PostFooterConfiguration {
-    let hittagConfigurations: [BadgeConfiguration]
+protocol PostComponentDelegate: AnyObject {
+    func didLikePost(post: Post)
 }
 
 struct PostConfiguration {
@@ -46,98 +47,27 @@ struct PostConfiguration {
     init(post: Post) {
         self.headerConfiguration = ImageWithTitleAndSubtitleConfiguration(user: post.user)
         self.post = post
-        
-        let hittagConfigurations = post.hashtags.map {
-            BadgeConfiguration(text: $0.name.hashtag(),
-                               backgroundColor: .badge,
-                               cornerRadius: 5)
-        }
-        self.footerConfiguration = PostFooterConfiguration(hittagConfigurations: hittagConfigurations)
-    }
-}
-
-final class PostFooterComponent: UIView, Component {
-    private let wrapperStackView: UIStackView = {
-        let stackview = UIStackView()
-        stackview.alignment = .leading
-        stackview.axis = .vertical
-        stackview.spacing = Grid
-        return stackview
-    }()
-    
-    private let headerStackView: UIStackView = {
-        let stackview = UIStackView()
-        stackview.alignment = .leading
-        stackview.axis = .horizontal
-        stackview.spacing = Grid
-        return stackview
-    }()
-    
-    private let likeButton: UIButton = {
-        let button = UIButton()
-        button.setImage(UIImage(named: "heart"), for: .normal)
-        return button
-    }()
-    
-    private let likeCount: UILabel = {
-        let label = UILabel()
-        label.attributedText = "10 curtidas".subtitle()
-        return label
-    }()
-    
-    private let hittagStackView: UIStackView = {
-        let stackview = UIStackView()
-        stackview.alignment = .leading
-        stackview.axis = .horizontal
-        stackview.spacing = Grid
-        return stackview
-    }()
-    
-    init() {
-        super.init(frame: .zero)
-        self.customizeInterface()
-    }
-    
-    required init?(coder aDecoder: NSCoder) { fatalError() }
-    
-    func render(configuration: PostFooterConfiguration) {
-        self.hittagStackView.render(configurations: configuration.hittagConfigurations, factory: Badge.init)
-    }
-    
-    private func customizeInterface() {
-        self.backgroundColor = .clear
-        self.addSubviews()
-        self.addConstraints()
-    }
-    
-    private func addSubviews() {
-        self.headerStackView.addArrangedSubview(self.likeButton)
-        self.headerStackView.addArrangedSubview(self.likeCount)
-        self.wrapperStackView.addArrangedSubview(self.headerStackView)
-        self.wrapperStackView.addArrangedSubview(self.hittagStackView.wrapForHorizontalAlignment())
-        self.addSubview(self.wrapperStackView)
-    }
-    
-    private func addConstraints() {
-        self.wrapperStackView.makeEdgesEqualToSuperview()
-        
-        NSLayoutConstraint.activate([
-            self.likeButton.heightAnchor.constraint(equalToConstant: 20),
-            self.likeButton.widthAnchor.constraint(equalToConstant: 20),
-        ])
-        
-        NSLayoutConstraint.activate([
-            self.heightAnchor.constraint(greaterThanOrEqualToConstant: 44)
-        ])
+        self.footerConfiguration = PostFooterConfiguration(post: post)
     }
 }
 
 final class PostComponent: UIView, Component {
+    weak var delegate: PostComponentDelegate?
+    
+    private var configuration: PostConfiguration?
+    
     private let wrapperStackView: UIStackView = {
         let stackview = UIStackView()
         stackview.alignment = .leading
         stackview.axis = .vertical
         return stackview
+    }()
+    
+    private lazy var tapGestureRecognizer: UITapGestureRecognizer = {
+        let recognizer = UITapGestureRecognizer(target: self, action: #selector(didDoubleTap))
+        recognizer.numberOfTapsRequired = 2
+        recognizer.delegate = self
+        return recognizer
     }()
     
     private let header: ImageWithTitleAndSubtitle = {
@@ -145,11 +75,21 @@ final class PostComponent: UIView, Component {
         return header
     }()
     
-    private let imageView: UIImageView = {
+    private lazy var imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
+        imageView.isUserInteractionEnabled = true
+        imageView.addGestureRecognizer(self.tapGestureRecognizer)
         return imageView
+    }()
+    
+    private lazy var likeView: UIView = {
+        let button = UIButton(type: .system)
+        button.alpha = 0
+        button.tintColor = .white
+        button.setImage(UIImage(named: "heart-filled"), for: .normal)
+        return button
     }()
     
     private let footer: PostFooterComponent = {
@@ -161,6 +101,7 @@ final class PostComponent: UIView, Component {
         self.header.render(configuration: configuration.headerConfiguration)
         self.imageView.kf.setImage(with: configuration.post.image)
         self.footer.render(configuration: configuration.footerConfiguration)
+        self.configuration = configuration
     }
     
     init() {
@@ -181,14 +122,44 @@ final class PostComponent: UIView, Component {
         self.wrapperStackView.addArrangedSubview(self.imageView)
         self.wrapperStackView.addArrangedSubview(self.footer.wrapForPadding(UIEdgeInsets(padding: Grid * 2)))
         self.addSubview(self.wrapperStackView)
+        self.addSubview(self.likeView)
     }
     
     private func addConstraints() {
         self.wrapperStackView.makeEdgesEqualToSuperview()
+        self.likeView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             self.imageView.heightAnchor.constraint(equalToConstant: 280),
             self.imageView.widthAnchor.constraint(equalTo: self.widthAnchor)
         ])
+        
+        NSLayoutConstraint.activate([
+            self.likeView.heightAnchor.constraint(equalToConstant: 60),
+            self.likeView.widthAnchor.constraint(equalToConstant: 60),
+            self.likeView.centerXAnchor.constraint(equalTo: self.imageView.centerXAnchor),
+            self.likeView.centerYAnchor.constraint(equalTo: self.imageView.centerYAnchor),
+        ])
     }
+    
+    @objc private func didDoubleTap() {
+        if let configuration = self.configuration {
+            self.delegate?.didLikePost(post: configuration.post)
+        }
+        self.likeView.alpha = 1
+        UIView.animate(withDuration: 0.6, animations: {
+            self.likeView.layoutIfNeeded()
+        })
+            
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            self.likeView.alpha = 0
+            UIView.animate(withDuration: 1, animations: {
+                self.likeView.layoutIfNeeded()
+            })
+        }
+    }
+}
+
+extension PostComponent: UIGestureRecognizerDelegate {
+    
 }

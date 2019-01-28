@@ -1,7 +1,9 @@
 import UIKit
 import ModuleArchitecture
 
-final class ContainerTableViewCell<View: Component>: UITableViewCell, Component where View: UIView {
+final class ContainerTableViewCell<View: Component>: UITableViewCell, Component
+where View: UIView {
+    
     let customView: View
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {

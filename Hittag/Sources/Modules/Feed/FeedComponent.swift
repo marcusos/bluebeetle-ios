@@ -49,3 +49,9 @@ extension FeedComponent {
         self.tableView.makeEdgesEqualToSuperview()
     }
 }
+
+extension FeedComponent: PostComponentDelegate {
+    func didLikePost(post: Post) {
+        
+    }
+}

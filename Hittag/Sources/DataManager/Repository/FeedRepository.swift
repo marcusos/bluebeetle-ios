@@ -82,9 +82,12 @@ extension Post {
             return nil
         }
         
+        let numberOfLikes = pfObject["number_of_likes"] as? Int ?? 0
+        
         self.text = "Posto"
         self.image = url
         self.hashtags = []
         self.user = User(name: username, image: userImageUrl)
+        self.numberOfLikes = numberOfLikes
     }
 }
