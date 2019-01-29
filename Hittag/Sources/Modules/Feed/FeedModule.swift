@@ -2,9 +2,11 @@ import ModuleArchitecture
 
 final class FeedModule: Module, FeedModuleType {
 
+    private let profileModule: ProfileModuleType
     private let feedRepository: FeedRepositoryType
     
-    init(feedRepository: FeedRepositoryType) {
+    init(profileModule: ProfileModuleType, feedRepository: FeedRepositoryType) {
+        self.profileModule = profileModule
         self.feedRepository = feedRepository
     }
     
@@ -12,7 +14,9 @@ final class FeedModule: Module, FeedModuleType {
 
         let presenter = FeedPresenter(feedRepository: self.feedRepository)
         let viewController = FeedViewController()
-        let coordinator = FeedCoordinator(presenter: presenter, viewController: viewController)
+        let coordinator = FeedCoordinator(profileModule: self.profileModule,
+                                          presenter: presenter,
+                                          viewController: viewController)
         viewController.delegate = presenter
         presenter.viewController = viewController
         presenter.coordinator = coordinator

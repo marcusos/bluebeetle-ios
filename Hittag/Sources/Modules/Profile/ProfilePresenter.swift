@@ -11,6 +11,7 @@ final class ProfilePresenter: Presenter, ProfilePresenterType {
     weak var viewController: ProfilePresenterView?
     weak var delegate: ProfilePresenterDelegate?
     
+    private let user: User
     private let disposeBag = DisposeBag()
     private let userRepository: UserRepositoryType
     private var configuration: ProfileConfiguration? {
@@ -21,7 +22,8 @@ final class ProfilePresenter: Presenter, ProfilePresenterType {
         }
     }
     
-    init(userRepository: UserRepositoryType) {
+    init(user: User, userRepository: UserRepositoryType) {
+        self.user = user
         self.userRepository = userRepository
     }
 
@@ -30,7 +32,7 @@ final class ProfilePresenter: Presenter, ProfilePresenterType {
     }
     
     private func loadData() {
-        self.userRepository.posts()
+        self.userRepository.posts(user: self.user)
             .observeOn(MainScheduler.instance)
             .subscribe { [weak self] event in
                 self?.handleDataEvent(event)
@@ -38,10 +40,10 @@ final class ProfilePresenter: Presenter, ProfilePresenterType {
             .disposed(by: self.disposeBag)
     }
     
-    private func handleDataEvent(_ event: Event<(User, [Post])>) {
+    private func handleDataEvent(_ event: Event<[Post]>) {
         switch event {
-        case .next(let (user, posts)):
-            self.configuration = ProfileConfiguration(user: user, posts: posts)
+        case .next(let posts):
+            self.configuration = ProfileConfiguration(user: self.user, posts: posts)
         case .completed, .error:
             break
         }

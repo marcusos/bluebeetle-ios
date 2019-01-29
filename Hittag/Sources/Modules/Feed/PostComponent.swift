@@ -8,6 +8,7 @@ public struct Challenge: Codable, Hashable {
 }
 
 public struct User: Codable {
+    public let id: String
     public let name: String
     public let image: URL?
 }
@@ -38,6 +39,7 @@ public struct Hashtag: Codable {
 
 protocol PostComponentDelegate: AnyObject {
     func didLikePost(post: Post)
+    func titleButtonTapped(user: User)
 }
 
 struct PostConfiguration {
@@ -49,14 +51,6 @@ struct PostConfiguration {
         self.headerConfiguration = ImageWithTitleAndSubtitleConfiguration(user: post.user)
         self.post = post
         self.footerConfiguration = PostFooterConfiguration(post: post)
-    }
-}
-
-final class SomeComopnent: UIView, CellComponent {
-    weak var delegate: UIView?
-    
-    func render(configuration: String) {
-        
     }
 }
 
@@ -79,8 +73,9 @@ final class PostComponent<Delegate: PostComponentDelegate>: UIView, CellComponen
         return recognizer
     }()
     
-    private let header: ImageWithTitleAndSubtitle = {
+    private lazy var header: ImageWithTitleAndSubtitle = {
         let header = ImageWithTitleAndSubtitle(imageView: RoundedImageView(borderColor: .main, size: .postProfilePicture))
+        header.delegate = self
         return header
     }()
     
@@ -166,6 +161,14 @@ final class PostComponent<Delegate: PostComponentDelegate>: UIView, CellComponen
             UIView.animate(withDuration: 1, animations: {
                 self.likeView.layoutIfNeeded()
             })
+        }
+    }
+}
+
+extension PostComponent: ImageWithTitleAndSubtitleDelegate {
+    func titleButtonTapped() {
+        if let configuration = self.configuration {
+            self.delegate?.titleButtonTapped(user: configuration.post.user)
         }
     }
 }

@@ -4,7 +4,7 @@ import ModuleArchitecture
 // A module should always be instantiated via the createCoordinator method.
 protocol ProfileModuleType: ModuleType {
 
-    func createCoordinator() -> ProfileCoordinatorType
+    func createCoordinator(user: User) -> ProfileCoordinatorType
 }
 
 protocol ProfileCoordinatorType: ViewableCoordinatorType {

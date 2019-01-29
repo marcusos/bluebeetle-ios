@@ -15,7 +15,13 @@ extension ImageWithTitleAndSubtitleConfiguration {
     }
 }
 
+protocol ImageWithTitleAndSubtitleDelegate: AnyObject {
+    func titleButtonTapped()
+}
+
 final class ImageWithTitleAndSubtitle: UIView, Component {
+    weak var delegate: ImageWithTitleAndSubtitleDelegate?
+    
     private let wrapperStackView: UIStackView = {
         let stackview = UIStackView()
         stackview.alignment = .center
@@ -34,12 +40,12 @@ final class ImageWithTitleAndSubtitle: UIView, Component {
     
     private let imageView: UIImageView
     
-    private let titleLabel: UILabel = {
-        let label = UILabel()
-        label.setContentHuggingPriority(.required, for: .vertical)
-        label.setContentCompressionResistancePriority(.required, for: .vertical)
-        label.textAlignment = .center
-        return label
+    private lazy var titleButton: UIButton = {
+        let button = UIButton()
+        button.setContentHuggingPriority(.required, for: .vertical)
+        button.setContentCompressionResistancePriority(.required, for: .vertical)
+        button.addTarget(self, action: #selector(titleButtonTapped), for: .touchUpInside)
+        return button
     }()
     
     private let detailLabel: UILabel = {
@@ -63,7 +69,7 @@ final class ImageWithTitleAndSubtitle: UIView, Component {
     
     func render(configuration: ImageWithTitleAndSubtitleConfiguration) {
         self.imageView.kf.setImage(with: configuration.image)
-        self.titleLabel.attributedText = configuration.title
+        self.titleButton.setAttributedTitle(configuration.title, for: .normal)
         self.detailLabel.isHidden = true
         self.wrapperStackView.axis = .horizontal
         self.contentStackView.alignment = .leading
@@ -78,13 +84,17 @@ final class ImageWithTitleAndSubtitle: UIView, Component {
     private func addSubviews() {
         self.wrapperStackView.addArrangedSubview(self.imageView)
         self.wrapperStackView.addArrangedSubview(self.contentStackView)
-        self.contentStackView.addArrangedSubview(self.titleLabel)
+        self.contentStackView.addArrangedSubview(self.titleButton)
         self.contentStackView.addArrangedSubview(self.detailLabel)
         self.addSubview(self.wrapperStackView)
     }
     
     private func addConstraints() {
         self.wrapperStackView.makeEdgesEqualToSuperview()
+    }
+    
+    @objc func titleButtonTapped() {
+        self.delegate?.titleButtonTapped()
     }
 }
 

@@ -2,38 +2,39 @@ import RxSwift
 import Parse
 
 public protocol UserRepositoryType {
-    func current() -> Single<User>
-    func posts() -> Observable<(User, [Post])>
+    func posts(user: User) -> Observable<[Post]>
 }
 
 final class UserRepository: UserRepositoryType {
-    func current() -> Single<User> {
-        return Single.create(subscribe: { emitter in
-            if let current = PFUser.current() {
-                emitter(.success(User(pfUser: current)))
-            } else {
-                emitter(.error(RxError.unknown))
+    func posts(user: User) -> Observable<[Post]> {
+        return self.requestUser(user: user)
+            .asObservable()
+            .flatMap { (user: PFUser) -> Observable<[Post]> in
+                let cached = self.requestPosts(cached: true, user: user)
+                let live = self.requestPosts(cached: false, user: user)
+                return cached.asObservable()
+                    .concat(live)
+        }
+    }
+    
+    private func requestUser(user: User) -> Single<PFUser> {
+        return Single.create { emitter in
+            PFUser(withoutDataWithObjectId: user.id).fetchInBackground { object, error in
+                if let error = error {
+                    emitter(.error(error))
+                } else if let user = object as? PFUser {
+                    emitter(.success(user))
+                } else {
+                    emitter(.error(RxError.unknown))
+                }
             }
             return Disposables.create {}
-        })
+        }
     }
     
-    func posts() -> Observable<(User, [Post])> {
-        let cached = self.requestPosts(cached: true)
-        let live = self.requestPosts(cached: false)
-        let user = self.current()
-        
-        let posts = cached.asObservable()
-            .concat(live)
-        
-        return Observable.combineLatest(user.asObservable(), posts)
-    }
-    
-    private func requestPosts(cached: Bool) -> Single<[Post]> {
-        guard let user = PFUser.current() else { return Single.error(RxError.unknown) }
-        
+    private func requestPosts(cached: Bool, user: PFUser) -> Single<[Post]> {
         return Single.create { emitter -> Disposable in
-            let query = PFQuery(className:"Post")
+            let query = PFQuery(className: "Post")
             query.addDescendingOrder("createdAt")
             query.whereKey("parent", equalTo: user)
             if cached {
@@ -57,6 +58,8 @@ final class UserRepository: UserRepositoryType {
 
 extension User {
     init(pfUser: PFUser) {
-        self.init(name: pfUser.facebookInfo?.name ?? "", image: pfUser.facebookInfo?.image)
+        self.init(id: pfUser.objectId ?? "",
+                  name: pfUser.facebookInfo?.name ?? "",
+                  image: pfUser.facebookInfo?.image)
     }
 }

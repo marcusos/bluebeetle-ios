@@ -49,4 +49,8 @@ extension FeedPresenter: FeedViewControllerDelegate {
             .subscribe()
             .disposed(by: self.disposeBag)
     }
+    
+    func titleButtonTapped(user: User) {
+        self.coordinator?.attachProfileModule(user: user)
+    }
 }

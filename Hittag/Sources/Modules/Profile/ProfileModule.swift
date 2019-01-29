@@ -8,9 +8,9 @@ final class ProfileModule: Module, ProfileModuleType {
         self.userRepository = userRepository
     }
     
-    func createCoordinator() -> ProfileCoordinatorType {
+    func createCoordinator(user: User) -> ProfileCoordinatorType {
 
-        let presenter = ProfilePresenter(userRepository: self.userRepository)
+        let presenter = ProfilePresenter(user: user, userRepository: self.userRepository)
         let viewController = ProfileViewController()
         let coordinator = ProfileCoordinator(presenter: presenter, viewController: viewController)
         viewController.delegate = presenter

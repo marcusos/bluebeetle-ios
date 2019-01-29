@@ -3,6 +3,7 @@ import ModuleArchitecture
 
 protocol FeedViewControllerDelegate: AnyObject {
     func didLikePost(post: Post)
+    func titleButtonTapped(user: User)
 }
 
 final class FeedViewController: UIViewController, FeedViewControllerType {
@@ -39,5 +40,9 @@ extension FeedViewController: FeedPresenterView {
 extension FeedViewController: FeedComponentDelegate {
     func didLikePost(post: Post) {
         self.delegate?.didLikePost(post: post)
+    }
+    
+    func titleButtonTapped(user: User) {
+        self.delegate?.titleButtonTapped(user: user)
     }
 }

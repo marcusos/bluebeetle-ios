@@ -3,6 +3,7 @@ import ModuleArchitecture
 
 protocol FeedComponentDelegate: AnyObject {
     func didLikePost(post: Post)
+    func titleButtonTapped(user: User)
 }
 
 final class FeedComponent: UIView, Component {
@@ -58,5 +59,9 @@ extension FeedComponent {
 extension FeedComponent: PostComponentDelegate {
     func didLikePost(post: Post) {
         self.delegate?.didLikePost(post: post)
+    }
+    
+    func titleButtonTapped(user: User) {
+        self.delegate?.titleButtonTapped(user: user)
     }
 }

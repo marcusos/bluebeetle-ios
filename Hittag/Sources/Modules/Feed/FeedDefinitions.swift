@@ -9,6 +9,7 @@ protocol FeedModuleType: ModuleType {
 
 protocol FeedCoordinatorType: ViewableCoordinatorType {
 
+    func attachProfileModule(user: User)
 }
 
 protocol FeedPresenterType: PresenterType {

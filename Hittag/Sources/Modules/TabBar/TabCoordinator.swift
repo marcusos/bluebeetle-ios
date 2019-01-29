@@ -1,4 +1,5 @@
 import ModuleArchitecture
+import Parse
 
 final class TabCoordinator: Coordinator<TabPresenterType>, TabCoordinatorType {
 
@@ -34,7 +35,7 @@ final class TabCoordinator: Coordinator<TabPresenterType>, TabCoordinatorType {
         
         let feedCoordinator = self.feedModule.createCoordinator()
         let cameraTabCoordinator = self.cameraTabModule.createCoordinator(listener: self.presenter)
-        let profileCoordinator = self.profileModule.createCoordinator()
+        let profileCoordinator = self.profileModule.createCoordinator(user: User(pfUser: PFUser.current()!))
         
         let feedController = UINavigationController(viewControllerType: feedCoordinator.viewController)
         let cameraTabController = cameraTabCoordinator.viewController.asViewController()
