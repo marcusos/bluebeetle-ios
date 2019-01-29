@@ -2,9 +2,11 @@ import ModuleArchitecture
 
 final class ProfileModule: Module, ProfileModuleType {
 
+    private let postModule: PostModuleType
     private let userRepository: UserRepositoryType
     
-    init(userRepository: UserRepositoryType) {
+    init(postModule: PostModuleType, userRepository: UserRepositoryType) {
+        self.postModule = postModule
         self.userRepository = userRepository
     }
     
@@ -12,7 +14,9 @@ final class ProfileModule: Module, ProfileModuleType {
 
         let presenter = ProfilePresenter(user: user, userRepository: self.userRepository)
         let viewController = ProfileViewController()
-        let coordinator = ProfileCoordinator(presenter: presenter, viewController: viewController)
+        let coordinator = ProfileCoordinator(postModule: self.postModule,
+                                             presenter: presenter,
+                                             viewController: viewController)
         viewController.delegate = presenter
         presenter.viewController = viewController
         presenter.coordinator = coordinator

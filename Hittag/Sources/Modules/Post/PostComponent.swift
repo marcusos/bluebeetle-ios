@@ -116,7 +116,8 @@ final class PostComponent<Delegate: PostComponentDelegate>: UIView, CellComponen
     required init?(coder aDecoder: NSCoder) { fatalError() }
     
     private func customizeInterface() {
-        self.backgroundColor = .clear
+        
+        self.backgroundColor = .white
         self.addSubviews()
         self.addConstraints()
     }

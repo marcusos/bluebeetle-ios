@@ -1,12 +1,10 @@
 import ModuleArchitecture
 
 struct HittagImageConfiguration {
-    let image: URL
-}
-
-extension HittagImageConfiguration {
-    init(hittag: Post) {
-        self.image = hittag.image
+    let post: Post
+    
+    var image: URL {
+        return self.post.image
     }
 }
 

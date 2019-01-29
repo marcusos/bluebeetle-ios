@@ -52,5 +52,11 @@ final class ProfilePresenter: Presenter, ProfilePresenterType {
 }
 
 extension ProfilePresenter: ProfileViewControllerDelegate {
-
+    func onViewDidAppear() {
+        self.coordinator?.detachPostModule()
+    }
+    
+    func didSelectPost(post: Post) {
+        self.coordinator?.attachPostModule(post: post)
+    }
 }

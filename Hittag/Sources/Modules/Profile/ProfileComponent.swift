@@ -53,8 +53,13 @@ final class HittagImageComponent: UIView, Component {
     }
 }
 
-final class ProfileComponent: UIView, Component {
+protocol ProfileCompoentDelegate: AnyObject {
+    func didSelectPost(post: Post)
+}
 
+final class ProfileComponent: UIView {
+    weak var delegate: ProfileCompoentDelegate?
+    
     private let wrapperStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
@@ -84,6 +89,7 @@ final class ProfileComponent: UIView, Component {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: self.collectionLayout)
         collectionView.register(ContainerCollectionViewCell<HittagImageComponent>.self)
         collectionView.backgroundColor = .clear
+        collectionView.delegate = self
         return collectionView
     }()
     
@@ -127,5 +133,12 @@ extension ProfileComponent {
 
     private func defineSubviewsConstraints() {
         self.wrapperStackView.makeEdgesEqualToSuperview(usesSafeaArea: true)
+    }
+}
+
+extension ProfileComponent: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let configuration = self.dataSource.configurations[""]?[indexPath.row] else { return }
+        self.delegate?.didSelectPost(post: configuration.post)
     }
 }

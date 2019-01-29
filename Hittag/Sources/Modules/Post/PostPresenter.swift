@@ -22,5 +22,5 @@ final class PostPresenter: Presenter, PostPresenterType {
 }
 
 extension PostPresenter: PostViewControllerDelegate {
-
+    
 }

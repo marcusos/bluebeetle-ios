@@ -4,7 +4,7 @@ import ModuleArchitecture
 // A module should always be instantiated via the createCoordinator method.
 protocol PostModuleType: ModuleType {
 
-    func createCoordinator(post: Post, listener: PostPresenterDelegate) -> PostCoordinatorType
+    func createCoordinator(post: Post) -> PostCoordinatorType
 }
 
 protocol PostCoordinatorType: ViewableCoordinatorType {

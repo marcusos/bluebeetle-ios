@@ -9,6 +9,8 @@ protocol ProfileModuleType: ModuleType {
 
 protocol ProfileCoordinatorType: ViewableCoordinatorType {
 
+    func attachPostModule(post: Post)
+    func detachPostModule()
 }
 
 protocol ProfilePresenterType: PresenterType {
