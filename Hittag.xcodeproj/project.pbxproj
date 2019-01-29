@@ -16,6 +16,11 @@
 		245045E921FE8444005E1CF1 /* AuthRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245045E821FE8444005E1CF1 /* AuthRepository.swift */; };
 		245045EC21FE9034005E1CF1 /* ChallengeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245045EB21FE9034005E1CF1 /* ChallengeRepository.swift */; };
 		245045EE21FE94FF005E1CF1 /* PostFooterComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245045ED21FE94FF005E1CF1 /* PostFooterComponent.swift */; };
+		245045FC21FFE5DF005E1CF1 /* PostCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245045F521FFE5DF005E1CF1 /* PostCoordinator.swift */; };
+		245045FD21FFE5DF005E1CF1 /* PostModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245045F621FFE5DF005E1CF1 /* PostModule.swift */; };
+		245045FE21FFE5DF005E1CF1 /* PostPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245045F721FFE5DF005E1CF1 /* PostPresenter.swift */; };
+		245045FF21FFE5DF005E1CF1 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245045F821FFE5DF005E1CF1 /* PostViewController.swift */; };
+		2450460121FFE5DF005E1CF1 /* PostDefinitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245045FA21FFE5DF005E1CF1 /* PostDefinitions.swift */; };
 		2450640421F9C75D00009F9E /* CameraTabConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245063FD21F9C75D00009F9E /* CameraTabConfiguration.swift */; };
 		2450640521F9C75D00009F9E /* CameraTabCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245063FE21F9C75D00009F9E /* CameraTabCoordinator.swift */; };
 		2450640621F9C75D00009F9E /* CameraTabModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245063FF21F9C75D00009F9E /* CameraTabModule.swift */; };
@@ -115,6 +120,11 @@
 		245045E821FE8444005E1CF1 /* AuthRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRepository.swift; sourceTree = "<group>"; };
 		245045EB21FE9034005E1CF1 /* ChallengeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeRepository.swift; sourceTree = "<group>"; };
 		245045ED21FE94FF005E1CF1 /* PostFooterComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostFooterComponent.swift; sourceTree = "<group>"; };
+		245045F521FFE5DF005E1CF1 /* PostCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCoordinator.swift; sourceTree = "<group>"; };
+		245045F621FFE5DF005E1CF1 /* PostModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostModule.swift; sourceTree = "<group>"; };
+		245045F721FFE5DF005E1CF1 /* PostPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostPresenter.swift; sourceTree = "<group>"; };
+		245045F821FFE5DF005E1CF1 /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
+		245045FA21FFE5DF005E1CF1 /* PostDefinitions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDefinitions.swift; sourceTree = "<group>"; };
 		245063FD21F9C75D00009F9E /* CameraTabConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraTabConfiguration.swift; sourceTree = "<group>"; };
 		245063FE21F9C75D00009F9E /* CameraTabCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraTabCoordinator.swift; sourceTree = "<group>"; };
 		245063FF21F9C75D00009F9E /* CameraTabModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraTabModule.swift; sourceTree = "<group>"; };
@@ -230,6 +240,20 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		245045F321FFE5C2005E1CF1 /* Post */ = {
+			isa = PBXGroup;
+			children = (
+				245045F521FFE5DF005E1CF1 /* PostCoordinator.swift */,
+				245045F621FFE5DF005E1CF1 /* PostModule.swift */,
+				245045F721FFE5DF005E1CF1 /* PostPresenter.swift */,
+				245045F821FFE5DF005E1CF1 /* PostViewController.swift */,
+				245045FA21FFE5DF005E1CF1 /* PostDefinitions.swift */,
+				24B579E421F543B6008F948D /* PostComponent.swift */,
+				245045ED21FE94FF005E1CF1 /* PostFooterComponent.swift */,
+			);
+			path = Post;
+			sourceTree = "<group>";
+		};
 		245063F421F9C73B00009F9E /* CameraTab */ = {
 			isa = PBXGroup;
 			children = (
@@ -320,8 +344,6 @@
 				24B579B721F541F2008F948D /* FeedViewController.swift */,
 				24B579B821F541F2008F948D /* FeedComponent.swift */,
 				24B579B921F541F2008F948D /* FeedDefinitions.swift */,
-				24B579E421F543B6008F948D /* PostComponent.swift */,
-				245045ED21FE94FF005E1CF1 /* PostFooterComponent.swift */,
 			);
 			path = Feed;
 			sourceTree = "<group>";
@@ -329,6 +351,7 @@
 		24B579C121F54202008F948D /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				245045F321FFE5C2005E1CF1 /* Post */,
 				24B57A3A21F7EF1A008F948D /* Application */,
 				24B579EA21F688ED008F948D /* Camera */,
 				245063F421F9C73B00009F9E /* CameraTab */,
@@ -728,6 +751,7 @@
 				24B579F521F6896F008F948D /* CameraPresenter.swift in Sources */,
 				24B579BD21F541F2008F948D /* FeedPresenter.swift in Sources */,
 				24B579F821F6896F008F948D /* CameraDefinitions.swift in Sources */,
+				245045FD21FFE5DF005E1CF1 /* PostModule.swift in Sources */,
 				24B57A1C21F71D88008F948D /* ProfileModule.swift in Sources */,
 				245045EE21FE94FF005E1CF1 /* PostFooterComponent.swift in Sources */,
 				24B579E021F54317008F948D /* SeparatorLineView.swift in Sources */,
@@ -735,11 +759,13 @@
 				24B579E521F543B6008F948D /* PostComponent.swift in Sources */,
 				24B57A4721F7F5FB008F948D /* UIViewController.swift in Sources */,
 				24B57A2421F71F08008F948D /* DesignSystem.swift in Sources */,
+				245045FE21FFE5DF005E1CF1 /* PostPresenter.swift in Sources */,
 				24B579E121F54317008F948D /* UIEdgeInsets.swift in Sources */,
 				24B57A0621F68EE5008F948D /* TabCoordinator.swift in Sources */,
 				24B579FA21F689AE008F948D /* CameraDevice.swift in Sources */,
 				24B579BF21F541F2008F948D /* FeedComponent.swift in Sources */,
 				2450640821F9C75D00009F9E /* CameraTabViewController.swift in Sources */,
+				245045FC21FFE5DF005E1CF1 /* PostCoordinator.swift in Sources */,
 				24B579D821F54317008F948D /* TableView+Reusable.swift in Sources */,
 				24B57A1F21F71D88008F948D /* ProfileComponent.swift in Sources */,
 				24B579BA21F541F2008F948D /* FeedConfiguration.swift in Sources */,
@@ -752,6 +778,7 @@
 				246CC8FD21FDBE9000AB8188 /* ChallengeItemComponent.swift in Sources */,
 				245045E521FE74E7005E1CF1 /* FeedRepository.swift in Sources */,
 				24B579F621F6896F008F948D /* CameraViewController.swift in Sources */,
+				2450460121FFE5DF005E1CF1 /* PostDefinitions.swift in Sources */,
 				245045E121FE4C17005E1CF1 /* RoundedActionButton.swift in Sources */,
 				24B57A3721F7EEFB008F948D /* LoginViewController.swift in Sources */,
 				24B57A2621F72116008F948D /* ContainerCollectionViewCell.swift in Sources */,
@@ -767,6 +794,7 @@
 				24B57A4521F7EF52008F948D /* UserRepository.swift in Sources */,
 				24B579E321F5433B008F948D /* UIColor.swift in Sources */,
 				24B579BB21F541F2008F948D /* FeedCoordinator.swift in Sources */,
+				245045FF21FFE5DF005E1CF1 /* PostViewController.swift in Sources */,
 				24B57A3F21F7EF38008F948D /* ApplicationCoordinator.swift in Sources */,
 				24B57A4021F7EF38008F948D /* ApplicationModule.swift in Sources */,
 				245045DF21FE07E8005E1CF1 /* CameraHelpController.swift in Sources */,
