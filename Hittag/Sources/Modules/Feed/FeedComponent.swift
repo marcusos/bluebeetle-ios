@@ -1,9 +1,14 @@
 import UIKit
 import ModuleArchitecture
 
+protocol FeedComponentDelegate: AnyObject {
+    func didLikePost(post: Post)
+}
+
 final class FeedComponent: UIView, Component {
+    weak var delegate: FeedComponentDelegate?
     
-    private var dataSource = TableViewDataSource<ContainerTableViewCell<PostComponent>>() {
+    private var dataSource = TableViewDataSource<ContainerTableViewCell<PostComponent<FeedComponent>>>() {
         didSet {
             self.tableView.dataSource = self.dataSource
             self.tableView.reloadData()
@@ -13,7 +18,7 @@ final class FeedComponent: UIView, Component {
     private let tableView: UITableView = {
         let tableView = UITableView()
         tableView.allowsSelection = false
-        tableView.register(ContainerTableViewCell<PostComponent>.self)
+        tableView.register(ContainerTableViewCell<PostComponent<FeedComponent>>.self)
         return tableView
     }()
     
@@ -28,7 +33,7 @@ final class FeedComponent: UIView, Component {
 extension FeedComponent {
 
     func render(configuration: FeedConfiguration) {
-        self.dataSource = .init(configurations: configuration.postConfigurations)
+        self.dataSource = .init(configurations: configuration.postConfigurations, cellDelegate: self)
     }
 }
 
@@ -52,6 +57,6 @@ extension FeedComponent {
 
 extension FeedComponent: PostComponentDelegate {
     func didLikePost(post: Post) {
-        
+        self.delegate?.didLikePost(post: post)
     }
 }

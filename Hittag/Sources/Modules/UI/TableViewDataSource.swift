@@ -1,17 +1,25 @@
 import UIKit
 import ModuleArchitecture
 
-final class TableViewDataSource<Cell: Component>: NSObject, UITableViewDataSource
+final class TableViewDataSource<Cell: CellComponent>: NSObject, UITableViewDataSource
 where Cell: UITableViewCell {
     
     let configurations: [String: [Cell.Configuration]]
+    weak var cellDelegate: Cell.Delegate?
     
-    init(configurations: [Cell.Configuration] = []) {
+    init(configurations: [Cell.Configuration] = [], cellDelegate: Cell.Delegate? = nil) {
         self.configurations = ["": configurations]
+        self.cellDelegate = cellDelegate
     }
     
-    init(configurations: [String: [Cell.Configuration]]) {
+    init(configurations: [String: [Cell.Configuration]], cellDelegate: Cell.Delegate? = nil) {
         self.configurations = configurations
+        self.cellDelegate = cellDelegate
+    }
+    
+    func delegatedBy(_ delegate: Cell.Delegate?) -> TableViewDataSource<Cell> {
+        self.cellDelegate = delegate
+        return self
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -25,6 +33,7 @@ where Cell: UITableViewCell {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: Cell = tableView.dequeueReusableCell(for: indexPath)
+        cell.delegate = self.cellDelegate
         let key = self.configurations.keys.map { $0 }[indexPath.section]
         guard let configuration = self.configurations[key]?[indexPath.row] else { fatalError() }
         cell.render(configuration: configuration)

@@ -15,20 +15,6 @@ final class AnyComponent: Component {
     }
 }
 
-extension Component where Self: UIView {
-    func asAny() -> AnyComponent {
-        return AnyComponent(component: self)
-    }
-    
-    func asContainerCell() -> ContainerTableViewCell<Self> {
-        return ContainerTableViewCell(view: self)
-    }
-    
-    func asAnyContainerCell() -> AnyComponent {
-        return ContainerTableViewCell(view: self).asAny()
-    }
-}
-
 final class MixedTableViewDataSource: NSObject, UITableViewDataSource {
     private let components: [(AnyComponent, Any)]
     

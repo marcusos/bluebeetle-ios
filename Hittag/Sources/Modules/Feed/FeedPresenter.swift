@@ -44,5 +44,9 @@ final class FeedPresenter: Presenter, FeedPresenterType {
 }
 
 extension FeedPresenter: FeedViewControllerDelegate {
-
+    func didLikePost(post: Post) {
+        self.feedRepository.like(post: post)
+            .subscribe()
+            .disposed(by: self.disposeBag)
+    }
 }

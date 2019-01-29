@@ -13,6 +13,7 @@ public struct User: Codable {
 }
 
 public struct Post: Codable {
+    public let id: String
     public let text: String
     public let image: URL
     public let hashtags: [Hashtag]
@@ -51,8 +52,16 @@ struct PostConfiguration {
     }
 }
 
-final class PostComponent: UIView, Component {
-    weak var delegate: PostComponentDelegate?
+final class SomeComopnent: UIView, CellComponent {
+    weak var delegate: UIView?
+    
+    func render(configuration: String) {
+        
+    }
+}
+
+final class PostComponent<Delegate: PostComponentDelegate>: UIView, CellComponent, UIGestureRecognizerDelegate {
+    weak var delegate: Delegate?
     
     private var configuration: PostConfiguration?
     
@@ -146,6 +155,7 @@ final class PostComponent: UIView, Component {
         if let configuration = self.configuration {
             self.delegate?.didLikePost(post: configuration.post)
         }
+        
         self.likeView.alpha = 1
         UIView.animate(withDuration: 0.6, animations: {
             self.likeView.layoutIfNeeded()
@@ -158,8 +168,4 @@ final class PostComponent: UIView, Component {
             })
         }
     }
-}
-
-extension PostComponent: UIGestureRecognizerDelegate {
-    
 }

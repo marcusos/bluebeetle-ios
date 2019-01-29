@@ -2,13 +2,17 @@ import UIKit
 import ModuleArchitecture
 
 protocol FeedViewControllerDelegate: AnyObject {
-
+    func didLikePost(post: Post)
 }
 
 final class FeedViewController: UIViewController, FeedViewControllerType {
 
     weak var delegate: FeedViewControllerDelegate?
-    private lazy var component = FeedComponent()
+    private lazy var component: FeedComponent = {
+        let component = FeedComponent()
+        component.delegate = self
+        return component
+    }()
     
     override func loadView() {
 
@@ -29,5 +33,11 @@ extension FeedViewController: FeedPresenterView {
     func render(configuration: FeedConfiguration) {
 
         self.component.render(configuration: configuration)
+    }
+}
+
+extension FeedViewController: FeedComponentDelegate {
+    func didLikePost(post: Post) {
+        self.delegate?.didLikePost(post: post)
     }
 }

@@ -1,10 +1,21 @@
 import UIKit
 import ModuleArchitecture
 
-final class ContainerTableViewCell<View: Component>: UITableViewCell, Component
-where View: UIView {
+protocol CellComponent: Component {
+    
+    associatedtype Delegate: AnyObject
+    var delegate: Delegate? { get set }
+}
+
+final class ContainerTableViewCell<View: CellComponent>: UITableViewCell, CellComponent where View: UIView {
     
     let customView: View
+    
+    weak var delegate: View.Delegate? {
+        didSet {
+            self.customView.delegate = self.delegate
+        }
+    }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         self.customView = View()
