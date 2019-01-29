@@ -44,6 +44,10 @@ final class FeedPresenter: Presenter, FeedPresenterType {
 }
 
 extension FeedPresenter: FeedViewControllerDelegate {
+    func onViewDidAppear() {
+        self.coordinator?.detachProfileModule()
+    }
+    
     func didLikePost(post: Post) {
         self.feedRepository.like(post: post)
             .subscribe()

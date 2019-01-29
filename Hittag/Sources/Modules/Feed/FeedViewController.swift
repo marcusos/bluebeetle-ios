@@ -4,6 +4,8 @@ import ModuleArchitecture
 protocol FeedViewControllerDelegate: AnyObject {
     func didLikePost(post: Post)
     func titleButtonTapped(user: User)
+    
+    func onViewDidAppear()
 }
 
 final class FeedViewController: UIViewController, FeedViewControllerType {
@@ -24,6 +26,12 @@ final class FeedViewController: UIViewController, FeedViewControllerType {
 
         super.viewDidLoad()
         self.navigationItem.title = "Hittag"
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        
+        super.viewDidAppear(animated)
+        self.delegate?.onViewDidAppear()
     }
 }
 

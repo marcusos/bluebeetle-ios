@@ -28,6 +28,7 @@ final class ProfilePresenter: Presenter, ProfilePresenterType {
     }
 
     override func start() {
+        self.configuration = ProfileConfiguration(user: self.user, posts: [])
         self.loadData()
     }
     

@@ -14,13 +14,6 @@ final class ProfileViewController: UIViewController, ProfileViewControllerType {
 
         self.view = self.component
     }
-
-    override func viewDidLoad() {
-
-        super.viewDidLoad()
-        self.title = "Perfil"
-        self.navigationItem.title = "Perfil"
-    }
 }
 
 extension ProfileViewController: ProfilePresenterView {
@@ -29,6 +22,7 @@ extension ProfileViewController: ProfilePresenterView {
     // You can change the name for something more contextual if needed.
     func render(configuration: ProfileConfiguration) {
 
+        self.navigationItem.title = configuration.title
         self.component.render(configuration: configuration)
     }
 }

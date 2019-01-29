@@ -22,4 +22,10 @@ final class FeedCoordinator: Coordinator<FeedPresenterType>, FeedCoordinatorType
         self.profileCoordinator = coordinator
         coordinator.start()
     }
+    
+    func detachProfileModule() {
+        if let coordinator = self.profileCoordinator {
+            self.detach(coordinator)
+        }
+    }
 }
