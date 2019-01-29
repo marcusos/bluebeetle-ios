@@ -7,9 +7,10 @@ protocol FeedComponentDelegate: AnyObject {
 }
 
 final class FeedComponent: UIView, Component {
-    weak var delegate: FeedComponentDelegate?
+    private unowned let viewController: UIViewController
+    private weak var listener: PostPresenterDelegate?
     
-    private var dataSource = TableViewDataSource<ContainerTableViewCell<PostComponent<FeedComponent>>>() {
+    private var dataSource: PostModuleDataSource {
         didSet {
             self.tableView.dataSource = self.dataSource
             self.tableView.reloadData()
@@ -19,11 +20,16 @@ final class FeedComponent: UIView, Component {
     private let tableView: UITableView = {
         let tableView = UITableView()
         tableView.allowsSelection = false
-        tableView.register(ContainerTableViewCell<PostComponent<FeedComponent>>.self)
+        tableView.register(PostModuleCell.self)
         return tableView
     }()
     
-    init() {
+    init(listener: PostPresenterDelegate?, viewController: UIViewController) {
+        self.viewController = viewController
+        self.listener = listener
+        self.dataSource = PostModuleDataSource(posts: [],
+                                               listener: listener,
+                                               viewController: viewController)
         super.init(frame: .zero)
         self.customizeInterface()
     }
@@ -34,7 +40,9 @@ final class FeedComponent: UIView, Component {
 extension FeedComponent {
 
     func render(configuration: FeedConfiguration) {
-        self.dataSource = .init(configurations: configuration.postConfigurations, cellDelegate: self)
+        self.dataSource = PostModuleDataSource(posts: configuration.posts,
+                                               listener: self.listener,
+                                               viewController: self.viewController)
     }
 }
 
@@ -53,15 +61,5 @@ extension FeedComponent {
 
     private func defineSubviewsConstraints() {
         self.tableView.makeEdgesEqualToSuperview()
-    }
-}
-
-extension FeedComponent: PostComponentDelegate {
-    func didLikePost(post: Post) {
-        self.delegate?.didLikePost(post: post)
-    }
-    
-    func titleButtonTapped(user: User) {
-        self.delegate?.titleButtonTapped(user: user)
     }
 }

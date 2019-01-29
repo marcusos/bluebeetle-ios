@@ -4,7 +4,6 @@ import Parse
 protocol FeedRepositoryType {
     func post(parameters: PostParameters) -> Completable
     func feed() -> Observable<[Post]>
-    func like(post: Post) -> Completable
 }
 
 final class FeedRepository: FeedRepositoryType {
@@ -42,30 +41,6 @@ final class FeedRepository: FeedRepositoryType {
         postObject["user_image"] = currentUser.facebookInfo?.image.absoluteString ?? ""
         return postObject.rx.saveInBackground()
             .do(onCompleted: { self.refreshTrigger.onNext(()) })
-    }
-    
-    func like(post: Post) -> Completable {
-        return Completable.create { emitter -> Disposable in
-            let query = PFQuery(className: "Post")
-            query.fromLocalDatastore()
-            do {
-                let pfPost = try query.getObjectWithId(post.id)
-                pfPost.incrementKey("number_of_likes")
-                pfPost.saveInBackground { (success, error) in
-                    if let error = error {
-                        emitter(.error(error))
-                    } else if success {
-                        emitter(.completed)
-                    } else {
-                        emitter(.error(RxError.unknown))
-                    }
-                }
-            } catch {
-                emitter(.error(RxError.unknown))
-            }
-            
-            return Disposables.create {}
-        }
     }
     
     private func requestFeed(cached: Bool) -> Single<[Post]> {

@@ -17,11 +17,6 @@ where Cell: UITableViewCell {
         self.cellDelegate = cellDelegate
     }
     
-    func delegatedBy(_ delegate: Cell.Delegate?) -> TableViewDataSource<Cell> {
-        self.cellDelegate = delegate
-        return self
-    }
-    
     func numberOfSections(in tableView: UITableView) -> Int {
         return self.configurations.keys.count
     }

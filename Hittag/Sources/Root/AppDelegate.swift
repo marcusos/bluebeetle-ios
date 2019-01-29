@@ -17,12 +17,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let window = UIWindow()
         let feedRepository = FeedRepository()
-        let homeModule = TabModule(feedModule: FeedModule(profileModule: ProfileModule(postModule: PostModule(),
+        let homeModule = TabModule(feedModule: FeedModule(profileModule: ProfileModule(postModule: PostModule(postRepository: PostRepository()),
                                                                                        userRepository: UserRepository()),
                                                           feedRepository: feedRepository),
                                    cameraModule: CameraModule(challengeRepository: ChallengeRepository()),
                                    cameraTabModule: CameraTabModule(),
-                                   profileModule: ProfileModule(postModule: PostModule(),
+                                   profileModule: ProfileModule(postModule: PostModule(postRepository: PostRepository()),
                                                                 userRepository: UserRepository()),
                                    feedRepository: feedRepository)
         let rootModule = ApplicationModule(homeModule: homeModule,

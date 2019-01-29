@@ -13,13 +13,21 @@ public struct User: Codable {
     public let image: URL?
 }
 
-public struct Post: Codable {
+public struct Post: Codable, Hashable {
     public let id: String
     public let text: String
     public let image: URL
     public let hashtags: [Hashtag]
     public let user: User
     public let numberOfLikes: Int
+    
+    public var hashValue: Int {
+        return self.id.hashValue
+    }
+    
+    public static func ==(lhs: Post, rhs: Post) -> Bool {
+        return lhs.id == rhs.id
+    }
 }
 
 struct PostParameters: Codable {

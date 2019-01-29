@@ -14,7 +14,7 @@ final class FeedPresenter: Presenter, FeedPresenterType {
     private let disposeBag = DisposeBag()
     private let feedRepository: FeedRepositoryType
     
-    private var configuration = FeedConfiguration(postConfigurations: []) {
+    private var configuration = FeedConfiguration(posts: []) {
         didSet {
             self.viewController?.render(configuration: self.configuration)
         }
@@ -36,25 +36,21 @@ final class FeedPresenter: Presenter, FeedPresenterType {
     private func handleFeedEvent(_ event: Event<[Post]>) {
         switch event {
         case .next(let posts):
-            self.configuration = self.configuration.with(postConfigurations: posts.map(PostConfiguration.init))
+            self.configuration = self.configuration.with(posts: posts)
         case .completed, .error:
             break
         }
     }
 }
 
+extension FeedPresenter: PostPresenterDelegate {
+    func attachProfileModule(user: User) {
+        self.coordinator?.attachProfileModule(user: user)
+    }
+}
+
 extension FeedPresenter: FeedViewControllerDelegate {
     func onViewDidAppear() {
         self.coordinator?.detachProfileModule()
-    }
-    
-    func didLikePost(post: Post) {
-        self.feedRepository.like(post: post)
-            .subscribe()
-            .disposed(by: self.disposeBag)
-    }
-    
-    func titleButtonTapped(user: User) {
-        self.coordinator?.attachProfileModule(user: user)
     }
 }

@@ -60,3 +60,9 @@ extension ProfilePresenter: ProfileViewControllerDelegate {
         self.coordinator?.attachPostModule(post: post)
     }
 }
+
+extension ProfilePresenter: PostPresenterDelegate {
+    func attachProfileModule(user: User) {
+        
+    }
+}

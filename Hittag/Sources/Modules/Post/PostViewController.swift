@@ -2,13 +2,18 @@ import UIKit
 import ModuleArchitecture
 
 protocol PostViewControllerDelegate: AnyObject {
-
+    func didLikePost(post: Post)
+    func titleButtonTapped(user: User)
 }
 
 final class PostViewController: UIViewController, PostViewControllerType {
 
     weak var delegate: PostViewControllerDelegate?
-    private lazy var component = PostComponent<PostViewController>()
+    private lazy var component: PostComponent<PostViewController> = {
+        let component = PostComponent<PostViewController>()
+        component.delegate = self
+        return component
+    }()
 
     override func loadView() {
 
@@ -33,10 +38,10 @@ extension PostViewController: PostPresenterView {
 
 extension PostViewController: PostComponentDelegate {
     func didLikePost(post: Post) {
-        
+        self.delegate?.didLikePost(post: post)
     }
     
     func titleButtonTapped(user: User) {
-        
+        self.delegate?.titleButtonTapped(user: user)
     }
 }

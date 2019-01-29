@@ -13,7 +13,7 @@ protocol ProfileCoordinatorType: ViewableCoordinatorType {
     func detachPostModule()
 }
 
-protocol ProfilePresenterType: PresenterType {
+protocol ProfilePresenterType: PresenterType, PostPresenterDelegate {
 
     var delegate: ProfilePresenterDelegate? { get set }
 }
