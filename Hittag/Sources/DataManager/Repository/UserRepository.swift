@@ -2,6 +2,7 @@ import RxSwift
 import Parse
 
 public protocol UserRepositoryType {
+    func current() -> Single<PFUser>
     func posts(user: User) -> Observable<[Post]>
 }
 
@@ -14,6 +15,15 @@ final class UserRepository: UserRepositoryType {
                 let live = self.requestPosts(cached: false, user: user)
                 return cached.asObservable()
                     .concat(live)
+        }
+    }
+    
+    func current() -> Single<PFUser> {
+        return Single.deferred {
+            if let current = PFUser.current() {
+                return Single.just(current)
+            }
+            return Single.error(RxError.unknown)
         }
     }
     
