@@ -28,44 +28,38 @@ final class PostRepository: PostRepositoryType {
     }
     
     private func getPost(postId: PostId) -> Observable<Post> {
+        return self.getRawPost(postId: postId)
+            .map { Post(pfObject: $0) }
+            .filter { $0 != nil }
+            .map { $0! }
+    }
+    
+    private func getRawPost(postId: PostId) -> Observable<PFObject> {
         return Observable.create { emitter -> Disposable in
             let query = PFQuery(className: "Post")
             query.fromLocalDatastore()
-            do {
-                let pfPost = try query.getObjectWithId(postId)
-                if let post = Post(pfObject: pfPost) {
-                    emitter.on(.next(post))
+            query.whereKey("objectId", equalTo: postId)
+            query.findObjectsInBackground { (values, error) in
+                if let first = values?.first {
+                    emitter.on(.next(first))
+                } else if let error = error {
+                    emitter.on(.error(error))
                 } else {
                     emitter.on(.error(RxError.unknown))
                 }
-            } catch {
-                emitter.on(.error(RxError.unknown))
             }
-            
             return Disposables.create {}
         }
     }
     
     private func update(postId: PostId, for user: PFUser) -> Observable<Post> {
-        return Observable.create { emitter -> Disposable in
-            let query = PFQuery(className: "Post")
-            query.fromLocalDatastore()
-            do {
-                let pfPost = try query.getObjectWithId(postId)
+        return self.getRawPost(postId: postId)
+            .flatMap { pfPost -> Observable<Post> in
                 var likes = Set(pfPost["likes"] as? [PFObject] ?? [])
                 likes.insert(user)
                 pfPost["likes"] = Array(likes)
                 pfPost.saveEventually()
-                if let updated = Post(pfObject: pfPost) {
-                    emitter.on(.next(updated))
-                } else {
-                    emitter.on(.error(RxError.unknown))
-                }
-            } catch {
-                emitter.on(.error(RxError.unknown))
-            }
-            
-            return Disposables.create {}
+                return Observable.just(Post(pfObject: pfPost)!)
         }
     }
 }

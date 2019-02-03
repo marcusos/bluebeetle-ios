@@ -38,7 +38,7 @@ final class UserRepository: UserRepositoryType {
                     emitter(.error(RxError.unknown))
                 }
             }
-            return Disposables.create {}
+            return Disposables.create()
         }
     }
     
