@@ -26,10 +26,24 @@ extension DataContainer: ContainerType {
 
 extension DataContainer {
     private func registerDependencies(configuration: DataContainerConfiguration) {
-        self.container.register { FeedRepository() }.as(FeedRepositoryType.self)
-        self.container.register { UserRepository() }.as(UserRepositoryType.self)
-        self.container.register { PostRepository() }.as(PostRepositoryType.self)
-        self.container.register { AuthRepository() }.as(AuthRepositoryType.self)
-        self.container.register { ChallengeRepository() }.as(ChallengeRepositoryType.self)
+        self.container.register(scope: .singleton, {
+            FeedRepository()
+        }).as(FeedRepositoryType.self)
+        
+        self.container.register(scope: .singleton, {
+            UserRepository()
+        }).as(UserRepositoryType.self)
+        
+        self.container.register({
+            PostRepository()
+        }).as(PostRepositoryType.self)
+        
+        self.container.register({
+            AuthRepository()
+        }).as(AuthRepositoryType.self)
+        
+        self.container.register({
+            ChallengeRepository()
+        }).as(ChallengeRepositoryType.self)
     }
 }
