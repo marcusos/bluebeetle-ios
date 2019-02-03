@@ -12,7 +12,8 @@ final class PostPresenter: Presenter, PostPresenterType {
 
     private var postId: PostId
     private let postRepository: PostRepositoryType
-    private let disposeBag = DisposeBag()
+    private var postLikeDisposable: Disposable?
+    private var postListenerDisposable: Disposable?
     
     init(postId: String, postRepository: PostRepositoryType) {
         self.postId = postId
@@ -29,14 +30,19 @@ final class PostPresenter: Presenter, PostPresenterType {
     }
     
     private func listenTo(postId: PostId) {
-        self.postRepository.listenTo(postId: postId)
+        self.postListenerDisposable?.dispose()
+        self.postListenerDisposable = self.postRepository
+            .listenTo(postId: postId)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] post in
                 guard let weakSelf = self else { return }
                 weakSelf.postId = post.id
                 weakSelf.viewController?.render(configuration: PostConfiguration(post: post))
             })
-            .disposed(by: self.disposeBag)
+    }
+    
+    deinit {
+        self.postListenerDisposable?.dispose()
     }
 }
 
@@ -46,13 +52,14 @@ extension PostPresenter: PostViewControllerDelegate {
     }
     
     func didLikePost(post: Post) {
-        self.postRepository.like(postId: post.id)
+        self.postLikeDisposable?.dispose()
+        self.postLikeDisposable = self.postRepository
+            .like(postId: post.id)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] post in
                 guard let weakSelf = self else { return }
                 weakSelf.postId = post.id
                 weakSelf.viewController?.render(configuration: PostConfiguration(post: post))
             })
-            .disposed(by: self.disposeBag)
     }
 }
