@@ -3,16 +3,20 @@ import ModuleArchitecture
 final class FeedModule: Module, FeedModuleType {
 
     private let profileModule: ProfileModuleType
+    private let postModule: PostModuleType
     private let feedRepository: FeedRepositoryType
     
-    init(profileModule: ProfileModuleType, feedRepository: FeedRepositoryType) {
+    init(profileModule: ProfileModuleType,
+         postModule: PostModuleType,
+         feedRepository: FeedRepositoryType) {
         self.profileModule = profileModule
+        self.postModule = postModule
         self.feedRepository = feedRepository
     }
     
     func createCoordinator() -> FeedCoordinatorType {
 
-        let presenter = FeedPresenter(feedRepository: self.feedRepository)
+        let presenter = FeedPresenter(postModule: self.postModule, feedRepository: self.feedRepository)
         let viewController = FeedViewController()
         let coordinator = FeedCoordinator(profileModule: self.profileModule,
                                           presenter: presenter,

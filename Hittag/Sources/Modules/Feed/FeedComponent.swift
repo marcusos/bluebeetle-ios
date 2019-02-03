@@ -10,7 +10,7 @@ final class FeedComponent: UIView, Component {
     private unowned let viewController: UIViewController
     private weak var listener: PostPresenterDelegate?
     
-    private var dataSource: PostModuleDataSource {
+    private var dataSource: PostModuleDataSource? {
         didSet {
             self.tableView.dataSource = self.dataSource
             self.tableView.reloadData()
@@ -27,9 +27,6 @@ final class FeedComponent: UIView, Component {
     init(listener: PostPresenterDelegate?, viewController: UIViewController) {
         self.viewController = viewController
         self.listener = listener
-        self.dataSource = PostModuleDataSource(posts: [],
-                                               listener: listener,
-                                               viewController: viewController)
         super.init(frame: .zero)
         self.customizeInterface()
     }
@@ -40,9 +37,7 @@ final class FeedComponent: UIView, Component {
 extension FeedComponent {
 
     func render(configuration: FeedConfiguration) {
-        self.dataSource = PostModuleDataSource(posts: configuration.posts,
-                                               listener: self.listener,
-                                               viewController: self.viewController)
+        self.dataSource = configuration.dataSource
     }
 }
 

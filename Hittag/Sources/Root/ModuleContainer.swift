@@ -45,7 +45,7 @@ extension ModuleContainer {
         }).as(TabModuleType.self)
         
         self.container.register({
-            FeedModule(profileModule: $0, feedRepository: dataContainer.resolve())
+            FeedModule(profileModule: $0, postModule: $1, feedRepository: dataContainer.resolve())
         }).as(FeedModuleType.self)
         
         self.container.register({

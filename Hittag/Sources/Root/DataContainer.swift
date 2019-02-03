@@ -35,7 +35,7 @@ extension DataContainer {
         }).as(UserRepositoryType.self)
         
         self.container.register({
-            PostRepository()
+            PostRepository(userRepository: $0)
         }).as(PostRepositoryType.self)
         
         self.container.register({

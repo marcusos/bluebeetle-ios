@@ -2,11 +2,13 @@ import UIKit
 import ModuleArchitecture
 
 final class PostModuleDataSource: NSObject, UITableViewDataSource {
+    let postModule: PostModuleType
     let posts: [Post]
     private let viewController: UIViewController
     private weak var listener: PostPresenterDelegate?
     
-    init(posts: [Post], listener: PostPresenterDelegate?, viewController: UIViewController) {
+    init(postModule: PostModuleType, posts: [Post], listener: PostPresenterDelegate?, viewController: UIViewController) {
+        self.postModule = postModule
         self.posts = posts
         self.listener = listener
         self.viewController = viewController
@@ -19,13 +21,15 @@ final class PostModuleDataSource: NSObject, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: PostModuleCell = tableView.dequeueReusableCell(for: indexPath)
         let post = self.posts[indexPath.row]
-        cell.set(post: post, listener: self.listener, parent: self.viewController)
+        cell.set(postModule: self.postModule,
+                 post: post,
+                 listener: self.listener,
+                 parent: self.viewController)
         return cell
     }
 }
 
 final class PostModuleCell: UITableViewCell {
-    private let postModule = PostModule(postRepository: PostRepository())
     private var coordinator: PostCoordinatorType?
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -36,10 +40,10 @@ final class PostModuleCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func set(post: Post, listener: PostPresenterDelegate?, parent: UIViewController) {
+    func set(postModule: PostModuleType, post: Post, listener: PostPresenterDelegate?, parent: UIViewController) {
         guard let listener = listener else { return }
         
-        let coordinator = self.postModule.createCoordinator(cell: self, post: post, listener: listener)
+        let coordinator = postModule.createCoordinator(cell: self, post: post, listener: listener)
         if coordinator === self.coordinator {
             self.coordinator?.load(post: post); return
         }
