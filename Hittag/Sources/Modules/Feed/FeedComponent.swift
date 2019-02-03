@@ -10,7 +10,7 @@ final class FeedComponent: UIView, Component {
     private unowned let viewController: UIViewController
     private weak var listener: PostPresenterDelegate?
     
-    private var dataSource: PostModuleDataSource? {
+    private var dataSource: UITableViewDataSource? {
         didSet {
             self.tableView.dataSource = self.dataSource
             self.tableView.reloadData()

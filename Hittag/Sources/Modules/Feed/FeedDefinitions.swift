@@ -11,9 +11,10 @@ protocol FeedCoordinatorType: ViewableCoordinatorType {
 
     func attachProfileModule(user: User)
     func detachProfileModule()
+    func dataSourceFor(posts: [Post]) -> UITableViewDataSource
 }
 
-protocol FeedPresenterType: PresenterType {
+protocol FeedPresenterType: PresenterType, PostPresenterDelegate {
 
     var delegate: FeedPresenterDelegate? { get set }
 }

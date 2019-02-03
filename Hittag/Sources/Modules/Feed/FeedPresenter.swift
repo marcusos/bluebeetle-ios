@@ -11,7 +11,6 @@ final class FeedPresenter: Presenter, FeedPresenterType {
     weak var viewController: FeedPresenterView?
     weak var delegate: FeedPresenterDelegate?
     
-    private let postModule: PostModuleType
     private let disposeBag = DisposeBag()
     private let feedRepository: FeedRepositoryType
     private var dataSource: PostModuleDataSource?
@@ -22,8 +21,7 @@ final class FeedPresenter: Presenter, FeedPresenterType {
         }
     }
     
-    init(postModule: PostModuleType, feedRepository: FeedRepositoryType) {
-        self.postModule = postModule
+    init(feedRepository: FeedRepositoryType) {
         self.feedRepository = feedRepository
     }
 
@@ -39,11 +37,7 @@ final class FeedPresenter: Presenter, FeedPresenterType {
     private func handleFeedEvent(_ event: Event<[Post]>) {
         switch event {
         case .next(let posts):
-            if let viewController = self.viewController as? UIViewController {
-                let dataSource = PostModuleDataSource(postModule: self.postModule,
-                                                      posts: posts,
-                                                      listener: self,
-                                                      viewController: viewController)
+            if let dataSource = self.coordinator?.dataSourceFor(posts: posts) {
                 self.configuration = self.configuration.with(dataSource: dataSource)
             }
         case .completed, .error:

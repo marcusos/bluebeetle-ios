@@ -16,9 +16,10 @@ final class FeedModule: Module, FeedModuleType {
     
     func createCoordinator() -> FeedCoordinatorType {
 
-        let presenter = FeedPresenter(postModule: self.postModule, feedRepository: self.feedRepository)
+        let presenter = FeedPresenter(feedRepository: self.feedRepository)
         let viewController = FeedViewController()
         let coordinator = FeedCoordinator(profileModule: self.profileModule,
+                                          postModule: self.postModule,
                                           presenter: presenter,
                                           viewController: viewController)
         viewController.delegate = presenter
