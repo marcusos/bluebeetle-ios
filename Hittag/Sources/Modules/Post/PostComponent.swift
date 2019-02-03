@@ -13,6 +13,8 @@ public struct User: Codable {
     public let image: URL?
 }
 
+public typealias PostId = String
+
 public struct Post: Codable, Hashable {
     public let id: String
     public let text: String

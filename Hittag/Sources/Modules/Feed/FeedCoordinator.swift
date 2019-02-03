@@ -25,9 +25,9 @@ final class FeedCoordinator: Coordinator<FeedPresenterType>, FeedCoordinatorType
         dataSource.cellForRowAtIndexPath = { tableView, indexPath, post in
             let cell: FeedCell = tableView.dequeueReusableCell(for: indexPath)
             if let coordinator = cell.coordinator {
-                coordinator.load(post: post)
+                coordinator.load(postId: post.id)
             } else {
-                let coordinator = self.postModule.createCoordinator(post: post, listener: self.presenter)
+                let coordinator = self.postModule.createCoordinator(postId: post.id, listener: self.presenter)
                 let parent = self.viewController.asViewController()
                 let viewController = coordinator.viewController.asViewController()
                 viewController.willMove(toParent: parent)

@@ -8,10 +8,10 @@ final class PostModule: Module, PostModuleType {
         self.postRepository = postRepository
     }
     
-    func createCoordinator(post: Post,
-                           listener: PostPresenterDelegate?) -> PostCoordinatorType {
+    func createCoordinator(postId: PostId,
+                           listener: PostPresenterDelegate) -> PostCoordinatorType {
         
-        let presenter = PostPresenter(post: post, postRepository: self.postRepository)
+        let presenter = PostPresenter(postId: postId, postRepository: self.postRepository)
         let viewController = PostViewController()
         let coordinator = PostCoordinator(presenter: presenter, viewController: viewController)
         viewController.delegate = presenter

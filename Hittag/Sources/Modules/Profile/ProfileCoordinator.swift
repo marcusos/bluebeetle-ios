@@ -15,7 +15,7 @@ final class ProfileCoordinator: Coordinator<ProfilePresenterType>, ProfileCoordi
     }
     
     func attachPostModule(post: Post) {
-        let coordinator = self.postModule.createCoordinator(post: post, listener: self.presenter)
+        let coordinator = self.postModule.createCoordinator(postId: post.id, listener: self.presenter)
         let navigationController = self.viewController.asViewController().navigationController
         navigationController?.pushViewController(coordinator.viewController, animated: true)
         self.attach(coordinator)

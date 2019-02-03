@@ -26,7 +26,7 @@ extension DataContainer: ContainerType {
 
 extension DataContainer {
     private func registerDependencies(configuration: DataContainerConfiguration) {
-        self.container.register(scope: .singleton, {
+        self.container.register({
             FeedRepository()
         }).as(FeedRepositoryType.self)
         
@@ -34,7 +34,7 @@ extension DataContainer {
             UserRepository()
         }).as(UserRepositoryType.self)
         
-        self.container.register({
+        self.container.register(scope: .singleton, {
             PostRepository(userRepository: $0)
         }).as(PostRepositoryType.self)
         

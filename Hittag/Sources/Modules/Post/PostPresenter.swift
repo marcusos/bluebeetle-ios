@@ -6,27 +6,37 @@ protocol PostPresenterDelegate: AnyObject {
 }
 
 final class PostPresenter: Presenter, PostPresenterType {
-
     weak var coordinator: PostCoordinatorType?
     weak var viewController: PostPresenterView?
     weak var delegate: PostPresenterDelegate?
 
-    private var post: Post
+    private var postId: PostId
     private let postRepository: PostRepositoryType
     private let disposeBag = DisposeBag()
     
-    init(post: Post, postRepository: PostRepositoryType) {
-        self.post = post
+    init(postId: String, postRepository: PostRepositoryType) {
+        self.postId = postId
         self.postRepository = postRepository
     }
     
     override func start() {
-        self.viewController?.render(configuration: PostConfiguration(post: self.post))
+        self.listenTo(postId: self.postId)
     }
     
-    func load(post: Post) {
-        self.post = post
-        self.viewController?.render(configuration: PostConfiguration(post: self.post))
+    func load(postId: PostId) {
+        self.postId = postId
+        self.listenTo(postId: self.postId)
+    }
+    
+    private func listenTo(postId: PostId) {
+        self.postRepository.listenTo(postId: postId)
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { [weak self] post in
+                guard let weakSelf = self else { return }
+                weakSelf.postId = post.id
+                weakSelf.viewController?.render(configuration: PostConfiguration(post: post))
+            })
+            .disposed(by: self.disposeBag)
     }
 }
 
@@ -36,10 +46,12 @@ extension PostPresenter: PostViewControllerDelegate {
     }
     
     func didLikePost(post: Post) {
-        self.postRepository.like(post: post)
+        self.postRepository.like(postId: post.id)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] post in
-                self?.load(post: post)
+                guard let weakSelf = self else { return }
+                weakSelf.postId = post.id
+                weakSelf.viewController?.render(configuration: PostConfiguration(post: post))
             })
             .disposed(by: self.disposeBag)
     }
