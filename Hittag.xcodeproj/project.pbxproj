@@ -32,6 +32,9 @@
 		246CC8FD21FDBE9000AB8188 /* ChallengeItemComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246CC8FC21FDBE9000AB8188 /* ChallengeItemComponent.swift */; };
 		246CC8FF21FDC15D00AB8188 /* ChallengeComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246CC8FE21FDC15D00AB8188 /* ChallengeComponent.swift */; };
 		246CC90121FDC6FF00AB8188 /* View.xib in Resources */ = {isa = PBXBuildFile; fileRef = 246CC90021FDC6FF00AB8188 /* View.xib */; };
+		2474EF9C22075154005C7A05 /* DataContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2474EF9B22075154005C7A05 /* DataContainer.swift */; };
+		2474EF9E220751B0005C7A05 /* ContainerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2474EF9D220751B0005C7A05 /* ContainerType.swift */; };
+		2474EFA0220751DB005C7A05 /* ModuleContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2474EF9F220751DB005C7A05 /* ModuleContainer.swift */; };
 		24B5799A21F53FA1008F948D /* HittagTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B5799921F53FA1008F948D /* HittagTests.swift */; };
 		24B579AD21F5400A008F948D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B579A621F5400A008F948D /* AppDelegate.swift */; };
 		24B579AE21F5400A008F948D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24B579A821F5400A008F948D /* Assets.xcassets */; };
@@ -138,6 +141,9 @@
 		246CC8FC21FDBE9000AB8188 /* ChallengeItemComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeItemComponent.swift; sourceTree = "<group>"; };
 		246CC8FE21FDC15D00AB8188 /* ChallengeComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeComponent.swift; sourceTree = "<group>"; };
 		246CC90021FDC6FF00AB8188 /* View.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = View.xib; sourceTree = "<group>"; };
+		2474EF9B22075154005C7A05 /* DataContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataContainer.swift; sourceTree = "<group>"; };
+		2474EF9D220751B0005C7A05 /* ContainerType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerType.swift; sourceTree = "<group>"; };
+		2474EF9F220751DB005C7A05 /* ModuleContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleContainer.swift; sourceTree = "<group>"; };
 		24B5798121F53FA0008F948D /* Hittag.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hittag.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		24B5799521F53FA1008F948D /* HittagTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HittagTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		24B5799921F53FA1008F948D /* HittagTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HittagTests.swift; sourceTree = "<group>"; };
@@ -334,6 +340,9 @@
 			isa = PBXGroup;
 			children = (
 				24B579A621F5400A008F948D /* AppDelegate.swift */,
+				2474EF9D220751B0005C7A05 /* ContainerType.swift */,
+				2474EF9B22075154005C7A05 /* DataContainer.swift */,
+				2474EF9F220751DB005C7A05 /* ModuleContainer.swift */,
 			);
 			path = Root;
 			sourceTree = "<group>";
@@ -765,12 +774,14 @@
 				24B579E521F543B6008F948D /* PostComponent.swift in Sources */,
 				24B57A4721F7F5FB008F948D /* UIViewController.swift in Sources */,
 				24B57A2421F71F08008F948D /* DesignSystem.swift in Sources */,
+				2474EF9C22075154005C7A05 /* DataContainer.swift in Sources */,
 				245045FE21FFE5DF005E1CF1 /* PostPresenter.swift in Sources */,
 				24B579E121F54317008F948D /* UIEdgeInsets.swift in Sources */,
 				24B57A0621F68EE5008F948D /* TabCoordinator.swift in Sources */,
 				24B579FA21F689AE008F948D /* CameraDevice.swift in Sources */,
 				24B579BF21F541F2008F948D /* FeedComponent.swift in Sources */,
 				2450640821F9C75D00009F9E /* CameraTabViewController.swift in Sources */,
+				2474EF9E220751B0005C7A05 /* ContainerType.swift in Sources */,
 				245045FC21FFE5DF005E1CF1 /* PostCoordinator.swift in Sources */,
 				24B579D821F54317008F948D /* TableView+Reusable.swift in Sources */,
 				24B57A1F21F71D88008F948D /* ProfileComponent.swift in Sources */,
@@ -795,6 +806,7 @@
 				24B57A0521F68EE5008F948D /* TabConfiguration.swift in Sources */,
 				24B579DE21F54317008F948D /* MixedTableViewDataSource.swift in Sources */,
 				24B57A2221F71DF7008F948D /* ImageWithTitleAndSubtitle.swift in Sources */,
+				2474EFA0220751DB005C7A05 /* ModuleContainer.swift in Sources */,
 				24B57A0B21F68EE5008F948D /* TabDefinitions.swift in Sources */,
 				245045E721FE757F005E1CF1 /* Parse+Reactive.swift in Sources */,
 				24B57A3421F7EEFB008F948D /* LoginCoordinator.swift in Sources */,

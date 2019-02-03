@@ -8,6 +8,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     private var rootCoordinator: CoordinatorType?
+    private var container: ContainerType?
     
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -16,21 +17,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.setupFacebook(application, launchOptions: launchOptions)
         
         let window = UIWindow()
-        let feedRepository = FeedRepository()
-        let homeModule = TabModule(feedModule: FeedModule(profileModule: ProfileModule(postModule: PostModule(postRepository: PostRepository()),
-                                                                                       userRepository: UserRepository()),
-                                                          feedRepository: feedRepository),
-                                   cameraModule: CameraModule(challengeRepository: ChallengeRepository()),
-                                   cameraTabModule: CameraTabModule(),
-                                   profileModule: ProfileModule(postModule: PostModule(postRepository: PostRepository()),
-                                                                userRepository: UserRepository()),
-                                   feedRepository: feedRepository)
-        let rootModule = ApplicationModule(homeModule: homeModule,
-                                           loginModule: LoginModule(authRepository: AuthRepository()),
-                                           authRepository: AuthRepository())
+        
+        let dataContainerConfiguration = DataContainerConfiguration()
+        let dataContainer = DataContainer(configuration: dataContainerConfiguration)
+        let moduleConfiguration = ModuleContainerConfiguration(dataContainer: dataContainer)
+        let moduleContainer = ModuleContainer(configuration: moduleConfiguration)
+        let rootModule = moduleContainer.resolve() as ApplicationModuleType
         let rootCoordinator = rootModule.createCoordinator(window: window)
         rootCoordinator.start()
+        
         self.window = window
+        self.container = moduleContainer
         self.rootCoordinator = rootCoordinator
         return true
     }
