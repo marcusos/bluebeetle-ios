@@ -13,7 +13,6 @@ final class FeedPresenter: Presenter, FeedPresenterType {
     
     private let disposeBag = DisposeBag()
     private let feedRepository: FeedRepositoryType
-    private var dataSource: PostModuleDataSource?
     
     private var configuration = FeedConfiguration() {
         didSet {

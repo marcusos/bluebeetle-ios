@@ -20,10 +20,32 @@ final class FeedCoordinator: Coordinator<FeedPresenterType>, FeedCoordinatorType
     }
     
     func dataSourceFor(posts: [Post]) -> UITableViewDataSource {
-        return PostModuleDataSource(postModule: self.postModule,
-                                    posts: posts,
-                                    listener: self.presenter,
-                                    viewController: self.viewController.asViewController())
+        let dataSource = BlockTableViewDataSource()
+        
+        dataSource.numberOfRowsInSection = { _ in
+            return posts.count
+        }
+        
+        dataSource.cellForRowAtIndexPath = { tableView, indexPath in
+            let cell: PostModuleCell = tableView.dequeueReusableCell(for: indexPath)
+            let post = posts[indexPath.row]
+            
+            if let coordinator = cell.coordinator {
+                coordinator.load(post: post)
+            } else {
+                let coordinator = self.postModule.createCoordinator(cell: cell, post: post, listener: self.presenter)
+                let parent = self.viewController.asViewController()
+                let viewController = coordinator.viewController.asViewController()
+                viewController.willMove(toParent: parent)
+                cell.addSubview(viewController.view)
+                parent.addChild(viewController)
+                viewController.view.makeEdgesEqualToSuperview()
+                coordinator.start()
+                cell.coordinator = coordinator
+            }
+            return cell
+        }
+        return dataSource
     }
     
     func attachProfileModule(user: User) {
@@ -39,5 +61,18 @@ final class FeedCoordinator: Coordinator<FeedPresenterType>, FeedCoordinatorType
         if let coordinator = self.profileCoordinator {
             self.detach(coordinator)
         }
+    }
+}
+
+class BlockTableViewDataSource: NSObject, UITableViewDataSource {
+    var numberOfRowsInSection: (Int) -> Int = { _ in return 1 }
+    var cellForRowAtIndexPath: (UITableView, IndexPath) -> UITableViewCell = { _, _ in return UITableViewCell() }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.numberOfRowsInSection(section)
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        return self.cellForRowAtIndexPath(tableView, indexPath)
     }
 }
