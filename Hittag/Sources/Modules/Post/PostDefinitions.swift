@@ -6,10 +6,6 @@ protocol PostModuleType: ModuleType {
 
     func createCoordinator(post: Post,
                            listener: PostPresenterDelegate?) -> PostCoordinatorType
-    
-    func createCoordinator(cell: PostModuleCell,
-                           post: Post,
-                           listener: PostPresenterDelegate?) -> PostCoordinatorType
 }
 
 protocol PostCoordinatorType: ViewableCoordinatorType {

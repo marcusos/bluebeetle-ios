@@ -1,6 +1,6 @@
 import UIKit
 import ModuleArchitecture
 
-final class PostModuleCell: UITableViewCell {
+final class FeedCell: UITableViewCell {
     var coordinator: PostCoordinatorType?
 }
