@@ -21,39 +21,25 @@ final class PostModuleDataSource: NSObject, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: PostModuleCell = tableView.dequeueReusableCell(for: indexPath)
         let post = self.posts[indexPath.row]
-        cell.set(postModule: self.postModule,
-                 post: post,
-                 listener: self.listener,
-                 parent: self.viewController)
+        
+        if let coordinator = cell.coordinator {
+            coordinator.load(post: post)
+        } else {
+            let coordinator = self.postModule.createCoordinator(cell: cell, post: post, listener: self.listener)
+            let parent = self.viewController
+            let viewController = coordinator.viewController.asViewController()
+            viewController.willMove(toParent: parent)
+            cell.addSubview(viewController.view)
+            parent.addChild(viewController)
+            viewController.view.makeEdgesEqualToSuperview()
+            coordinator.start()
+            cell.coordinator = coordinator
+        }
+        
         return cell
     }
 }
 
 final class PostModuleCell: UITableViewCell {
-    private var coordinator: PostCoordinatorType?
-    
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    func set(postModule: PostModuleType, post: Post, listener: PostPresenterDelegate?, parent: UIViewController) {
-        guard let listener = listener else { return }
-        
-        let coordinator = postModule.createCoordinator(cell: self, post: post, listener: listener)
-        if coordinator === self.coordinator {
-            self.coordinator?.load(post: post); return
-        }
-        
-        let viewController = coordinator.viewController.asViewController()
-        viewController.willMove(toParent: parent)
-        self.addSubview(viewController.view)
-        parent.addChild(viewController)
-        viewController.view.makeEdgesEqualToSuperview()
-        coordinator.start()
-        self.coordinator = coordinator
-    }
+    var coordinator: PostCoordinatorType?
 }

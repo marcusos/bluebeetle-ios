@@ -10,7 +10,7 @@ final class PostModule: Module, PostModuleType {
     }
     
     func createCoordinator(post: Post,
-                           listener: PostPresenterDelegate) -> PostCoordinatorType {
+                           listener: PostPresenterDelegate?) -> PostCoordinatorType {
         
         let presenter = PostPresenter(post: post, postRepository: self.postRepository)
         let viewController = PostViewController()
@@ -24,7 +24,7 @@ final class PostModule: Module, PostModuleType {
     
     func createCoordinator(cell: PostModuleCell,
                            post: Post,
-                           listener: PostPresenterDelegate) -> PostCoordinatorType {
+                           listener: PostPresenterDelegate?) -> PostCoordinatorType {
         
         if let coordinator = self.pool[cell] {
             return coordinator

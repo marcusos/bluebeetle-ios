@@ -5,11 +5,11 @@ import ModuleArchitecture
 protocol PostModuleType: ModuleType {
 
     func createCoordinator(post: Post,
-                           listener: PostPresenterDelegate) -> PostCoordinatorType
+                           listener: PostPresenterDelegate?) -> PostCoordinatorType
     
     func createCoordinator(cell: PostModuleCell,
                            post: Post,
-                           listener: PostPresenterDelegate) -> PostCoordinatorType
+                           listener: PostPresenterDelegate?) -> PostCoordinatorType
 }
 
 protocol PostCoordinatorType: ViewableCoordinatorType {
