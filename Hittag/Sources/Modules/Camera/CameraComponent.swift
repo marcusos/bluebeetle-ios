@@ -50,6 +50,23 @@ final class CameraComponent: UIView, Component {
         return label
     }()
     
+    // create a label to hold the hittag name and confidence
+    let predictionLabel: UIButton = {
+        let button = UIButton()
+        button.contentEdgeInsets = UIEdgeInsets(top: 4, left: 4, bottom: 2, right: 2)
+        button.setTitle("title", for: .normal)
+        button.tintColor = .white // this will be the textColor
+        button.isUserInteractionEnabled = false
+        button.backgroundColor = UIColor.main
+        button.titleLabel?.font = .systemFont(ofSize: 19)
+        
+        button.layer.cornerRadius = 8
+        button.clipsToBounds = true
+        button.contentHorizontalAlignment = .left
+        
+        return button
+    }()
+    
     private lazy var challengeSelectorComponent: ChallengeComponent = {
         let component = ChallengeComponent()
         component.delegate = self
@@ -162,6 +179,7 @@ extension CameraComponent {
         self.addSubview(self.infoLabel)
         self.addSubview(self.controlsStackView)
         self.addSubview(self.closeButton)
+        self.addSubview(self.predictionLabel)
         self.addSubview(self.helpButton)
     }
 
@@ -171,6 +189,15 @@ extension CameraComponent {
         self.pictureButton.translatesAutoresizingMaskIntoConstraints = false
         self.closeButton.translatesAutoresizingMaskIntoConstraints = false
         self.helpButton.translatesAutoresizingMaskIntoConstraints = false
+        self.predictionLabel.translatesAutoresizingMaskIntoConstraints = false
+    
+        NSLayoutConstraint.activate([
+            self.predictionLabel.topSafeAnchor.constraint(equalTo: self.topSafeAnchor, constant: Grid * 2),
+            self.predictionLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Grid * 2),
+            
+            self.predictionLabel.heightAnchor.constraint(equalToConstant: 30),
+            self.predictionLabel.widthAnchor.constraint(equalToConstant: 220),
+        ])
         
         NSLayoutConstraint.activate([
             self.closeButton.topSafeAnchor.constraint(equalTo: self.topSafeAnchor, constant: Grid * 2),
@@ -188,6 +215,13 @@ extension CameraComponent {
         NSLayoutConstraint.activate([
             self.pictureButtonContainer.heightAnchor.constraint(equalToConstant: 90),
             self.pictureButtonContainer.widthAnchor.constraint(equalToConstant: 90),
+        ])
+        
+        NSLayoutConstraint.activate([
+            self.pictureButton.centerYAnchor.constraint(equalTo: self.pictureButtonContainer.centerYAnchor),
+            self.pictureButton.centerXAnchor.constraint(equalTo: self.pictureButtonContainer.centerXAnchor),
+            self.pictureButton.heightAnchor.constraint(equalToConstant: 70),
+            self.pictureButton.widthAnchor.constraint(equalToConstant: 70),
         ])
         
         NSLayoutConstraint.activate([
@@ -220,7 +254,41 @@ extension CameraComponent: AVCaptureVideoDataOutputSampleBufferDelegate {
                        didOutput sampleBuffer: CMSampleBuffer,
                        from connection: AVCaptureConnection) {
         
-        if let pixelBuffer: CVPixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) {
+        
+        // load our CoreML Pokedex model
+        guard let model = try? VNCoreMLModel(for: GivingThumb().model) else { return }
+        
+        // run an inference with CoreML
+        let request = VNCoreMLRequest(model: model) { (finishedRequest, error) in
+            
+            // grab the inference results
+            guard let results = finishedRequest.results as? [VNClassificationObservation] else { return }
+            
+            // grab the highest confidence result
+            guard let Observation = results.first else { return }
+            
+            // create the label text components
+            var predclass = ""
+            if Observation.identifier == "true" {
+                // predclass = "🚗 Achei um fusca azul !"
+                predclass = "✔ cena correta!"
+            }
+            else {
+                predclass = "✖ não é essa cena!"
+            }
+            
+            let predconfidence = String(format: "%.02f%", Observation.confidence * 100)
+            
+            // set the label text
+            DispatchQueue.main.async(execute: {
+                self.predictionLabel.setTitle("\(predclass)\n\(predconfidence)", for: .normal)
+            })
+        }
+        
+        if let pixelBuffer: CVPixelBuffer =
+            CMSampleBufferGetImageBuffer(sampleBuffer) {
+            // execute the request
+            try? VNImageRequestHandler(cvPixelBuffer: pixelBuffer, options: [:]).perform([request])
             self.delegate?.didOutputPixelBuffer(pixelBuffer: pixelBuffer)
         }
     }
